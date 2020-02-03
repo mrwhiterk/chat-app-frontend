@@ -1,6 +1,6 @@
 .chatMain {
   height: 100vh;
-  background-color: tomato;
+  background-color: #262626;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -8,11 +8,13 @@
 }
 
 .chatBoard {
+  color: #0d0d0d;
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 10% 70% 20%;
-  border-radius: 2px;
-  background-color: #ecebf0;
+  border-radius: 4px;
+  border: 3px solid #a60530;
+  background-color: hsl(310, 12%, 90%);
   height: 80%;
   width: 65%;
 }
@@ -32,6 +34,7 @@
 }
 
 .messageList {
+    padding-bottom: 10px;
   grid-template-columns: 1 / span 2;
   width: 200%;
   display: flex;
@@ -40,7 +43,14 @@
   overflow-y: scroll;
 }
 
+.userIconAvatar{
+    border: 1px solid black;
+    border-radius: 50%;
+    
+}
+
 .msg {
+  color: white;
   font-size: 12px;
   margin-left: 20px;
   margin-right: 150px;
@@ -52,6 +62,8 @@
   align-self: flex-start;
   height: fit-content;
   text-align: start;
+  background-color: rgb(80, 71, 76);
+  box-shadow: 1px 1px 8px black;
 }
 
 .myMsg {
@@ -60,6 +72,13 @@
   padding-left: 10px;
   padding-right: 10px;
   align-self: flex-end;
+  background-color: #73032c;
+   box-shadow: -1px 1px 8px black;
+}
+
+.usernameInMsg, .msgSent{
+ color: rgb(209, 190, 202);
+ font-size: 10px;
 }
 
 .sendMsg {
@@ -86,7 +105,7 @@
 
 .inChat {
   border-radius: 2px;
-  background-color: #ecebf0;
+  background-color: #bfb4bc;
   height: 80%;
   width: 20%;
   display: flex;

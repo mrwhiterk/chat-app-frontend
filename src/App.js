@@ -1,15 +1,20 @@
 import React from "react";
 import Nav from "./Components/Nav/Nav";
+import Home from "./Components/Home/Home";
 import Chat from "./Components/Chat/Chat";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-        <Nav className="nav" />
-        <Chat className="chat" />
+      <Nav className="nav" />
+      {/* if NOT logged in */}
+      <Home className="home" />
+
+      {/* if LOGGED IN */}
+      <Chat className="chat" />
     </div>
   );
 }
 
-export default App
+export default App;
