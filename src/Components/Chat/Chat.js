@@ -8,7 +8,7 @@ export default class Chat extends Component {
         {/* Chat board */}
         <div className="chatBoard">
           {/* Channel title */}
-          <div className="channelTitle">Channel</div>
+                <div className="channelTitle"><p className='title'>@channel</p></div>
 
           {/* Messages in the channel */}
           <div className="channelMessages">
@@ -69,7 +69,7 @@ export default class Chat extends Component {
                 type="text"
                 placeholder="Write something..."
               />
-              <input className="button" type="submit" value="Send" />
+              <input className="sendMsgButton" type="submit" value="" />
             </form>
           </div>
         </div>

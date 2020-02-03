@@ -13,16 +13,26 @@
   grid-template-columns: 1;
   grid-template-rows: 10% 70% 20%;
   border-radius: 4px;
-  border: 3px solid #a60530;
-  background-color: hsl(310, 12%, 90%);
+  border: 3px solid #73032c;
+  background-color: rgb(241, 235, 240);
   height: 80%;
   width: 65%;
 }
 
 .channelTitle {
+  background: -webkit-linear-gradient(
+    rgb(187, 179, 186),
+    rgba(233, 223, 231, 0)
+  );
   width: 100%;
   grid-template-columns: 1;
   grid-row: 1;
+}
+
+.title {
+  padding-left: 20px;
+  text-align: start;
+  font-size: 20px;
 }
 
 .channelMessages {
@@ -34,7 +44,7 @@
 }
 
 .messageList {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
   grid-template-columns: 1 / span 2;
   width: 200%;
   display: flex;
@@ -43,10 +53,9 @@
   overflow-y: scroll;
 }
 
-.userIconAvatar{
-    border: 1px solid black;
-    border-radius: 50%;
-    
+.userIconAvatar {
+  border: 1px solid #0d0d0d;
+  border-radius: 50%;
 }
 
 .msg {
@@ -57,13 +66,13 @@
   margin-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  border: 1px solid black;
+  /* border: 1px solid #0D0D0D; */
   border-radius: 8px;
   align-self: flex-start;
   height: fit-content;
   text-align: start;
   background-color: rgb(80, 71, 76);
-  box-shadow: 1px 1px 8px black;
+  box-shadow: 1px 1px 8px #0d0d0d;
 }
 
 .myMsg {
@@ -73,15 +82,20 @@
   padding-right: 10px;
   align-self: flex-end;
   background-color: #73032c;
-   box-shadow: -1px 1px 8px black;
+  box-shadow: -1px 1px 8px #0d0d0d;
 }
 
-.usernameInMsg, .msgSent{
- color: rgb(209, 190, 202);
- font-size: 10px;
+.usernameInMsg,
+.msgSent {
+  color: rgb(209, 190, 202);
+  font-size: 10px;
 }
 
 .sendMsg {
+  background: -webkit-linear-gradient(
+    rgba(233, 223, 231, 0),
+    rgb(158, 151, 157)
+  );
   grid-column: 1;
   grid-row: 3;
   height: 100%;
@@ -96,6 +110,9 @@
 }
 
 .writeMsgInput {
+  background-color: rgb(247, 244, 246);
+  border: 1px solid #a37385;
+  border-radius: 5px;
   align-self: left;
   min-height: 60%;
   max-height: fit-content;
@@ -103,9 +120,29 @@
   text-align: start;
 }
 
+.sendMsgButton {
+    border: none;
+  background: url("/sendIcon.png") no-repeat;
+  background-position: center;
+  background-size: 30px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+.sendMsgButton:hover {
+  background-size: 35px;
+}
+
 .inChat {
+  border: 3px solid #73032c;
   border-radius: 2px;
-  background-color: #bfb4bc;
+  background-color: rgb(214, 205, 212);
   height: 80%;
   width: 20%;
   display: flex;
