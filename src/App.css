@@ -1,38 +1,39 @@
 .App {
+  /* TODO remove font size */
+  font-size: 12px;
   text-align: center;
+  background-color: teal;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-main {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chatMain {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* BUTTON */
+.button {
+  cursor: pointer;
+  font-size: 0.8em;
+  color: #35323b;
+  padding: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+  border: 1px solid #eceaa0;
+  background-color: #bed24c;
+  border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button:hover {
+  border: 1px solid rgb(207, 205, 134);
+  background-color: #859031;
 }

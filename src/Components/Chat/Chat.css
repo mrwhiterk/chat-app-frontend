@@ -1,0 +1,101 @@
+.chatMain {
+  height: 100vh;
+  background-color: tomato;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.chatBoard {
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 10% 70% 20%;
+  border-radius: 2px;
+  background-color: #ecebf0;
+  height: 80%;
+  width: 65%;
+}
+
+.channelTitle {
+  width: 100%;
+  grid-template-columns: 1;
+  grid-row: 1;
+}
+
+.channelMessages {
+  width: 100%;
+  grid-template-columns: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.messageList {
+  grid-template-columns: 1 / span 2;
+  width: 200%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: scroll;
+}
+
+.msg {
+  font-size: 12px;
+  margin-left: 20px;
+  margin-right: 150px;
+  margin-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
+  border-radius: 8px;
+  align-self: flex-start;
+  height: fit-content;
+  text-align: start;
+}
+
+.myMsg {
+  margin-right: 20px;
+  margin-left: 150px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-self: flex-end;
+}
+
+.sendMsg {
+  grid-column: 1;
+  grid-row: 3;
+  height: 100%;
+}
+
+.msgForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+.writeMsgInput {
+  align-self: left;
+  min-height: 60%;
+  max-height: fit-content;
+  width: 78%;
+  text-align: start;
+}
+
+.inChat {
+  border-radius: 2px;
+  background-color: #ecebf0;
+  height: 80%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.onlineUsersList {
+  max-height: 100%;
+  padding-top: 20px;
+  line-height: 30px;
+}

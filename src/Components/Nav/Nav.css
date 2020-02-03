@@ -1,0 +1,23 @@
+.nav-main {
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 10% 50% 40%;
+  background-color: thistle;
+}
+
+.appTitle {
+  grid-row: 1;
+}
+
+.channels {
+  grid-row: 2;
+}
+
+.navTabs {
+  grid-row: 3;
+}
+
+.navTabContent {
+  display: flex;
+  flex-direction: column;
+}
