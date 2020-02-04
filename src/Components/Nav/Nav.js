@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import './Nav.css'
 
 import RegisterForm from '../RegisterForm/RegisterForm'
+import Context from '../Context/Context'
 
 export default class Nav extends Component {
+  static contextType = Context
+
   render() {
     return (
       <div className="nav-main">
@@ -39,7 +42,9 @@ export default class Nav extends Component {
 
           {/* When logged in */}
           <div className="loggenInUser"></div>
-          <div className="button">Logout</div>
+          <button className="button" onClick={this.context.logout}>
+            Logout
+          </button>
         </div>
       </div>
     )

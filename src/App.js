@@ -3,7 +3,11 @@ import Nav from './components/Nav/Nav'
 import Home from './components/Home/Home'
 import Chat from './components/Chat/Chat'
 import './App.css'
-import { checkTokenAndReturn, getMessages } from './api/axios-helpers'
+import {
+  checkTokenAndReturn,
+  getMessages,
+  setAuthHeader
+} from './api/axios-helpers'
 
 import Context from './components/Context/Context'
 
@@ -17,7 +21,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state)
+    console.log('app.js updated', this.state)
   }
 
   componentDidMount() {
@@ -38,6 +42,11 @@ class App extends Component {
     localStorage.removeItem('token')
   }
 
+  logout = () => {
+    setAuthHeader(null)
+    this.removeAuth()
+  }
+
   getMessages = async () => {
     try {
       let response = await getMessages()
@@ -56,7 +65,8 @@ class App extends Component {
       user: this.state.user,
       setAuth: this.setAuth,
       removeAuth: this.removeAuth,
-      getMessages: this.getMessages
+      getMessages: this.getMessages,
+      logout: this.logout
     }
 
     console.log('is auth? ', this.state.isAuth)

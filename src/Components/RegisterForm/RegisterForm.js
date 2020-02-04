@@ -53,7 +53,7 @@ class RegisterForm extends Component {
   }
 
   render() {
-    return (
+    let form = (
       <form className="navTabContent register" onSubmit={this.handleSubmit}>
         Register
         <label>
@@ -98,6 +98,13 @@ class RegisterForm extends Component {
         </label>
         <input className="button" type="submit" value="Register" />
       </form>
+    )
+    return this.context.isAuth ? (
+      <h3 style={{ color: 'white' }}>
+        logged in as {this.context.user.username}{' '}
+      </h3>
+    ) : (
+      form
     )
   }
 }
