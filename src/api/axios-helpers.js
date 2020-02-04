@@ -1,7 +1,7 @@
 import Axios from './axiosConfig'
 import jwt_decode from 'jwt-decode'
 
-export const setAuthToken = token => {
+export const setAuthHeader = token => {
   if (token) {
     Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
   } else {
@@ -9,19 +9,20 @@ export const setAuthToken = token => {
   }
 }
 
-export const checkToken = () => {
+export const checkTokenAndReturn = () => {
   const token = localStorage.getItem('token')
-  if (!token) return false
+  if (!token) return null
 
   const userData = jwt_decode(token)
+
   const currentTime = Date.now() / 1000
 
   if (userData.exp < currentTime) {
     localStorage.removeItem('token')
-    setAuthToken(null)
-    return false
+    setAuthHeader(null)
+    return null
   } else {
-    setAuthToken(token)
+    setAuthHeader(token)
     return userData
   }
 }
@@ -41,5 +42,13 @@ export const signin = async formBody => {
     return response
   } catch (err) {
     return err.response
+  }
+}
+
+export const getMessages = async () => {
+  try {
+    console.log('get messages hit')
+  } catch (err) {
+    return err
   }
 }
