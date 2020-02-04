@@ -23,15 +23,15 @@ export default class Nav extends Component {
         </div>
         {/* Register / Login tabs */}
         <div className="navTabs">
-          <div className="tab">
-            <RegisterForm />
-          </div>
-          <div className="tab">
-            <LoginForm />
-          </div>
+          <div className="tab">{!this.context.isAuth && <RegisterForm />}</div>
+          <div className="tab">{!this.context.isAuth && <LoginForm />}</div>
 
           {/* When logged in */}
-          <div className="loggenInUser"></div>
+          <div className="loggenInUser" style={{ color: 'white' }}>
+            {this.context.isAuth
+              ? this.context.user.username
+              : 'browsing as guest'}
+          </div>
           <button className="button" onClick={this.context.logout}>
             Logout
           </button>

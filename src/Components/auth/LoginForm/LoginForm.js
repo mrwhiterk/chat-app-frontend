@@ -77,13 +77,7 @@ class LoginForm extends Component {
         <input className="button" type="submit" value="Login" />
       </form>
     )
-    return this.context.isAuth ? (
-      <h3 style={{ color: 'white' }}>
-        logged in as {this.context.user.username}{' '}
-      </h3>
-    ) : (
-      form
-    )
+    return form
   }
 }
 

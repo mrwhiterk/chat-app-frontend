@@ -101,13 +101,7 @@ class RegisterForm extends Component {
         <input className="button" type="submit" value="Register" />
       </form>
     )
-    return this.context.isAuth ? (
-      <h3 style={{ color: 'white' }}>
-        logged in as {this.context.user.username}{' '}
-      </h3>
-    ) : (
-      form
-    )
+    return form
   }
 }
 
