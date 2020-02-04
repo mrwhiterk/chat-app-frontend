@@ -1,8 +1,8 @@
-import React from "react";
-import Nav from "./Components/Nav/Nav";
-import Home from "./Components/Home/Home";
-import Chat from "./Components/Chat/Chat";
-import "./App.css";
+import React from 'react'
+import Nav from './components/Nav/Nav'
+import Home from './components/Home/Home'
+import Chat from './components/Chat/Chat'
+import './App.css'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       {/* if LOGGED IN */}
       <Chat className="chat" />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
