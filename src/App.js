@@ -20,10 +20,6 @@ class App extends Component {
     messages: null
   }
 
-  componentDidUpdate() {
-    console.log('app.js updated', this.state)
-  }
-
   componentDidMount() {
     if (this.state.user) {
       this.setState({ isAuth: true })
@@ -68,8 +64,6 @@ class App extends Component {
       getMessages: this.getMessages,
       logout: this.logout
     }
-
-    console.log('is auth? ', this.state.isAuth)
 
     return (
       <Context.Provider value={contextPayload}>

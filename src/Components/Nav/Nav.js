@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './Nav.css'
 
-import RegisterForm from '../RegisterForm/RegisterForm'
+import RegisterForm from '../auth/RegisterForm/RegisterForm'
+import LoginForm from '../auth/LoginForm/LoginForm'
 import Context from '../Context/Context'
 
 export default class Nav extends Component {
@@ -26,18 +27,7 @@ export default class Nav extends Component {
             <RegisterForm />
           </div>
           <div className="tab">
-            <form className="navTabContent login">
-              Login
-              <label>
-                Username:
-                <input type="text" name="username" placeholder="Username" />
-              </label>
-              <label>
-                Password:
-                <input type="text" name="password" placeholder="Password" />
-              </label>
-              <input className="button" type="submit" value="Login" />
-            </form>
+            <LoginForm />
           </div>
 
           {/* When logged in */}

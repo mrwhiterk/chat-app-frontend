@@ -3,8 +3,8 @@ import {
   signup,
   setAuthHeader,
   checkTokenAndReturn
-} from '../../api/axios-helpers'
-import Context from '../Context/Context'
+} from '../../../api/axios-helpers'
+import Context from '../../Context/Context'
 
 class RegisterForm extends Component {
   static contextType = Context
@@ -79,8 +79,9 @@ class RegisterForm extends Component {
         <label>
           Password:
           <input
-            type="text"
+            type="password"
             name="password"
+            autoComplete="password"
             placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
@@ -89,8 +90,9 @@ class RegisterForm extends Component {
         <label>
           Confirm password:
           <input
-            type="text"
+            type="password"
             name="confirmPassword"
+            autoComplete="confirm-password"
             onChange={this.handleChange}
             placeholder="Confirm password"
             value={this.state.confirmPassword}
