@@ -32,7 +32,7 @@
 .title {
   padding-left: 20px;
   text-align: start;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 
 .channelMessages {
@@ -66,7 +66,6 @@
   margin-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  /* border: 1px solid #0D0D0D; */
   border-radius: 8px;
   align-self: flex-start;
   height: fit-content;
@@ -120,8 +119,12 @@
   text-align: start;
 }
 
+input:focus {
+  outline: none;
+}
+
 .sendMsgButton {
-    border: none;
+  border: none;
   background: url("/sendIcon.png") no-repeat;
   background-position: center;
   background-size: 30px;
