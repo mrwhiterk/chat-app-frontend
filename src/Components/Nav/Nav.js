@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import "./Nav.css";
+import RegisterForm from "../auth/RegisterForm/RegisterForm";
+import LoginForm from "../auth/LoginForm/LoginForm";
+import Context from "../Context/Context";
 import Tabs from "./Tabs/Tabs";
 import Tab from "./Tabs/Tab";
+import "./Nav.css";
 
 export default class Nav extends Component {
+  static contextType = Context;
+
   render() {
     return (
       <div className="nav-main">
@@ -27,50 +32,18 @@ export default class Nav extends Component {
               <div>Poop 2</div>
             </Tab>
           </Tabs>
-
-          {/* {" "}
-            <form className="navTabContent register">
-              Register
-              <label>
-                Username:
-                <input type="text" name="username" placeholder="Username" />
-              </label>
-              <label>
-                Email:
-                <input type="email" name="email" placeholder="Email" />
-              </label>
-              <label>
-                Password:
-                <input type="text" name="password1" placeholder="Password" />
-              </label>
-              <label>
-                Repeat password:
-                <input
-                  type="text"
-                  name="password2"
-                  placeholder="Repeat password"
-                />
-              </label>
-              <input className="button" type="submit" value="Register" />
-            </form> */}
-
-          {/* {" "}
-            <form className="navTabContent login">
-              Login
-              <label>
-                Username:
-                <input type="text" name="username" placeholder="Username" />
-              </label>
-              <label>
-                Password:
-                <input type="text" name="password" placeholder="Password" />
-              </label>
-              <input className="button" type="submit" value="Login" />
-            </form> */}
+          <div className="tab">{!this.context.isAuth && <RegisterForm />}</div>
+          <div className="tab">{!this.context.isAuth && <LoginForm />}</div>
 
           {/* When logged in */}
-          <div className="loggenInUser"></div>
-          <div className="button">Logout</div>
+          <div className="loggenInUser" style={{ color: "white" }}>
+            {this.context.isAuth
+              ? this.context.user.username
+              : "browsing as guest"}
+          </div>
+          <button className="button" onClick={this.context.logout}>
+            Logout
+          </button>
         </div>
       </div>
     );

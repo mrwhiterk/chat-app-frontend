@@ -1,20 +1,83 @@
-import React from "react";
-import Nav from "./Components/Nav/Nav";
-import Home from "./Components/Home/Home";
-import Chat from "./Components/Chat/Chat";
-import "./App.css";
+import React, { Component } from 'react'
+import Nav from './components/Nav/Nav'
+import Home from './components/Home/Home'
+import Chat from './components/Chat/Chat'
+import './App.css'
+import {
+  checkTokenAndReturn,
+  getMessages,
+  setAuthHeader
+} from './api/axios-helpers'
 
-function App() {
-  return (
-    <div className="App">
-      <Nav className="nav" />
-      {/* if NOT logged in */}
-      <Home className="home" />
+import Context from './components/Context/Context'
 
-      {/* if LOGGED IN */}
-      <Chat className="chat" />
-    </div>
-  );
+class App extends Component {
+  static contextType = Context
+
+  state = {
+    isAuth: false,
+    user: checkTokenAndReturn(),
+    messages: null
+  }
+
+  componentDidMount() {
+    if (this.state.user) {
+      this.setState({ isAuth: true })
+    }
+  }
+
+  setAuth = user => {
+    this.setState({
+      isAuth: true,
+      user
+    })
+  }
+
+  removeAuth = () => {
+    this.setState({ isAuth: false })
+    localStorage.removeItem('token')
+  }
+
+  logout = () => {
+    setAuthHeader(null)
+    this.removeAuth()
+  }
+
+  getMessages = async () => {
+    try {
+      let response = await getMessages()
+
+      if (response.status === 200) {
+        this.setState({ messages: response.data })
+      }
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
+  render() {
+    let contextPayload = {
+      isAuth: this.state.isAuth,
+      user: this.state.user,
+      setAuth: this.setAuth,
+      removeAuth: this.removeAuth,
+      getMessages: this.getMessages,
+      logout: this.logout
+    }
+
+    return (
+      <Context.Provider value={contextPayload}>
+        <div className="App">
+          <Nav />
+          {/* if NOT logged in */}
+          <Home />
+
+          {/* if LOGGED IN */}
+          <Chat />
+        </div>
+      </Context.Provider>
+    )
+  }
 }
 
-export default App;
+export default App
