@@ -1,8 +1,9 @@
 .nav-main {
+  background-color: #0d0d0d;
+  color: white;
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 10% 50% 40%;
-  background-color: white;
 }
 
 .appTitle {
@@ -13,16 +14,65 @@
   grid-row: 2;
 }
 
-.nav {
-  background-color: cadetblue;
+.tabs {
+  margin-left: 10px;
+  margin-right: 10px;
+  grid-row: 3;
+  height: 100%;
+  width: auto;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 10% 90%;
 }
 
-/* .Tabs {
-  grid-row: 2;
-} */
+.tabs-nav {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+}
 
 .tab {
-  background-color: coral;
+  cursor: pointer;
+  background-color: #161515;
+  width: 60px;
   height: 100%;
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active-tab-content {
+  height: 70%;
+  /* border: 1px solid rgb(255, 0, 221); */
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #262626;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tab-link {
+  color: rgb(209, 190, 202);
+}
+
+.navTabContent {
+  width: 100%;
+
+}
+
+h6{
+    margin: 0;
+}
+
+.navButton {
+    color: rgb(209, 190, 202);
+    margin-top: 5px;
+    background-color: #0D0D0D;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 190, 202);
 }

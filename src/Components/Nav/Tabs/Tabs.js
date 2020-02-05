@@ -6,8 +6,6 @@ export default class Tabs extends Component {
   };
 
   handleTabClick = tab => {
-    console.log("tab pooped!");
-
     this.setState({
       activeTab:
         tab === this.state.activeTab ? this.props.defaultActiveTab : tab
@@ -28,29 +26,20 @@ export default class Tabs extends Component {
     });
   };
 
-  renderCurrentActiveTab() {
+  render() {
     const { children } = this.props;
     const { activeTab } = this.state;
-    console.log(children, activeTab);
-    
-
-    if (children[activeTab]) {
-      return children[activeTab].props.children;
-    }
-  }
-
-  render() {
-    // const { children } = this.props;
-    // const { activeTab } = this.state;
 
     return (
       <div className="tabs">
-        <div className="tabs-nav nav navbar-nav navbar-left">
-          {this.renderTabsChildrenAsProps()}
-        </div>
-        <div className="tabs-active-content">
-          {this.renderCurrentActiveTab()}
-        </div>
+        <div className="tabs-nav">{this.renderTabsChildrenAsProps()}</div>
+        {children[activeTab] ? (
+          <div className="active-tab-content">
+            {children[activeTab].props.children}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
