@@ -70,8 +70,7 @@ class App extends Component {
         <div className="App">
           <Nav />
           {/* if NOT logged in */}
-          <Home />
-
+          {/* <Home /> */}
           {/* if LOGGED IN */}
           <Chat />
         </div>

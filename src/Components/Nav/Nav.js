@@ -22,31 +22,39 @@ export default class Nav extends Component {
           <div className="chnl">Channel 4</div>
           <div className="chnl">Channel 5</div>
         </div>
+        <Tabs>
+          <Tab
+            iconClassName={"icon-class-0"}
+            linkClassName={"link-class-0"}
+            title="1"
+          >
+            <div>Poop 1</div>
+          </Tab>
+          <Tab
+            iconClassName={"icon-class-1"}
+            linkClassName={"link-class-1"}
+            title="2"
+          >
+            <div>Poop 2</div>
+          </Tab>
+        </Tabs>
+
         {/* Register / Login tabs */}
-        <div className="navTabs">
-          <Tabs>
-            <Tab iconClassName={"icon-class-0"} linkClassName={"link-class-0"}>
-              <div>Poop 1</div>
-            </Tab>
-            <Tab iconClassName={"icon-class-1"} linkClassName={"link-class-1"}>
-              <div>Poop 2</div>
-            </Tab>
-          </Tabs>
-          <div>poop</div>
 
-          <div className="tab">{!this.context.isAuth && <RegisterForm />}</div>
-          <div className="tab">{!this.context.isAuth && <LoginForm />}</div>
+        {/* <div className='test'>poop</div> */}
 
-          {/* When logged in */}
-          <div className="loggenInUser" style={{ color: "white" }}>
-            {this.context.isAuth
-              ? this.context.user.username
-              : "browsing as guest"}
-          </div>
-          <button className="button" onClick={this.context.logout}>
-            Logout
-          </button>
+        {/* <div className="tab">{!this.context.isAuth && <RegisterForm />}</div>
+          <div className="tab">{!this.context.isAuth && <LoginForm />}</div> */}
+
+        {/* When logged in */}
+        <div className="loggedInUser" style={{ color: "white" }}>
+          {this.context.isAuth
+            ? this.context.user.username
+            : "browsing as guest"}
         </div>
+        <button className="button" onClick={this.context.logout}>
+          Logout
+        </button>
       </div>
     );
   }

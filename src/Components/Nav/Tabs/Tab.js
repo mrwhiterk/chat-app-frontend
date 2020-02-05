@@ -2,7 +2,7 @@ import React from "react";
 
 //! Stateless component
 const Tab = props => {
-  console.log(`tab's props`, props.tab);
+  console.log(`tab's props`, props.props);
 
   return (
     <div className="tab">

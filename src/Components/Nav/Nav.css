@@ -13,6 +13,16 @@
   grid-row: 2;
 }
 
-.nav{
-    background-color: cadetblue;
+.nav {
+  background-color: cadetblue;
+}
+
+/* .Tabs {
+  grid-row: 2;
+} */
+
+.tab {
+  background-color: coral;
+  height: 100%;
+  border: 1px solid black;
 }
