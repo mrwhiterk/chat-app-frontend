@@ -39,6 +39,11 @@ export default class Nav extends Component {
           </Tab>
         </Tabs>
 
+        <div>Poop 2</div>
+        <div>Poop 2</div>
+        <div>Poop 2</div>
+        <div>Poop 2</div>
+        <div>Poop 2</div>
         {/* Register / Login tabs */}
 
         {/* <div className='test'>poop</div> */}
