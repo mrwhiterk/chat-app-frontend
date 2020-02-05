@@ -32,6 +32,8 @@ export default class Nav extends Component {
               <div>Poop 2</div>
             </Tab>
           </Tabs>
+          <div>poop</div>
+
           <div className="tab">{!this.context.isAuth && <RegisterForm />}</div>
           <div className="tab">{!this.context.isAuth && <LoginForm />}</div>
 
