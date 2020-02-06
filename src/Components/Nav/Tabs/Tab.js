@@ -18,7 +18,7 @@ export default class Tab extends Component {
               this.props.onClick(this.props.tab);
             }}
           >
-            {`${this.props.lable}`}
+            {`${this.props.label}`}
           </a>
         </div>
       </>
