@@ -31,40 +31,49 @@ export default class Tabs extends Component {
   render() {
     const { children } = this.props;
     const { activeTab } = this.state;
-    
+    const { isAuth } = this.context;
 
     return (
-      <div className="tabs">
-        <div className="tabs-nav">{this.renderTabsChildrenAsProps()}</div>
-        {children[activeTab] ? (
-          <div className="active-tab-content">
-            {children[activeTab].props.children}
-            {children[activeTab].props.className === "login-tab" ? (
-              <div className="guest-block">
-                <p className="guest-text">
-                  You are currently logged in as <br />
-                  <span>{UsernameGenerator.generateUsername("-")}</span>
-                </p>
-                <br />
-                <p className="guest-text">
-                  Would you like to{" "}
-                  <a
-                    className={`tab-link register-tab register-guest-link`}
-                    onClick={event => {
-                      event.preventDefault();
-                    }}
-                  >
-                    {`Register`}
-                  </a>{" "}
-                  ?
-                </p>
+      <div>
+        {isAuth ? (
+            <div className='loggedInAs'>
+          <div className="loggedInUser" style={{ color: "white" }}>
+            Hello {this.context.isAuth ? this.context.user.username : ""}
+          </div>
+          <div className="navButton logoutBtn" onClick={this.context.logout}>Logout</div>
+          </div>
+        ) : (
+          <div className="tabs">
+            <div className="tabs-nav">{this.renderTabsChildrenAsProps()}</div>
+            {children[activeTab] ? (
+              <div className="active-tab-content">
+                {children[activeTab].props.children}
+                {children[activeTab].props.className === "login-tab" ? (
+                  <div className="guest-block">
+                    <p className="guest-text">
+                      You are currently logged in as <br />
+                      <span>{UsernameGenerator.generateUsername("-")}</span>
+                    </p>
+                    <br />
+                    <p className="guest-text">
+                      Would you like to{" "}
+                      <a
+                        className={`tab-link register-tab register-guest-link`}
+                        onClick={event => {
+                          event.preventDefault();
+                        }}
+                      >{`Register`}</a>{" "}
+                      ?
+                    </p>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
               ""
             )}
           </div>
-        ) : (
-          ""
         )}
       </div>
     );

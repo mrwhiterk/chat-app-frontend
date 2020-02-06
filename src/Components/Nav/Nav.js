@@ -40,13 +40,6 @@ export default class Nav extends Component {
             </div>
           </Tab>
         </Tabs>
-
-        {/* When logged in */}
-        <div className="loggedInUser" style={{ color: "white" }}>
-          {this.context.isAuth
-            ? this.context.user.username
-            : "browsing as guest"}
-        </div>
       </div>
     );
   }

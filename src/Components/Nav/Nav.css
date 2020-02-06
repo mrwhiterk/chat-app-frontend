@@ -114,3 +114,15 @@ h6 {
  color: rgb(209, 190, 202);   
 }
 
+
+.logoutBtn{
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: fit-content;
+}
+
+.loggedInAs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
