@@ -69,10 +69,6 @@ class App extends Component {
       <Context.Provider value={contextPayload}>
         <div className="App">
           <Nav />
-          {/* if NOT logged in */}
-          <Home />
-
-          {/* if LOGGED IN */}
           <Chat />
         </div>
       </Context.Provider>

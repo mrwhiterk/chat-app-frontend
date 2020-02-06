@@ -1,24 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
 
-//! Stateless component
-const Tab = props => {
-  console.log(`tab's props`, props.tab);
+export default class Tab extends Component {
+  state = {
+    isActive: false
+  };
 
-  return (
-    <div className="tab">
-      <a
-        className={`tab-link ${props.linkClassName} ${
-          props.isActive ? "active" : ""
-        }`}
-        onClick={event => {
-          event.preventDefault();
-          props.onClick(props.tab);
-        }}
-      >
-        <i className={`tab-icon ${props.iconClassName}`} />
-      </a>
-    </div>
-  );
-};
-
-export default Tab;
+  render() {
+    return (
+      <>
+        <div className="tab" style={{ backgroundColor: this.props.bgColor }}>
+          <a
+            className={`tab-link ${this.props.className}
+        ${this.props.isActive}
+        `}
+            onClick={event => {
+              event.preventDefault();
+              this.props.onClick(this.props.tab);
+            }}
+          >
+            {`${this.props.lable}`}
+          </a>
+        </div>
+      </>
+    );
+  }
+}

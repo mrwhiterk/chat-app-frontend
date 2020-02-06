@@ -1,56 +1,105 @@
 import React, { Component } from "react";
+import Context from "../../Context/Context";
+import UsernameGenerator from "username-generator";
 
 export default class Tabs extends Component {
+  static contextType = Context;
+
   state = {
-    activeTab: this.props.defaultActiveTab
+    activeTab: ""
   };
 
-  handleTabClick = tab => {
-    console.log("tab pooped!");
+  componentDidMount() {
+    if (!this.context.isAuth) {
+      this.handleTabClick(0);
+    }
+  }
 
-    this.setState({
-      activeTab:
-        tab === this.state.activeTab ? this.props.defaultActiveTab : tab
-    });
+  handleTabClick = tab => {
+    if (tab === this.state.activeTab) {
+      return;
+    } else {
+      this.setState({
+        activeTab: tab === this.state.activeTab ? "" : tab
+      });
+    }
   };
 
   renderTabsChildrenAsProps = () => {
     //? 'React.Children' = this.props.children: whatever you include between the opening and closing tags when invoking a component
     return React.Children.map(this.props.children, (child, index) => {
-
-      //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
-      return React.cloneElement(child, {
-        onClick: this.handleTabClick,
-        tab: index,
-        isActive: index === this.state.activeTab
-      });;
-      
+      if (this.state.activeTab === index) {
+        return React.cloneElement(child, {
+          onClick: this.handleTabClick,
+          tab: index,
+          bgColor: "#262626"
+        });
+      } else {
+        //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
+        return React.cloneElement(child, {
+          onClick: this.handleTabClick,
+          tab: index,
+          bgColor: "#161515"
+        });
+      }
     });
   };
 
-  renderCurrentActiveTab() {
+  render() {
     const { children } = this.props;
     const { activeTab } = this.state;
+    const { isAuth } = this.context;
 
-    if (children[activeTab]) {
-      return children[activeTab].props.children;
-    }
-  }
-
-  render() {
-      const { children } = this.props;
-      const { activeTab } = this.state;
-      
     return (
-        <div className='tabs'>
-            <div className='tabs-nav nav navbar-nav navbar-left'>
-                {this.renderTabsChildrenAsProps()}
+      <div>
+        {isAuth ? (
+          <div className="loggedInAs">
+            <div className="loggedInUser">
+              Hello {this.context.isAuth ? this.context.user.username : ""}
             </div>
-            <div className='tabs-active-content'>
-                {this.renderCurrentActiveTab()}
+            <div className="navButton logoutBtn" onClick={this.context.logout}>
+              Logout
             </div>
-        </div>
-
-    )
+          </div>
+        ) : (
+          <div className="tabs">
+            <div className="tabs-nav">{this.renderTabsChildrenAsProps()}</div>
+            {children[activeTab] ? (
+              <div className="active-tab-content">
+                {children[activeTab].props.children}
+                {children[activeTab].props.className === "login-tab" ? (
+                  <>
+                    <div className="guest-block">
+                      <p className="guest-text">
+                        You are currently chatting as <br />
+                        <span>{UsernameGenerator.generateUsername("-")}</span>
+                        <br />
+                        (Guest User)
+                      </p>
+                      <br />
+                      <p className="guest-text">
+                        Would you like to{" "}
+                        <a
+                          className={`tab-link register-tab register-guest-link`}
+                          onClick={event => {
+                            event.preventDefault();
+                            this.handleTabClick(1)
+                          }}
+                        >{`register`}</a>{" "}
+                        ?
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
+      </div>
+    );
   }
 }

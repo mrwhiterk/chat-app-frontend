@@ -14,6 +14,7 @@ export default class Nav extends Component {
       <div className="nav-main">
         {/* App title */}
         <div className="appTitle">Chat App</div>
+        
         {/* Channels */}
         <div className="channels">
           <div className="chnl">Channel 1</div>
@@ -22,31 +23,24 @@ export default class Nav extends Component {
           <div className="chnl">Channel 4</div>
           <div className="chnl">Channel 5</div>
         </div>
+
         {/* Register / Login tabs */}
-        <div className="navTabs">
-          <Tabs>
-            <Tab iconClassName={"icon-class-0"} linkClassName={"link-class-0"}>
-              <div>Poop 1</div>
-            </Tab>
-            <Tab iconClassName={"icon-class-1"} linkClassName={"link-class-1"}>
-              <div>Poop 2</div>
-            </Tab>
-          </Tabs>
-          <div>poop</div>
-
-          <div className="tab">{!this.context.isAuth && <RegisterForm />}</div>
-          <div className="tab">{!this.context.isAuth && <LoginForm />}</div>
-
-          {/* When logged in */}
-          <div className="loggenInUser" style={{ color: "white" }}>
-            {this.context.isAuth
-              ? this.context.user.username
-              : "browsing as guest"}
-          </div>
-          <button className="button" onClick={this.context.logout}>
-            Logout
-          </button>
-        </div>
+        <Tabs>
+          <Tab className="login-tab" lable="Login">
+            <div>
+              <div className="tabContent">
+                {!this.context.isAuth && <LoginForm />}
+              </div>
+            </div>
+          </Tab>
+          <Tab className="register-log" lable="Register">
+            <div>
+              <div className="tabContent">
+                {!this.context.isAuth && <RegisterForm />}
+              </div>
+            </div>
+          </Tab>
+        </Tabs>
       </div>
     );
   }
