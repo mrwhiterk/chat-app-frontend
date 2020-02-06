@@ -10,7 +10,7 @@ export default class Tab extends Component {
       <>
         <div className="tab" style={{ backgroundColor: this.props.bgColor }}>
           <a
-            className={`tab-link ${this.props.className}
+            className={`tabLink ${this.props.className}
         ${this.props.isActive}
         `}
             onClick={event => {
@@ -18,7 +18,7 @@ export default class Tab extends Component {
               this.props.onClick(this.props.tab);
             }}
           >
-            {`${this.props.lable}`}
+            {`${this.props.label}`}
           </a>
         </div>
       </>

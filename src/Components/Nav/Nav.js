@@ -11,10 +11,10 @@ export default class Nav extends Component {
 
   render() {
     return (
-      <div className="nav-main">
+      <div className="navMain">
         {/* App title */}
         <div className="appTitle">Chat App</div>
-        
+
         {/* Channels */}
         <div className="channels">
           <div className="chnl">Channel 1</div>
@@ -26,14 +26,14 @@ export default class Nav extends Component {
 
         {/* Register / Login tabs */}
         <Tabs>
-          <Tab className="login-tab" lable="Login">
+          <Tab className="login-tab" label="Login">
             <div>
               <div className="tabContent">
                 {!this.context.isAuth && <LoginForm />}
               </div>
             </div>
           </Tab>
-          <Tab className="register-log" lable="Register">
+          <Tab className="register-log" label="Register">
             <div>
               <div className="tabContent">
                 {!this.context.isAuth && <RegisterForm />}

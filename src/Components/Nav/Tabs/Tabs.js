@@ -63,27 +63,27 @@ export default class Tabs extends Component {
           </div>
         ) : (
           <div className="tabs">
-            <div className="tabs-nav">{this.renderTabsChildrenAsProps()}</div>
+            <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
             {children[activeTab] ? (
-              <div className="active-tab-content">
+              <div className="activeTabContent">
                 {children[activeTab].props.children}
                 {children[activeTab].props.className === "login-tab" ? (
                   <>
-                    <div className="guest-block">
-                      <p className="guest-text">
+                    <div className="guestBlock">
+                      <p className="guestText">
                         You are currently chatting as <br />
                         <span>{UsernameGenerator.generateUsername("-")}</span>
                         <br />
                         (Guest User)
                       </p>
                       <br />
-                      <p className="guest-text">
+                      <p className="guestText">
                         Would you like to{" "}
                         <a
-                          className={`tab-link register-tab register-guest-link`}
+                          className={`tabLink register-tab registerGuestLink`}
                           onClick={event => {
                             event.preventDefault();
-                            this.handleTabClick(1)
+                            this.handleTabClick(1);
                           }}
                         >{`register`}</a>{" "}
                         ?
