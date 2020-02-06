@@ -6,25 +6,42 @@ export default class Tabs extends Component {
   static contextType = Context;
 
   state = {
-    activeTab: this.props.defaultActiveTab
+    activeTab: ""
   };
 
+  componentDidMount() {
+    if (!this.context.isAuth) {
+      this.handleTabClick(0);
+    }
+  }
+
   handleTabClick = tab => {
-    this.setState({
-      activeTab:
-        tab === this.state.activeTab ? this.props.defaultActiveTab : tab
-    });
+    if (tab === this.state.activeTab) {
+      return;
+    } else {
+      this.setState({
+        activeTab: tab === this.state.activeTab ? "" : tab
+      });
+    }
   };
 
   renderTabsChildrenAsProps = () => {
     //? 'React.Children' = this.props.children: whatever you include between the opening and closing tags when invoking a component
     return React.Children.map(this.props.children, (child, index) => {
-      //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
-      return React.cloneElement(child, {
-        onClick: this.handleTabClick,
-        tab: index,
-        isActive: index === this.state.activeTab
-      });
+      if (this.state.activeTab === index) {
+        return React.cloneElement(child, {
+          onClick: this.handleTabClick,
+          tab: index,
+          bgColor: "#262626"
+        });
+      } else {
+        //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
+        return React.cloneElement(child, {
+          onClick: this.handleTabClick,
+          tab: index,
+          bgColor: "#161515"
+        });
+      }
     });
   };
 
@@ -36,11 +53,13 @@ export default class Tabs extends Component {
     return (
       <div>
         {isAuth ? (
-            <div className='loggedInAs'>
-          <div className="loggedInUser" style={{ color: "white" }}>
-            Hello {this.context.isAuth ? this.context.user.username : ""}
-          </div>
-          <div className="navButton logoutBtn" onClick={this.context.logout}>Logout</div>
+          <div className="loggedInAs">
+            <div className="loggedInUser">
+              Hello {this.context.isAuth ? this.context.user.username : ""}
+            </div>
+            <div className="navButton logoutBtn" onClick={this.context.logout}>
+              Logout
+            </div>
           </div>
         ) : (
           <div className="tabs">
@@ -49,23 +68,25 @@ export default class Tabs extends Component {
               <div className="active-tab-content">
                 {children[activeTab].props.children}
                 {children[activeTab].props.className === "login-tab" ? (
-                  <div className="guest-block">
-                    <p className="guest-text">
-                      You are currently logged in as <br />
-                      <span>{UsernameGenerator.generateUsername("-")}</span>
-                    </p>
-                    <br />
-                    <p className="guest-text">
-                      Would you like to{" "}
-                      <a
-                        className={`tab-link register-tab register-guest-link`}
-                        onClick={event => {
-                          event.preventDefault();
-                        }}
-                      >{`Register`}</a>{" "}
-                      ?
-                    </p>
-                  </div>
+                  <>
+                    <div className="guest-block">
+                      <p className="guest-text">
+                        You are currently chatting as <br />
+                        <span>{UsernameGenerator.generateUsername("-")}</span>
+                      </p>
+                      <br />
+                      <p className="guest-text">
+                        Would you like to{" "}
+                        <a
+                          className={`tab-link register-tab register-guest-link`}
+                          onClick={event => {
+                            event.preventDefault();
+                          }}
+                        >{`Register`}</a>{" "}
+                        ?
+                      </p>
+                    </div>
+                  </>
                 ) : (
                   ""
                 )}
