@@ -11,10 +11,10 @@ export default class Nav extends Component {
 
   render() {
     return (
-      <div className="nav-main">
+      <div className="navMain">
         {/* App title */}
         <div className="appTitle">Chat App</div>
-        
+
         {/* Channels */}
         <div className="channels">
           <div className="chnl">Channel 1</div>
