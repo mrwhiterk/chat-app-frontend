@@ -73,6 +73,8 @@ export default class Tabs extends Component {
                       <p className="guest-text">
                         You are currently chatting as <br />
                         <span>{UsernameGenerator.generateUsername("-")}</span>
+                        <br />
+                        (Guest User)
                       </p>
                       <br />
                       <p className="guest-text">
@@ -81,8 +83,9 @@ export default class Tabs extends Component {
                           className={`tab-link register-tab register-guest-link`}
                           onClick={event => {
                             event.preventDefault();
+                            this.handleTabClick(1)
                           }}
-                        >{`Register`}</a>{" "}
+                        >{`register`}</a>{" "}
                         ?
                       </p>
                     </div>

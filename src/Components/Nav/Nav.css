@@ -89,29 +89,31 @@ h6 {
 }
 
 .guest-block {
-  padding-top: 25px;
+  padding-top: 15px;
   line-height: 12px;
 }
 
 .guest-text {
   margin: 0;
   font-size: 9px;
+  color: rgb(180, 171, 177);
 }
 
 .guest-text > span {
   margin: 0;
   font-size: 10px;
-  color: #a60530;
+  color: rgb(252, 238, 248);
 }
 
 .register-guest-link {
     cursor: pointer;
-  color: rgb(180, 171, 177);
+  color: rgb(218, 208, 214);
   font-size: 10px;
 }
 
 .register-guest-link:hover {
- color: rgb(209, 190, 202);   
+ color: rgb(233, 215, 226);
+ text-decoration: underline;
 }
 
 
