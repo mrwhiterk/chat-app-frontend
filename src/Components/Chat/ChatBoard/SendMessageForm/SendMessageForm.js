@@ -10,10 +10,12 @@ class SendMessageForm extends Component {
 
   handleSubmit = async e => {
     e.preventDefault()
-
-    this.props.createMessage(this.state)
-
-    this.setState({ body: '' })
+    let success = this.props.createMessage(this.state)
+    if (success) {
+      this.setState({ body: '' })
+    } else {
+      console.log('must be signed in')
+    }
   }
 
   handleChange = e => {

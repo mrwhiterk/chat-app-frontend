@@ -3,13 +3,15 @@ import ChatBoard from './ChatBoard/ChatBoard'
 import ChatSidebar from './ChatSidebar/ChatSidebar'
 import socketIOClient from 'socket.io-client'
 import moment from 'moment'
-// import Context from '../Context/Context'
+import Context from '../Context/Context'
 import { checkTokenAndReturn } from '../../api/axios-helpers'
 import './Chat.css'
 
 let endpoint = 'http://127.0.0.1:3001'
 
-export default class Chat extends Component {
+class Chat extends Component {
+  static contextType = Context
+
   state = {
     messages: [],
     users: []
@@ -18,16 +20,35 @@ export default class Chat extends Component {
   componentDidMount() {
     this.socket = socketIOClient(endpoint)
 
+    this.emitUser()
+
     this.socket.on('chat', socket => {
       this.setState({ messages: [...this.state.messages, socket] })
     })
+
+    this.socket.on('broadcastUser', socket => {
+      if (!this.state.users.find(user => user._id === socket._id)) {
+        this.setState({ users: [...this.state.users, socket] })
+      }
+    })
+  }
+
+  emitUser = () => {
+    if (this.context.user) {
+      this.socket.emit('sendUserToServer', {
+        username: this.context.user
+      })
+    }
+  }
+
+  componentDidUpdate = () => {
+    this.emitUser()
   }
 
   createMessage = formData => {
     let user = checkTokenAndReturn()
 
     if (user) {
-      let date = new Date()
       let message = {
         ...formData,
         author: user._id,
@@ -35,7 +56,6 @@ export default class Chat extends Component {
       }
 
       this.socket.emit('createMessage', message)
-      // this.setState({ messages: [...this.state.messages, message] })
       return message
     } else {
       return false
@@ -49,8 +69,10 @@ export default class Chat extends Component {
           createMessage={this.createMessage}
           messages={this.state.messages}
         />
-        <ChatSidebar />
+        <ChatSidebar users={this.state.users} />
       </div>
     )
   }
 }
+
+export default Chat

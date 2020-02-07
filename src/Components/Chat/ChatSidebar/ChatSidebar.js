@@ -1,19 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import ChatUserList from './ChatUserList/ChatUserList'
 
 export default class ChatSidebar extends Component {
   render() {
     return (
-      <>
-        {/* list of users in chat */}
-        <div className="inChat">
-          <div className="onlineTitle">In chat</div>
-          <div className="onlineUsersList">
-            <div className="userCurrentlyInChat">you</div>
-            <div className="userCurrentlyInChat">Toivo</div>
-            <div className="userCurrentlyInChat">Poop</div>
-          </div>
-        </div>
-      </>
-    );
+      <div className="inChat">
+        <div className="onlineTitle">In chat</div>
+        <ChatUserList users={this.props.users} />
+      </div>
+    )
   }
 }
