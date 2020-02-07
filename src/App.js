@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Nav from './components/Nav/Nav'
-import Home from './components/Home/Home'
+// import Home from './components/Home/Home'
 import Chat from './components/Chat/Chat'
 import './App.css'
 import {
