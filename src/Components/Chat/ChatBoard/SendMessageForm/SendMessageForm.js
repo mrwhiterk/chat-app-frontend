@@ -1,42 +1,58 @@
-import React, { Component } from 'react'
-import Context from '../../../Context/Context'
+import React, { Component } from "react";
+import Context from "../../../Context/Context";
 
 class SendMessageForm extends Component {
-  static contextType = Context
+  static contextType = Context;
 
   state = {
-    body: ''
-  }
+    body: ""
+  };
 
   handleSubmit = async e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    this.props.createMessage(this.state)
+    this.props.createMessage(this.state);
 
-    this.setState({ body: '' })
-  }
+    this.setState({ body: "" });
+  };
+
+  handleKeyPress = async e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      this.props.createMessage(this.state);
+
+      this.setState({ body: "" });
+    }
+  };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     return (
       <div className="sendMsg">
-        <form className="msgForm" onSubmit={this.handleSubmit}>
-          <input
+        <form
+          className="msgForm"
+          onKeyPress={this.handleKeyPress}
+        >
+          <textarea
             className="writeMsgInput"
-            type="text"
             name="body"
             value={this.state.body}
             onChange={this.handleChange}
-            placeholder="Write something..."
+            placeholder="Write a message..."
           />
-          <input className="sendMsgButton" type="submit" />
+          <input
+            className="sendMsgButton"
+            type="submit"
+            value=""
+            onClick={this.handleSubmit}
+          />
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default SendMessageForm
+export default SendMessageForm;

@@ -108,18 +108,20 @@
   height: 100%;
 }
 
+textarea {
+  resize: none;
+}
+
 .writeMsgInput {
+  padding: 10px;
   background-color: rgb(247, 244, 246);
   border: 1px solid #a37385;
   border-radius: 5px;
-  align-self: left;
-  min-height: 60%;
-  max-height: fit-content;
+  height: 50%;
   width: 78%;
-  text-align: start;
 }
 
-input:focus {
+.writeMsgInput:focus {
   outline: none;
 }
 
@@ -129,7 +131,6 @@ input:focus {
   background-position: center;
   background-size: 30px;
   cursor: pointer;
-  font-size: 15px;
   padding: 1px;
   padding-right: 5px;
   padding-left: 5px;
@@ -139,7 +140,7 @@ input:focus {
 }
 
 .sendMsgButton:hover {
-  background-size: 35px;
+  background-size: 32px;
 }
 
 .inChat {
