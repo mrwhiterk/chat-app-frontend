@@ -17,7 +17,15 @@ class SendMessageForm extends Component {
   };
 
   handleKeyPress = async e => {
-    if (e.key === "Enter") {
+    let whiteSpace = /^\s/g;
+    if (e.target.value === whiteSpace) {
+      e.target.value = "";
+      console.log("No message to send");
+    }
+     else if (e.key === "Enter" && e.shiftKey) {
+    } else if (e.target.value === "") {
+      console.log("No message to send");
+    } else if (e.key === "Enter") {
       e.preventDefault();
       this.props.createMessage(this.state);
 
@@ -32,10 +40,7 @@ class SendMessageForm extends Component {
   render() {
     return (
       <div className="sendMsg">
-        <form
-          className="msgForm"
-          onKeyPress={this.handleKeyPress}
-        >
+        <form className="msgForm" onKeyPress={this.handleKeyPress}>
           <textarea
             className="writeMsgInput"
             name="body"
