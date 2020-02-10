@@ -9,5 +9,9 @@ export default function MessageList(props) {
       <Message key={i} message={messageProps}></Message>
     ))
   }
-  return <div className="messageList">{messageList}</div>
+  return (
+    <div className="messageList">
+      <div className='messageList2'>{messageList}</div>
+    </div>
+  );
 }
