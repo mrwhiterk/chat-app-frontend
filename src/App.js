@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Nav from './components/Nav/Nav'
 // import Home from './components/Home/Home'
+import moment from 'moment'
 import Chat from './components/Chat/Chat'
+import socketIOClient from 'socket.io-client'
 import './App.css'
 import {
   checkTokenAndReturn,
@@ -11,37 +13,61 @@ import {
 
 import Context from './components/Context/Context'
 
+let endpoint = 'http://127.0.0.1:3001'
+
 class App extends Component {
   static contextType = Context
 
   state = {
     isAuth: false,
     user: checkTokenAndReturn(),
-    messages: null,
-    userLoggedOut: null,
-    userLoggedIn: null
+    messages: [],
+    users: []
   }
 
   componentDidMount() {
     if (this.state.user) {
       this.setState({ isAuth: true })
     }
+
+    this.socket = socketIOClient(endpoint)
+
+    this.socket.emit('getUsers')
+
+    this.socket.on('chatroomUsers', users => {
+      this.setState({ users: users })
+    })
+
+    this.socket.on('chat', message => {
+      this.setState({ messages: [...this.state.messages, message] })
+    })
   }
 
-  resetUserLoggedOut = () => {
-    this.setState({ userLoggedOut: null })
-  }
+  createMessage = formData => {
+    let user = checkTokenAndReturn()
 
-  resetUserLoggedIn = () => {
-    this.setState({ userLoggedIn: null })
+    if (user) {
+      let message = {
+        ...formData,
+        author: user._id,
+        created: moment().format('LT')
+      }
+
+      this.socket.emit('createMessage', message)
+      return message
+    } else {
+      return false
+    }
   }
 
   setAuth = user => {
     this.setState({
       isAuth: true,
-      user,
-      userLoggedIn: user
+      user: user
     })
+    if (!this.state.users.find(user => user._id === this.state.user)) {
+      this.socket.emit('sendUserToServer', this.state.user)
+    }
   }
 
   removeAuth = () => {
@@ -51,7 +77,7 @@ class App extends Component {
 
   logout = () => {
     setAuthHeader(null)
-    this.setState({ userLoggedOut: true })
+    this.socket.emit('removeUserFromActiveChat', this.state.user)
     this.removeAuth()
   }
 
@@ -75,10 +101,9 @@ class App extends Component {
       removeAuth: this.removeAuth,
       getMessages: this.getMessages,
       logout: this.logout,
-      userLoggedOut: this.state.userLoggedOut,
-      userLoggedIn: this.state.userLoggedIn,
-      resetUserLoggedOut: this.resetUserLoggedOut,
-      resetUserLoggedIn: this.resetUserLoggedIn
+      messages: this.state.messages,
+      users: this.state.users,
+      createMessage: this.createMessage
     }
 
     return (
