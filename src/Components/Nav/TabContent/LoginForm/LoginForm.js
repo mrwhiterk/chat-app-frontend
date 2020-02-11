@@ -6,16 +6,6 @@ import {
 } from "../../../../api/axios-helpers";
 import Context from "../../../Context/Context";
 
-const errorToastColor = {
-  background: "#f23535",
-  text: "#fff"
-};
-
-const toastColor = {
-  background: "#3f51b5",
-  text: "#fff"
-};
-
 class LoginForm extends Component {
   static contextType = Context;
 
@@ -34,8 +24,6 @@ class LoginForm extends Component {
 
     try {
       let res = await signin(this.state);
-      console.log(res.data);
-
       if (res.status === 200) {
         setAuthHeader(res.data.token);
         localStorage.setItem("token", res.data.token);

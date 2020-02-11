@@ -9,7 +9,7 @@ export default class UserProfile extends Component {
     user: {}
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getUserInfo()
   }
 
@@ -25,7 +25,6 @@ export default class UserProfile extends Component {
   }
 
   render() {
-    console.log(`!`, this.state.user)
     let { user } = this.state
 
     return (
@@ -39,6 +38,7 @@ export default class UserProfile extends Component {
                 ? "https://cdn4.iconfinder.com/data/icons/animal-2-1/100/animal-15-512.png"
                 : user.photo
             }
+            alt="profile avatar"
           />
         </div>
         <div className="navButton logoutBtn" onClick={this.context.logout}>

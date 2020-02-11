@@ -48,7 +48,6 @@ export default class Tabs extends Component {
   render() {
     const { children } = this.props;
     const { activeTab } = this.state;
-    const { isAuth } = this.context;
 
     return (
       <div>

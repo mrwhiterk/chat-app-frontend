@@ -1,41 +1,35 @@
-import React, { Component } from "react";
-import RegisterForm from "./TabContent/RegisterForm/RegisterForm";
-import LoginForm from "./TabContent/LoginForm/LoginForm";
-import UserProfile from "./TabContent/UserProfile/UserProfile";
-import EditUser from "./TabContent/EditUser/EditUser";
-import Context from "../Context/Context";
-import Tabs from "./Tabs/Tabs";
-import Tab from "./Tabs/Tab";
-import "./Nav.css";
-
-const errorToastColor = {
-  background: "#f23535",
-  text: "#fff"
-};
-const toastColor = {
-  background: "#3f51b5",
-  text: "#fff"
-};
+import React, { Component } from "react"
+import RegisterForm from "./TabContent/RegisterForm/RegisterForm"
+import LoginForm from "./TabContent/LoginForm/LoginForm"
+import UserProfile from "./TabContent/UserProfile/UserProfile"
+import EditUser from "./TabContent/EditUser/EditUser"
+import Context from "../Context/Context"
+import Tabs from "./Tabs/Tabs"
+import Tab from "./Tabs/Tab"
+import "./Nav.css"
 
 export default class Nav extends Component {
-  static contextType = Context;
+  static contextType = Context
 
   state = {
     notification: null
-  };
+  }
 
   componentDidMount() {
+    // Error/success notification check
     if (this.context.toastMsg.success) {
       this.setState({
         notification: this.context.toastMsg.success
-      });
+      })
     }
     if (this.context.toastMsg.error) {
       this.setState({
         notification: this.context.toastMsg.error
-      });
+      })
     }
   }
+
+
 
   render() {
     return (
@@ -60,14 +54,14 @@ export default class Nav extends Component {
               <br />
               <div>
                 <div className="tabContent">
-                  <UserProfile />
+                  <UserProfile user={this.state.user} />
                 </div>
               </div>
             </Tab>
             <Tab className="edit-profile-tab" label="Edit">
               <div>
                 <div className="tabContent">
-                  <EditUser />
+                  <EditUser user={this.state.user} />
                 </div>
               </div>
             </Tab>
@@ -92,6 +86,6 @@ export default class Nav extends Component {
           </Tabs>
         )}
       </div>
-    );
+    )
   }
 }
