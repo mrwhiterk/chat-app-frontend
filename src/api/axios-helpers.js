@@ -57,9 +57,7 @@ export const editUser = async (user) => {
     console.log(user);
     
   try {
-    let success = await Axios.put("/api/users/edit-user", user)
-    console.log(`from back`, success.data);
-    
+    let success = await Axios.put("/api/users/edit-user", user)    
     return success.data
   } catch (e) {
     return e.response

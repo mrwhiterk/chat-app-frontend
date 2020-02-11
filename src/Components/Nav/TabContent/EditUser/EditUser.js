@@ -1,9 +1,10 @@
 import React, { Component } from "react"
 import { getUser, editUser } from "../../../../api/axios-helpers"
+import equal from "fast-deep-equal"
 
 export default class EditUser extends Component {
   state = {
-    user: {},
+    user: null,
     username: "",
     email: "",
     oldPassword: "",
@@ -43,22 +44,26 @@ export default class EditUser extends Component {
       //   return this.context.toastMsg.error = "password and confirm password don't match"
     }
 
-    let updatedUser = {
-      username: this.state.username,
-      email: this.state.email,
-      photo: this.state.avatarURL,
-      oldpassword: this.state.oldPassword,
-      newpassword: this.state.newPassword
+    let updatedUser = {}
+
+    for (const key in this.state) {
+      let element = this.state[key]
+      if (element && key !== "user" && element !== this.state.user[key]) {
+        updatedUser[key] = element
+      }
     }
 
     try {
       let user = await editUser(updatedUser)
-      console.log(`!`, user)
+      this.context.handleToast("Profile edit successful", '')
+
     } catch (e) {
+        this.context.handleToast("", "Oops, something went wrong")
       console.log(e)
     }
   }
 
+  
   render() {
     return (
       <div className="navTabContent">

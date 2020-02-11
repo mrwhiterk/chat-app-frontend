@@ -33,11 +33,7 @@ export default class UserProfile extends Component {
 
         <div className="profilePic">
           <img
-            src={
-              user.photo === ""
-                ? "https://cdn4.iconfinder.com/data/icons/animal-2-1/100/animal-15-512.png"
-                : user.photo
-            }
+            src={user.photo === "" ? "/animal-15-512.png" : user.photo}
             alt="profile avatar"
           />
         </div>
