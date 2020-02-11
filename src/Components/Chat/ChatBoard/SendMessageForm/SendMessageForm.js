@@ -34,7 +34,7 @@ class SendMessageForm extends Component {
             onChange={this.handleChange}
             placeholder="Write something..."
           />
-          <input className="sendMsgButton" type="submit" />
+          <input className="sendMsgButton" type="submit" value="" />
         </form>
       </div>
     )

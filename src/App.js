@@ -17,7 +17,9 @@ class App extends Component {
   state = {
     isAuth: false,
     user: checkTokenAndReturn(),
-    messages: null
+    messages: null,
+    userLoggedOut: null,
+    userLoggedIn: null
   }
 
   componentDidMount() {
@@ -26,10 +28,19 @@ class App extends Component {
     }
   }
 
+  resetUserLoggedOut = () => {
+    this.setState({ userLoggedOut: null })
+  }
+
+  resetUserLoggedIn = () => {
+    this.setState({ userLoggedIn: null })
+  }
+
   setAuth = user => {
     this.setState({
       isAuth: true,
-      user
+      user,
+      userLoggedIn: user
     })
   }
 
@@ -40,6 +51,7 @@ class App extends Component {
 
   logout = () => {
     setAuthHeader(null)
+    this.setState({ userLoggedOut: true })
     this.removeAuth()
   }
 
@@ -62,7 +74,11 @@ class App extends Component {
       setAuth: this.setAuth,
       removeAuth: this.removeAuth,
       getMessages: this.getMessages,
-      logout: this.logout
+      logout: this.logout,
+      userLoggedOut: this.state.userLoggedOut,
+      userLoggedIn: this.state.userLoggedIn,
+      resetUserLoggedOut: this.resetUserLoggedOut,
+      resetUserLoggedIn: this.resetUserLoggedIn
     }
 
     return (

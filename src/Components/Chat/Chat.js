@@ -11,7 +11,6 @@ let endpoint = 'http://127.0.0.1:3001'
 
 class Chat extends Component {
   static contextType = Context
-
   state = {
     messages: [],
     users: []
@@ -20,29 +19,38 @@ class Chat extends Component {
   componentDidMount() {
     this.socket = socketIOClient(endpoint)
 
-    this.emitUser()
+    this.socket.emit('getChatroomUsers')
+
+    this.socket.on('chatroomUsers', socket => {
+      this.setState({ users: socket })
+    })
+
+    if (this.context.user) {
+      this.socket.emit('sendUserToServer', this.context.user)
+    }
 
     this.socket.on('chat', socket => {
       this.setState({ messages: [...this.state.messages, socket] })
     })
+  }
 
-    this.socket.on('broadcastUser', socket => {
-      if (!this.state.users.find(user => user._id === socket._id)) {
-        this.setState({ users: [...this.state.users, socket] })
-      }
+  handleClick = () => {
+    console.log('my this ', this)
+    this.socket.emit('test')
+  }
+
+  disconnectUser = user => {
+    this.setState({
+      users: this.state.users.filter(user => this.context.user._id !== user._id)
     })
+    this.socket.disconnect()
   }
 
-  emitUser = () => {
-    if (this.context.user) {
-      this.socket.emit('sendUserToServer', {
-        username: this.context.user
-      })
+  connectUser = user => {
+    if (!this.state.users.find(user => user._id === this.context.user._id)) {
+      this.socket.emit('sendUserToServer', this.context.user)
+      this.setState({ users: [...this.state.users, this.context.user] })
     }
-  }
-
-  componentDidUpdate = () => {
-    this.emitUser()
   }
 
   createMessage = formData => {
@@ -63,12 +71,25 @@ class Chat extends Component {
   }
 
   render() {
+    if (this.context.userLoggedOut) {
+      this.disconnectUser()
+      this.context.resetUserLoggedOut()
+    }
+
+    if (this.context.userLoggedIn) {
+      this.connectUser()
+      this.context.resetUserLoggedIn()
+    }
+
     return (
       <div className="chatMain">
         <ChatBoard
           createMessage={this.createMessage}
           messages={this.state.messages}
         />
+
+        <button onClick={this.handleClick}>click</button>
+
         <ChatSidebar users={this.state.users} />
       </div>
     )
