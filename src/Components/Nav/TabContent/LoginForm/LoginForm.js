@@ -46,8 +46,6 @@ class LoginForm extends Component {
       }
 
       if (res.status === 400) {
-        console.log("poop");
-
         let errorMsg = res.data;
 
         this.context.handleToast(null, errorMsg);

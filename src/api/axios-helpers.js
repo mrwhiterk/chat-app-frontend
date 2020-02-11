@@ -1,16 +1,16 @@
-import Axios from './axiosConfig'
-import jwt_decode from 'jwt-decode'
+import Axios from "./axiosConfig"
+import jwt_decode from "jwt-decode"
 
 export const setAuthHeader = token => {
   if (token) {
-    Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    Axios.defaults.headers.common["Authorization"] = "Bearer " + token
   } else {
-    delete Axios.defaults.headers.common['Authorization']
+    delete Axios.defaults.headers.common["Authorization"]
   }
 }
 
 export const checkTokenAndReturn = () => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token")
   if (!token) return null
 
   const userData = jwt_decode(token)
@@ -18,7 +18,7 @@ export const checkTokenAndReturn = () => {
   const currentTime = Date.now() / 1000
 
   if (userData.exp < currentTime) {
-    localStorage.removeItem('token')
+    localStorage.removeItem("token")
     setAuthHeader(null)
     return null
   } else {
@@ -29,7 +29,7 @@ export const checkTokenAndReturn = () => {
 
 export const signup = async formBody => {
   try {
-    let response = await Axios.post('/api/users/signup', formBody)
+    let response = await Axios.post("/api/users/signup", formBody)
     return response
   } catch (err) {
     return err.response
@@ -38,16 +38,25 @@ export const signup = async formBody => {
 
 export const signin = async formBody => {
   try {
-    let response = await Axios.post('/api/users/signin', formBody)
+    let response = await Axios.post("/api/users/signin", formBody)
     return response
   } catch (err) {
     return err.response
   }
 }
 
+export const getUser = async () => {
+  try {
+    let success = await Axios.get("/api/users/get-user")
+    return success.data
+  } catch (e) {
+    return e.response
+  }
+}
+
 export const getMessages = async () => {
   try {
-    console.log('get messages hit')
+    console.log("get messages hit")
   } catch (err) {
     return err
   }

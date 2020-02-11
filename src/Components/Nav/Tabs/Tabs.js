@@ -52,69 +52,58 @@ export default class Tabs extends Component {
 
     return (
       <div>
-        {isAuth ? (
-          <div className="loggedInAs">
-            <div className="loggedInUser">
-              Hello {this.context.isAuth ? this.context.user.username : ""}
-            </div>
-            <div className="navButton logoutBtn" onClick={this.context.logout}>
-              Logout
-            </div>
-          </div>
-        ) : (
-          <div className="tabs">
-            <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
-            {children[activeTab] ? (
-              <div className="activeTabContent">
-                {/* Notification error/success Tag */}
-                {this.context.toastMsg.success ? (
-                  <div className="notificationTag successNotification">
-                    {this.context.toastMsg.success}
-                  </div>
-                ) : (
-                  ""
-                )}
-                {this.context.toastMsg.error ? (
-                  <div className="notificationTag errorNotification">
-                    {this.context.toastMsg.error}
-                  </div>
-                ) : (
-                  ""
-                )}
+        <div className="tabs">
+          <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
+          {children[activeTab] ? (
+            <div className="activeTabContent">
+              {/* Notification error/success Tag */}
+              {this.context.toastMsg.success ? (
+                <div className="notificationTag successNotification">
+                  {this.context.toastMsg.success}
+                </div>
+              ) : (
+                ""
+              )}
+              {this.context.toastMsg.error ? (
+                <div className="notificationTag errorNotification">
+                  {this.context.toastMsg.error}
+                </div>
+              ) : (
+                ""
+              )}
 
-                {children[activeTab].props.children}
-                {children[activeTab].props.className === "login-tab" ? (
-                  <>
-                    <div className="guestBlock">
-                      <p className="guestText">
-                        You are currently chatting as <br />
-                        <span>{UsernameGenerator.generateUsername("-")}</span>
-                        <br />
-                        (Guest User)
-                      </p>
+              {children[activeTab].props.children}
+              {children[activeTab].props.className === "login-tab" ? (
+                <>
+                  <div className="guestBlock">
+                    <p className="guestText">
+                      You are currently chatting as <br />
+                      <span>{UsernameGenerator.generateUsername("-")}</span>
                       <br />
-                      <p className="guestText">
-                        Would you like to{" "}
-                        <a
-                          className={`tabLink register-tab registerGuestLink`}
-                          onClick={event => {
-                            event.preventDefault();
-                            this.handleTabClick(1);
-                          }}
-                        >{`register`}</a>{" "}
-                        ?
-                      </p>
-                    </div>
-                  </>
-                ) : (
-                  ""
-                )}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        )}
+                      (Guest User)
+                    </p>
+                    <br />
+                    <p className="guestText">
+                      Would you like to{" "}
+                      <a
+                        className={`tabLink register-tab registerGuestLink`}
+                        onClick={event => {
+                          event.preventDefault();
+                          this.handleTabClick(1);
+                        }}
+                      >{`register`}</a>{" "}
+                      ?
+                    </p>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     );
   }
