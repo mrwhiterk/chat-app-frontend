@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { getUser } from "../../../../api/axios-helpers"
+import { getUser, editUser } from "../../../../api/axios-helpers"
 
 export default class EditUser extends Component {
   state = {
@@ -7,8 +7,8 @@ export default class EditUser extends Component {
     username: "",
     email: "",
     oldPassword: "",
-    password: "",
-    confirmPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
     avatarURL: ""
   }
 
@@ -31,6 +31,32 @@ export default class EditUser extends Component {
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmit = async e => {
+    e.preventDefault()
+
+    if (this.state.newPassword !== this.state.confirmNewPassword) {
+      console.log("password and confirm password don't match")
+      return
+
+      //   return this.context.toastMsg.error = "password and confirm password don't match"
+    }
+
+    let updatedUser = {
+      username: this.state.username,
+      email: this.state.email,
+      photo: this.state.avatarURL,
+      oldpassword: this.state.oldPassword,
+      newpassword: this.state.newPassword
+    }
+
+    try {
+      let user = await editUser(updatedUser)
+      console.log(`!`, user)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render() {
@@ -76,7 +102,7 @@ export default class EditUser extends Component {
             <h6>Old Password</h6>
             <input
               type="password"
-              name="password"
+              name="oldPassword"
               autoComplete="password"
               placeholder="Old password"
               onChange={this.handleChange}
@@ -87,18 +113,18 @@ export default class EditUser extends Component {
             <h6>New Password</h6>
             <input
               type="password"
-              name="password"
+              name="newPassword"
               autoComplete="password"
               placeholder="New password"
               onChange={this.handleChange}
-              value={this.state.password}
+              value={this.state.newPassword}
             />
           </label>
           <label>
             <h6>Confirm new password</h6>
             <input
               type="password"
-              name="confirmPassword"
+              name="confirmNewPassword"
               autoComplete="confirm-password"
               onChange={this.handleChange}
               placeholder="Confirm new password"

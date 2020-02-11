@@ -53,6 +53,18 @@ export const getUser = async () => {
     return e.response
   }
 }
+export const editUser = async (user) => {
+    console.log(user);
+    
+  try {
+    let success = await Axios.put("/api/users/edit-user", user)
+    console.log(`from back`, success.data);
+    
+    return success.data
+  } catch (e) {
+    return e.response
+  }
+}
 
 export const getMessages = async () => {
   try {
