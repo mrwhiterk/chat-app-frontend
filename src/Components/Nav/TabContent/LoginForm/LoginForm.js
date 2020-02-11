@@ -3,8 +3,18 @@ import {
   signin,
   setAuthHeader,
   checkTokenAndReturn
-} from "../../../api/axios-helpers";
-import Context from "../../Context/Context";
+} from "../../../../api/axios-helpers";
+import Context from "../../../Context/Context";
+
+const errorToastColor = {
+  background: "#f23535",
+  text: "#fff"
+};
+
+const toastColor = {
+  background: "#3f51b5",
+  text: "#fff"
+};
 
 class LoginForm extends Component {
   static contextType = Context;
@@ -24,28 +34,33 @@ class LoginForm extends Component {
 
     try {
       let res = await signin(this.state);
+      console.log(res.data);
 
-      console.log(res);
       if (res.status === 200) {
         setAuthHeader(res.data.token);
         localStorage.setItem("token", res.data.token);
         this.context.setAuth(checkTokenAndReturn());
+
+        let successMsg = `You're logged in as ${res.data.user.username}`;
+        this.context.handleToast(successMsg, null);
       }
 
       if (res.status === 400) {
-        let { errors } = res.data;
-        if (errors) {
-          console.log(errors);
-          // if (errors.username && errors.username.kind === 'unique') {
-          //   console.log('username taken')
-          // }
-          // if (errors.email && errors.email.kind === 'unique') {
-          //   console.log('email taken')
-          // }
-        }
+        console.log("poop");
+
+        let errorMsg = res.data;
+
+        this.context.handleToast(null, errorMsg);
+
+        //       // if (errors.username && errors.username.kind === 'unique') {
+        //       //   console.log('username taken')
+        //       // }
+        //       // if (errors.email && errors.email.kind === 'unique') {
+        //       //   console.log('email taken')
+        //       // }
       }
     } catch (e) {
-      console.log(e);
+      console.log(`e`, e);
     }
   };
 
@@ -75,7 +90,7 @@ class LoginForm extends Component {
               placeholder="Password"
             />
           </label>
-          <br/>
+          <br />
           <input className="navButton" type="submit" value="Login" />
         </form>
       </div>

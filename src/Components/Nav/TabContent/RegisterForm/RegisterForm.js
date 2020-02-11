@@ -3,8 +3,8 @@ import {
   signup,
   setAuthHeader,
   checkTokenAndReturn
-} from "../../../api/axios-helpers";
-import Context from "../../Context/Context";
+} from "../../../../api/axios-helpers";
+import Context from "../../../Context/Context";
 
 class RegisterForm extends Component {
   static contextType = Context;

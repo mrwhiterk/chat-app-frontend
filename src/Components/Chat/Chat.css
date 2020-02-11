@@ -12,19 +12,20 @@
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 10% 70% 20%;
-  border-radius: 4px;
-  border: 3px solid #73032c;
+  border-radius: 10px;
+  border: 3px solid #0d0d0d;
   background-color: rgb(241, 235, 240);
   height: 80%;
   width: 65%;
 }
 
 .channelTitle {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
   background: -webkit-linear-gradient(
     rgb(187, 179, 186),
     rgba(233, 223, 231, 0)
   );
-  width: 100%;
   grid-template-columns: 1;
   grid-row: 1;
 }
@@ -48,9 +49,13 @@
   grid-template-columns: 1 / span 2;
   width: 200%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: column-reverse;
   overflow-y: scroll;
+}
+
+.messageList2 {
+  display: flex;
+  flex-direction: column;
 }
 
 .userIconAvatar {
@@ -69,6 +74,7 @@
   border-radius: 8px;
   align-self: flex-start;
   height: fit-content;
+  width: fit-content;
   text-align: start;
   background-color: rgb(80, 71, 76);
   box-shadow: 1px 1px 8px #0d0d0d;
@@ -91,6 +97,8 @@
 }
 
 .sendMsg {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   background: -webkit-linear-gradient(
     rgba(233, 223, 231, 0),
     rgb(158, 151, 157)
@@ -98,6 +106,7 @@
   grid-column: 1;
   grid-row: 3;
   height: 100%;
+  padding-left: 5%;
 }
 
 .msgForm {
@@ -108,18 +117,20 @@
   height: 100%;
 }
 
+textarea {
+  resize: none;
+}
+
 .writeMsgInput {
+  padding: 10px;
   background-color: rgb(247, 244, 246);
   border: 1px solid #a37385;
   border-radius: 5px;
-  align-self: left;
-  min-height: 60%;
-  max-height: fit-content;
+  height: 50%;
   width: 78%;
-  text-align: start;
 }
 
-input:focus {
+.writeMsgInput:focus {
   outline: none;
 }
 
@@ -129,9 +140,8 @@ input:focus {
   background-position: center;
   background-size: 30px;
   cursor: pointer;
-  font-size: 15px;
   padding: 1px;
-  padding-right: 5px;
+  padding-right: 5%;
   padding-left: 5px;
   border-radius: 5px;
   width: 50px;
@@ -139,12 +149,14 @@ input:focus {
 }
 
 .sendMsgButton:hover {
-  background-size: 35px;
+  background-size: 32px;
 }
 
+/* CHAT SIDEBAR */
+
 .inChat {
-  border: 3px solid #73032c;
-  border-radius: 2px;
+  border: 3px solid #0d0d0d;
+  border-radius: 10px;
   background-color: rgb(214, 205, 212);
   height: 80%;
   width: 20%;
