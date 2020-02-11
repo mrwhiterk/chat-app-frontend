@@ -3,8 +3,8 @@ import {
   signin,
   setAuthHeader,
   checkTokenAndReturn
-} from "../../../api/axios-helpers";
-import Context from "../../Context/Context";
+} from "../../../../api/axios-helpers";
+import Context from "../../../Context/Context";
 
 const errorToastColor = {
   background: "#f23535",

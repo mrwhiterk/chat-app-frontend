@@ -66,6 +66,22 @@ export default class Tabs extends Component {
             <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
             {children[activeTab] ? (
               <div className="activeTabContent">
+                {/* Notification error/success Tag */}
+                {this.context.toastMsg.success ? (
+                  <div className="notificationTag successNotification">
+                    {this.context.toastMsg.success}
+                  </div>
+                ) : (
+                  ""
+                )}
+                {this.context.toastMsg.error ? (
+                  <div className="notificationTag errorNotification">
+                    {this.context.toastMsg.error}
+                  </div>
+                ) : (
+                  ""
+                )}
+
                 {children[activeTab].props.children}
                 {children[activeTab].props.className === "login-tab" ? (
                   <>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import RegisterForm from "../auth/RegisterForm/RegisterForm";
-import LoginForm from "../auth/LoginForm/LoginForm";
+import RegisterForm from "./TabContent/RegisterForm/RegisterForm";
+import LoginForm from "./TabContent/LoginForm/LoginForm";
 import Context from "../Context/Context";
 import Tabs from "./Tabs/Tabs";
 import Tab from "./Tabs/Tab";
