@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import RegisterForm from "./TabContent/RegisterForm/RegisterForm";
-import LoginForm from "./TabContent/LoginForm/LoginForm";
-import Context from "../Context/Context";
-import Tabs from "./Tabs/Tabs";
-import Tab from "./Tabs/Tab";
-import "./Nav.css";
+import React, { Component } from 'react'
+import RegisterForm from './Tabs/TabContent/RegisterForm/RegisterForm'
+import LoginForm from './Tabs/TabContent/LoginForm/LoginForm'
+import Context from '../Context/Context'
+import Tabs from './Tabs/Tabs'
+import Tab from './Tabs/Tab'
+import './Nav.css'
 
 const errorToastColor = {
-  background: "#f23535",
-  text: "#fff"
-};
+  background: '#f23535',
+  text: '#fff'
+}
 const toastColor = {
-  background: "#3f51b5",
-  text: "#fff"
-};
+  background: '#3f51b5',
+  text: '#fff'
+}
 
 export default class Nav extends Component {
-  static contextType = Context;
+  static contextType = Context
 
   state = {
     notification: null
-  };
+  }
 
   componentDidMount() {
     if (this.context.toastMsg.success) {
       this.setState({
         notification: this.context.toastMsg.success
-      });
+      })
     }
     if (this.context.toastMsg.error) {
       this.setState({
         notification: this.context.toastMsg.error
-      });
+      })
     }
   }
 
@@ -70,6 +70,6 @@ export default class Nav extends Component {
           </Tab>
         </Tabs>
       </div>
-    );
+    )
   }
 }
