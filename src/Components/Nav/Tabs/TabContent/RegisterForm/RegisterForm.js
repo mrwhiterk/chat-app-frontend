@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import {
   signup,
   setAuthHeader,
   checkTokenAndReturn
-} from '../../../../../api/axios-helpers'
-import Context from '../../../../Context/Context'
+} from "../../../../../api/axios-helpers"
+import Context from "../../../../Context/Context"
 
 class RegisterForm extends Component {
   static contextType = Context
 
   state = {
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
   }
 
   handleChange = e => {
@@ -27,23 +27,24 @@ class RegisterForm extends Component {
       console.log("password and confirm password don't match")
       return
     }
+
     try {
       let res = await signup(this.state)
 
       if (res.status === 200) {
         setAuthHeader(res.data.token)
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem("token", res.data.token)
         this.context.setAuth(checkTokenAndReturn())
       }
 
       if (res.status === 400) {
         let { errors } = res.data
         if (errors) {
-          if (errors.username && errors.username.kind === 'unique') {
-            console.log('username taken')
+          if (errors.username && errors.username.kind === "unique") {
+            console.log("username taken")
           }
-          if (errors.email && errors.email.kind === 'unique') {
-            console.log('email taken')
+          if (errors.email && errors.email.kind === "unique") {
+            console.log("email taken")
           }
         }
       }
