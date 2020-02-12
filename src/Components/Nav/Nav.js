@@ -4,6 +4,9 @@ import LoginForm from "./Tabs/TabContent/LoginForm/LoginForm"
 import UserProfile from "./Tabs/TabContent/UserProfile/UserProfile"
 import EditUser from "./Tabs/TabContent/EditUser/EditUser"
 import Context from "../Context/Context"
+import Drawers from "./Drawers/Drawers"
+import Drawer from "./Drawers/Drawer"
+import ChannelList from "./Channels/ChannelList"
 import Tabs from "./Tabs/Tabs"
 import Tab from "./Tabs/Tab"
 import "./Nav.css"
@@ -29,62 +32,64 @@ export default class Nav extends Component {
     }
   }
 
-
-
   render() {
     return (
       <div className="navMain">
-        {/* App title */}
-
         <div className="appTitle">Chat App</div>
+        <Drawers>
+          <Drawer label="Channels">
+            <ChannelList />
+          </Drawer>
 
+          <Drawer label="Test">
+            <div>
+              <div>POOP</div>
+              <div>POOP</div>
+              <div>POOP</div>
+              <div>POOP</div>
+              <div>POOP</div>
+              <div>POOP</div>
+              <div>POOP</div>
+            </div>
+          </Drawer>
+          <Drawer label="Profile info">
+            {/* Register / Login tabs */}
+            {this.context.isAuth ? (
+              <Tabs>
+                <Tab className="profile-tab" label="Profile">
+                  <br />
+                  <div className="tabContent">
+                    <UserProfile user={this.state.user} />
+                  </div>
+                </Tab>
+                <Tab className="edit-profile-tab" label="Edit">
+                  <div className="tabContent">
+                    <EditUser user={this.state.user} />
+                  </div>
+                </Tab>
+              </Tabs>
+            ) : (
+              <Tabs>
+                <Tab className="login-tab" label="Login">
+                  <br />
+                  <div>
+                    <div className="tabContent">
+                      <LoginForm />
+                    </div>
+                  </div>
+                </Tab>
+                <Tab className="register-tab" label="Register">
+                  <div>
+                    <div className="tabContent">
+                      <RegisterForm />
+                    </div>
+                  </div>
+                </Tab>
+              </Tabs>
+            )}
+          </Drawer>
+        </Drawers>
         {/* Channels */}
-        <div className="channels">
-          <div className="chnl">Channel 1</div>
-          <div className="chnl">Channel 2</div>
-          <div className="chnl">Channel 3</div>
-          <div className="chnl">Channel 4</div>
-          <div className="chnl">Channel 5</div>
-        </div>
-
-        {/* Register / Login tabs */}
-        {this.context.isAuth ? (
-          <Tabs>
-            <Tab className="profile-tab" label="Profile">
-              <br />
-              <div>
-                <div className="tabContent">
-                  <UserProfile user={this.state.user} />
-                </div>
-              </div>
-            </Tab>
-            <Tab className="edit-profile-tab" label="Edit">
-              <div>
-                <div className="tabContent">
-                  <EditUser user={this.state.user} />
-                </div>
-              </div>
-            </Tab>
-          </Tabs>
-        ) : (
-          <Tabs>
-            <Tab className="login-tab" label="Login">
-              <br />
-              <div>
-                <div className="tabContent">
-                  <LoginForm />
-                </div>
-              </div>
-            </Tab>
-            <Tab className="register-tab" label="Register">
-              <div>
-                <div className="tabContent">
-                  <RegisterForm />
-                </div>
-              </div>
-            </Tab>
-          </Tabs>
-        )}
       </div>
     )
   }

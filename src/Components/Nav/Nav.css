@@ -7,17 +7,21 @@
 }
 
 .appTitle {
+  margin-top: 15px;
   grid-row: 1;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: 200;
 }
 
-.channels {
+.drawers {
   grid-row: 2;
 }
 
 .tabs {
   margin-left: 10px;
   margin-right: 10px;
-  grid-row: 3;
+  /* grid-row: 3; */
   height: 100%;
   width: auto;
   display: grid;
