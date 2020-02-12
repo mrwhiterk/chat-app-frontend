@@ -3,6 +3,7 @@ import Context from '../../../../Context/Context'
 
 const Message = props => {
   const context = useContext(Context)
+  console.log(context.user)
   let isMsgOwner = context.user._id === props.message.author._id ? 'myMsg' : ''
   return (
     <div className={`msg ${isMsgOwner}`}>

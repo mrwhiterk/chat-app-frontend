@@ -44,11 +44,11 @@ export default class Nav extends Component {
 
         {/* Channels */}
         <div className="channels">
-          <div className="chnl">Channel 1</div>
-          <div className="chnl">Channel 2</div>
-          <div className="chnl">Channel 3</div>
+          <div className="chnl">General</div>
+          <div className="chnl">Dogs</div>
+          {/* <div className="chnl">Channel 3</div>
           <div className="chnl">Channel 4</div>
-          <div className="chnl">Channel 5</div>
+          <div className="chnl">Channel 5</div> */}
         </div>
 
         {/* Register / Login tabs */}
