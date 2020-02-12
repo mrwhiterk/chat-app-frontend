@@ -105,6 +105,7 @@ input {
   background-color: rgb(24, 24, 24);
   border-radius: 5px;
   border: 1px solid rgb(209, 190, 202);
+  align-self: center;
 }
 
 .navButton:focus {
@@ -151,7 +152,6 @@ input {
 .logoutBtn {
   padding-left: 10px;
   padding-right: 10px;
-  max-width: fit-content;
 }
 
 .loggedInAs {
