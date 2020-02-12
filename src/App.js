@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import Nav from './components/Nav/Nav'
 import Chat from './components/Chat/Chat'
-import moment from 'moment'
+import { Route, Switch } from 'react-router-dom'
 import './App.css'
-// import socketIOClient from 'socket.io-client'
 import {
   checkTokenAndReturn,
   getMessages,
   setAuthHeader
 } from './api/axios-helpers'
 import Context from './components/Context/Context'
-
-let endpoint = 'http://127.0.0.1:3001'
 
 class App extends Component {
   static contextType = Context
@@ -88,7 +85,10 @@ class App extends Component {
         <Context.Provider value={contextPayload}>
           <div className="App">
             <Nav />
-            <Chat />
+            <Switch>
+              <Route path="/channel/:name" component={Chat} />
+              <Route component={Chat} />
+            </Switch>
           </div>
         </Context.Provider>
       </>

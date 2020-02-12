@@ -4,6 +4,7 @@ import LoginForm from './Tabs/TabContent/LoginForm/LoginForm'
 import Context from '../Context/Context'
 import Tabs from './Tabs/Tabs'
 import Tab from './Tabs/Tab'
+import { Link, NavLink } from 'react-router-dom'
 import './Nav.css'
 
 const errorToastColor = {
@@ -19,7 +20,8 @@ export default class Nav extends Component {
   static contextType = Context
 
   state = {
-    notification: null
+    notification: null,
+    channels: ['General', 'Dogs']
   }
 
   componentDidMount() {
@@ -44,11 +46,13 @@ export default class Nav extends Component {
 
         {/* Channels */}
         <div className="channels">
-          <div className="chnl">General</div>
-          <div className="chnl">Dogs</div>
-          {/* <div className="chnl">Channel 3</div>
-          <div className="chnl">Channel 4</div>
-          <div className="chnl">Channel 5</div> */}
+          {this.state.channels.map((channel, i) => (
+            <div key={i}>
+              <Link className="chnl" to={`/channel/${channel}`}>
+                {channel}
+              </Link>
+            </div>
+          ))}
         </div>
 
         {/* Register / Login tabs */}

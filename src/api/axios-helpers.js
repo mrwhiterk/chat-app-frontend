@@ -45,10 +45,20 @@ export const signin = async formBody => {
   }
 }
 
-export const getMessages = async () => {
+export const getChannelMessages = async roomName => {
   try {
-    console.log('get messages hit')
+    let response = await Axios.get(`/api/channels/getMessages/${roomName}`)
+    return response
   } catch (err) {
-    return err
+    return err.response
+  }
+}
+
+export const getChannelUsers = async roomName => {
+  try {
+    let response = await Axios.get(`/api/channels/getUsers/${roomName}`)
+    return response
+  } catch (err) {
+    return err.response
   }
 }
