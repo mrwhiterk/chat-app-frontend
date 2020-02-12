@@ -79,10 +79,10 @@ export default class EditUser extends Component {
         this.context.handleToast("Profile edit successful", null)
       }
       if (user.status === 400) {
-        this.context.handleToast(null, "Oops, something went wrong")
+        this.context.handleToast(null, "Poops, you did something wrong 💩💩💩")
       }
     } catch (e) {
-      this.context.handleToast(null, "Oops, something went wrong")
+      this.context.handleToast(null, "Poops, you did something wrong 💩💩💩")
       console.log(e)
     }
   }

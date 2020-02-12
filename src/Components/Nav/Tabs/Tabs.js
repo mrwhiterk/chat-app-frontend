@@ -56,6 +56,7 @@ export default class Tabs extends Component {
           <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
           {children[activeTab] ? (
             <div className="activeTabContent">
+                
               {/* Notification error/success Tag */}
               {this.context.toastMsg.success ? (
                 <FadeInOut>
@@ -67,9 +68,11 @@ export default class Tabs extends Component {
                 ""
               )}
               {this.context.toastMsg.error ? (
-                <div className="notificationTag errorNotification fadeIn">
-                  {this.context.toastMsg.error}
-                </div>
+                <FadeInOut>
+                  <div className="notificationTag errorNotification">
+                    {this.context.toastMsg.error}
+                  </div>
+                </FadeInOut>
               ) : (
                 ""
               )}

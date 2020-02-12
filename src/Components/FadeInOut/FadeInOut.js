@@ -9,10 +9,6 @@ export default class FadeInOut extends Component {
     return this.props.delay || 50
   }
 
-  transitionDuration = () => {
-    return this.props.transitionDuration || 400
-  }
-
   componentDidMount() {
     const count = React.Children.count(this.props.children)
     let i = 0
@@ -35,7 +31,6 @@ export default class FadeInOut extends Component {
   }
 
   render() {
-    const transitionDuration = this.transitionDuration()
     return (
       <div className={this.props.className}>
         {React.Children.map(this.props.children, (child, i) => {
@@ -43,8 +38,7 @@ export default class FadeInOut extends Component {
             <div
               className={this.props.childClassName}
               style={{
-                transition: `opacity ${transitionDuration}ms, top ${transitionDuration}ms`,
-                position: "relative",
+                transition: `opacity 400ms, left 400ms`,
                 top: this.state.maxIsVisible > i ? 0 : 20,
                 opacity: this.state.maxIsVisible > i ? 1 : 0
               }}
