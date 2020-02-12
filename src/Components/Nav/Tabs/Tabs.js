@@ -1,29 +1,30 @@
-import React, { Component } from "react";
-import Context from "../../Context/Context";
-import UsernameGenerator from "username-generator";
+import React, { Component } from "react"
+import Context from "../../Context/Context"
+import UsernameGenerator from "username-generator"
+import FadeInOut from "../../FadeInOut/FadeInOut"
 
 export default class Tabs extends Component {
-  static contextType = Context;
+  static contextType = Context
 
   state = {
     activeTab: ""
-  };
+  }
 
   componentDidMount() {
     if (!this.context.isAuth) {
-      this.handleTabClick(0);
+      this.handleTabClick(0)
     }
   }
 
   handleTabClick = tab => {
     if (tab === this.state.activeTab) {
-      return;
+      return
     } else {
       this.setState({
         activeTab: tab === this.state.activeTab ? "" : tab
-      });
+      })
     }
-  };
+  }
 
   renderTabsChildrenAsProps = () => {
     //? 'React.Children' = this.props.children: whatever you include between the opening and closing tags when invoking a component
@@ -33,21 +34,21 @@ export default class Tabs extends Component {
           onClick: this.handleTabClick,
           tab: index,
           bgColor: "#262626"
-        });
+        })
       } else {
         //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
         return React.cloneElement(child, {
           onClick: this.handleTabClick,
           tab: index,
           bgColor: "#161515"
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
   render() {
-    const { children } = this.props;
-    const { activeTab } = this.state;
+    const { children } = this.props
+    const { activeTab } = this.state
 
     return (
       <div>
@@ -57,14 +58,16 @@ export default class Tabs extends Component {
             <div className="activeTabContent">
               {/* Notification error/success Tag */}
               {this.context.toastMsg.success ? (
-                <div className="notificationTag successNotification">
-                  {this.context.toastMsg.success}
-                </div>
+                <FadeInOut>
+                  <div className="notificationTag successNotification">
+                    {this.context.toastMsg.success}
+                  </div>
+                </FadeInOut>
               ) : (
                 ""
               )}
               {this.context.toastMsg.error ? (
-                <div className="notificationTag errorNotification">
+                <div className="notificationTag errorNotification fadeIn">
                   {this.context.toastMsg.error}
                 </div>
               ) : (
@@ -87,8 +90,8 @@ export default class Tabs extends Component {
                       <a
                         className={`tabLink register-tab registerGuestLink`}
                         onClick={event => {
-                          event.preventDefault();
-                          this.handleTabClick(1);
+                          event.preventDefault()
+                          this.handleTabClick(1)
                         }}
                       >{`register`}</a>{" "}
                       ?
@@ -104,6 +107,6 @@ export default class Tabs extends Component {
           )}
         </div>
       </div>
-    );
+    )
   }
 }

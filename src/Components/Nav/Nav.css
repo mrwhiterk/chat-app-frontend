@@ -60,9 +60,7 @@
 }
 
 .successNotification {
-  width: 90%;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px;
   background-color: rgba(17, 233, 71, 0.637);
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.199),
@@ -70,13 +68,19 @@
 }
 
 .errorNotification {
-  width: 90%;
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: rgba(228, 13, 13, 0.445);
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.199),
     -1px -1px 5px rgba(17, 17, 17, 0.199);
+}
+
+.fadeOut {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
 }
 
 .tabLink {
