@@ -1,41 +1,40 @@
-import React, { Component } from "react";
-import Context from "../../../Context/Context";
+import React, { Component } from 'react'
+import Context from '../../../Context/Context'
 
 class SendMessageForm extends Component {
-  static contextType = Context;
+  static contextType = Context
 
   state = {
-    body: ""
-  };
+    body: ''
+  }
 
   handleSubmit = async e => {
-    e.preventDefault();
+    e.preventDefault()
 
-    this.props.createMessage(this.state);
+    this.props.createMessage(this.state)
 
-    this.setState({ body: "" });
-  };
+    this.setState({ body: '' })
+  }
 
   handleKeyPress = async e => {
-    let whiteSpace = /^\s/g;
+    let whiteSpace = /^\s/g
     if (e.target.value === whiteSpace) {
-      e.target.value = "";
-      console.log("No message to send");
-    }
-     else if (e.key === "Enter" && e.shiftKey) {
-    } else if (e.target.value === "") {
-      console.log("No message to send");
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      this.props.createMessage(this.state);
+      e.target.value = ''
+      console.log('No message to send')
+    } else if (e.key === 'Enter' && e.shiftKey) {
+    } else if (e.target.value === '') {
+      console.log('No message to send')
+    } else if (e.key === 'Enter') {
+      e.preventDefault()
+      this.props.createMessage(this.state)
 
-      this.setState({ body: "" });
+      this.setState({ body: '' })
     }
-  };
+  }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
   render() {
     return (
@@ -56,8 +55,8 @@ class SendMessageForm extends Component {
           />
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default SendMessageForm;
+export default SendMessageForm

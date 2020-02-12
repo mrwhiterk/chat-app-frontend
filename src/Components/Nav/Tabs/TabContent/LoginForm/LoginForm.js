@@ -1,56 +1,56 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   signin,
   setAuthHeader,
   checkTokenAndReturn
-} from "../../../../api/axios-helpers";
-import Context from "../../../Context/Context";
+} from '../../../../../api/axios-helpers'
+import Context from '../../../../Context/Context'
 
 const errorToastColor = {
-  background: "#f23535",
-  text: "#fff"
-};
+  background: '#f23535',
+  text: '#fff'
+}
 
 const toastColor = {
-  background: "#3f51b5",
-  text: "#fff"
-};
+  background: '#3f51b5',
+  text: '#fff'
+}
 
 class LoginForm extends Component {
-  static contextType = Context;
+  static contextType = Context
 
   state = {
-    username: "",
-    email: "",
-    password: ""
-  };
+    username: '',
+    email: '',
+    password: ''
+  }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
   handleSubmit = async e => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      let res = await signin(this.state);
-      console.log(res.data);
+      let res = await signin(this.state)
+      console.log(res.data)
 
       if (res.status === 200) {
-        setAuthHeader(res.data.token);
-        localStorage.setItem("token", res.data.token);
-        this.context.setAuth(checkTokenAndReturn());
+        setAuthHeader(res.data.token)
+        localStorage.setItem('token', res.data.token)
+        this.context.setAuth(checkTokenAndReturn())
 
-        let successMsg = `You're logged in as ${res.data.user.username}`;
-        this.context.handleToast(successMsg, null);
+        let successMsg = `You're logged in as ${res.data.user.username}`
+        this.context.handleToast(successMsg, null)
       }
 
       if (res.status === 400) {
-        console.log("poop");
+        console.log('poop')
 
-        let errorMsg = res.data;
+        let errorMsg = res.data
 
-        this.context.handleToast(null, errorMsg);
+        this.context.handleToast(null, errorMsg)
 
         //       // if (errors.username && errors.username.kind === 'unique') {
         //       //   console.log('username taken')
@@ -60,9 +60,9 @@ class LoginForm extends Component {
         //       // }
       }
     } catch (e) {
-      console.log(`e`, e);
+      console.log(`e`, e)
     }
-  };
+  }
 
   render() {
     let form = (
@@ -94,9 +94,9 @@ class LoginForm extends Component {
           <input className="navButton" type="submit" value="Login" />
         </form>
       </div>
-    );
-    return form;
+    )
+    return form
   }
 }
 
-export default LoginForm;
+export default LoginForm
