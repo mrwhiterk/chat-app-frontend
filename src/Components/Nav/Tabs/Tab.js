@@ -9,8 +9,7 @@ export default class Tab extends Component {
     return (
       <>
         <div className="tab" style={{ backgroundColor: this.props.bgColor }}>
-          <a
-            href="#"
+          <p
             className={`tabLink ${this.props.className}
         ${this.props.isActive}
         `}
@@ -20,7 +19,7 @@ export default class Tab extends Component {
             }}
           >
             {`${this.props.label}`}
-          </a>
+          </p>
         </div>
       </>
     )
