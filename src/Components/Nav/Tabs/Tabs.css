@@ -1,0 +1,181 @@
+.tabs {
+  margin-left: 10px;
+  margin-right: 10px;
+  /* grid-row: 3; */
+  height: 100%;
+  width: auto;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 10% 90%;
+}
+
+.tabsNav {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.tab {
+  cursor: pointer;
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 200;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.tab:hover {
+  font-weight: 300;
+}
+
+.activeTabContent {
+  height: fit-content;
+  max-height: 85%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #262626;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 25px;
+}
+
+.tabContent {
+  width: 15vw;
+}
+
+.tabLink {
+  color: rgb(209, 190, 202);
+}
+
+h5 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 200;
+}
+h6 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 200;
+}
+input:focus {
+  outline: none;
+}
+
+input {
+  font-size: 12px;
+  width: 90%;
+}
+
+.navButton {
+  width: fit-content;
+  font-size: 15px;
+  font-weight: 200;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: rgb(209, 190, 202);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  background-color: rgb(24, 24, 24);
+  border-radius: 5px;
+  border: 1px solid rgb(209, 190, 202);
+}
+
+.navButton:focus {
+  outline: none;
+}
+
+.navButton:hover {
+  font-weight: 300;
+  background-color: #0d0d0d;
+}
+
+.navButton:active {
+  box-shadow: 1px 0px 5px rgba(209, 190, 202, 0.548),
+    -1px 0px 5px rgba(209, 190, 202, 0.548);
+}
+
+.guestBlock {
+  padding-top: 15px;
+  line-height: 12px;
+}
+
+.guestText {
+  margin: 0;
+  font-size: 9px;
+  color: rgb(180, 171, 177);
+}
+
+.guestText > span {
+  margin: 0;
+  font-size: 10px;
+  color: rgb(252, 238, 248);
+}
+
+
+.register {
+  margin-top: 20px;
+  height: 34vh;
+  overflow: scroll;
+}
+
+.registerGuestLiank {
+  cursor: pointer;
+  color: rgb(218, 208, 214);
+  font-size: 10px;
+}
+
+.registerGuestLink:hover {
+  color: rgb(233, 215, 226);
+  text-decoration: underline;
+}
+
+.logoutButton {
+  font-size: 15px;
+  font-weight: 200;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: fit-content;
+  align-self: center;
+}
+
+.loggedInAs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userTitle {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.userProfileTabContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.profilePic img {
+  border: 2px solid #d6cdd4d8;
+  border-radius: 50%;
+  width: 120px;
+  height: 120;
+}
+
+.edit {
+  height: 39vh;
+  overflow: scroll;
+}
