@@ -8,37 +8,36 @@ export default class Drawers extends Component {
     activeDrawer: "",
   }
 
-  handleClick = drawer => {
+  handleClick = async drawer => {
+    try {
+      if (drawer === this.state.activeDrawer) {
+        return
+      } else {
+        await this.setState({
+          activeDrawer: drawer === this.state.activeDrawer ? "" : drawer,
+        })
 
-    React.Children.map(this.props.children, (child, i) => {
-    //   console.log(`!!!`, child.props.children)
-    })
-    if (drawer === this.state.activeDrawer) {
-      return
-    } else {
-      this.setState({
-        activeDrawer: drawer === this.state.activeDrawer ? "" : drawer
-      })
-    }
+      }
+    } catch (e) {}
   }
 
   renderChildrenWithProps = () => {
     return React.Children.map(this.props.children, (child, index) => {
-    //   if (this.state.activeDrawer === index) {
-    //     return React.cloneElement(child, {
-    //       showChild: true,
-    //       onClick: this.handleClick,
-    //       drawer: index,
-    //       bgColor: "pink"
-    //     })
-    //   } else {
-        return React.cloneElement(child, {
-          showChild: false,
-          onClick: this.handleClick,
-          drawer: index,
-          bgColor: "light-blue"
-        })
-    //   }
+        if (this.state.activeDrawer === index) {
+          return React.cloneElement(child, {
+              isActive: true,
+            onClick: this.handleClick,
+            drawer: index,
+            bgColor: "grey"
+          })
+        } else {
+      return React.cloneElement(child, {
+        isActive: index === this.state.activeDrawer ? true : false,
+        onClick: this.handleClick,
+        drawer: index,
+        bgColor: "pink"
+      })
+        }
     })
   }
 
@@ -55,8 +54,8 @@ export default class Drawers extends Component {
           {this.renderChildrenWithProps()}
           {children[activeDrawer] ? (
             <div className="activeDrawerContent">
-              {children[activeDrawer].props.children}
-              poop
+              {/* {children[activeDrawer].props.children}
+              poop */}
             </div>
           ) : (
             ""

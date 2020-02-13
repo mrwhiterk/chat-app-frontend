@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Context from "../../Context/Context"
 import UsernameGenerator from "username-generator"
-import FadeInOut from "../../FadeInOut/FadeInOut"
+import FadeInAndOut from "../../FadeAnimation/FadeInAndOut"
 
 export default class Tabs extends Component {
   static contextType = Context
@@ -58,20 +58,20 @@ export default class Tabs extends Component {
             <div className="activeTabContent">
               {/* Notification error/success Tag */}
               {this.context.toastMsg.success ? (
-                <FadeInOut>
+                <FadeInAndOut fadeout={true}>
                   <div className="notificationTag successNotification">
                     {this.context.toastMsg.success}
                   </div>
-                </FadeInOut>
+                </FadeInAndOut>
               ) : (
                 ""
               )}
               {this.context.toastMsg.error ? (
-                <FadeInOut>
+                <FadeInAndOut fadeout={true}>
                   <div className="notificationTag errorNotification">
                     {this.context.toastMsg.error}
                   </div>
-                </FadeInOut>
+                </FadeInAndOut>
               ) : (
                 ""
               )}

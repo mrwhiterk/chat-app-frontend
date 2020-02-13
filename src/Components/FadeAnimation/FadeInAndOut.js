@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-export default class FadeInOut extends Component {
+export default class FadeInAndOut extends Component {
   state = {
     maxIsVisible: 0
   }
@@ -27,7 +27,7 @@ export default class FadeInOut extends Component {
   timeOut = () => {
     setTimeout(() => {
       this.setState({ maxIsVisible: 0 })
-    }, 2000)
+    }, 3000)
   }
 
   render() {
@@ -38,13 +38,13 @@ export default class FadeInOut extends Component {
             <div
               className={this.props.childClassName}
               style={{
-                transition: `opacity 400ms, left 400ms`,
+                transition: `opacity 400ms, top 400ms`,
                 top: this.state.maxIsVisible > i ? 0 : 20,
                 opacity: this.state.maxIsVisible > i ? 1 : 0
               }}
             >
               {child}
-              {this.timeOut()}
+              {this.props.fadeout ? this.timeOut() : ""}
             </div>
           )
         })}
