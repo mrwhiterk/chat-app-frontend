@@ -1,18 +1,18 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   signin,
   setAuthHeader,
   checkTokenAndReturn
-} from "../../../../../api/axios-helpers"
-import Context from "../../../../Context/Context"
+} from '../../../../../api/axios-helpers'
+import Context from '../../../../Context/Context'
 
 class LoginForm extends Component {
   static contextType = Context
 
   state = {
-    username: "",
-    email: "",
-    password: ""
+    username: '',
+    email: '',
+    password: ''
   }
 
   handleChange = e => {
@@ -24,13 +24,10 @@ class LoginForm extends Component {
 
     try {
       let res = await signin(this.state)
-<<<<<<< HEAD
 
-=======
->>>>>>> master
       if (res.status === 200) {
         setAuthHeader(res.data.token)
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem('token', res.data.token)
         this.context.setAuth(checkTokenAndReturn())
       }
 
