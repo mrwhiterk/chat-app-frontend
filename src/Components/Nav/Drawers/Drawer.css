@@ -1,0 +1,23 @@
+.drawerLink {
+  cursor: pointer;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 200;
+  text-align: left;
+  padding: 10%;
+}
+
+.drawerLink:active {
+  background-color: hotpink;
+  /* transition: left, 1000ms; */
+  /* transition: step-start, 1000ms; */
+  animation: backwards, 1000ms;
+  /* transition-timing-function: 1000ms; */
+}
+
+.activeDrawerContent {
+  min-height: 20vh;
+  height: fit-content;
+  max-height: 58vh;
+  overflow: scroll;
+}

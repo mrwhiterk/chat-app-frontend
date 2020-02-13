@@ -1,11 +1,12 @@
 import React, { Component } from "react"
 import Context from "../../Context/Context"
+import "./Drawer.css"
 
 export default class Drawers extends Component {
   static contextType = Context
 
   state = {
-    activeDrawer: "",
+    activeDrawer: ""
   }
 
   handleClick = async drawer => {
@@ -14,30 +15,31 @@ export default class Drawers extends Component {
         return
       } else {
         await this.setState({
-          activeDrawer: drawer === this.state.activeDrawer ? "" : drawer,
+          activeDrawer: drawer === this.state.activeDrawer ? "" : drawer
         })
-
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   renderChildrenWithProps = () => {
     return React.Children.map(this.props.children, (child, index) => {
-        if (this.state.activeDrawer === index) {
-          return React.cloneElement(child, {
-              isActive: true,
-            onClick: this.handleClick,
-            drawer: index,
-            bgColor: "grey"
-          })
-        } else {
-      return React.cloneElement(child, {
-        isActive: index === this.state.activeDrawer ? true : false,
-        onClick: this.handleClick,
-        drawer: index,
-        bgColor: "pink"
-      })
-        }
+      if (this.state.activeDrawer === index) {
+        return React.cloneElement(child, {
+          isActive: true,
+          onClick: this.handleClick,
+          drawer: index,
+          bgColor: "rgba(146, 141, 143, 0.178)"
+        })
+      } else {
+        return React.cloneElement(child, {
+          isActive: index === this.state.activeDrawer ? true : false,
+          onClick: this.handleClick,
+          drawer: index,
+          bgColor: "rgba(20, 20, 20, 0.658)"
+        })
+      }
     })
   }
 
@@ -47,20 +49,14 @@ export default class Drawers extends Component {
 
     return (
       <div className="drawers">
-        <div
-          className="drawersNav"
-          style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}
-        >
-          {this.renderChildrenWithProps()}
-          {children[activeDrawer] ? (
-            <div className="activeDrawerContent">
-              {/* {children[activeDrawer].props.children}
-              poop */}
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
+        {this.renderChildrenWithProps()}
+        {/* {children[activeDrawer] ? (
+          <div className="activeDrawerContent">
+            
+          </div>
+        ) : (
+          ""
+        )} */}
       </div>
     )
   }

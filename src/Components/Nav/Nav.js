@@ -11,6 +11,11 @@ import Tabs from "./Tabs/Tabs"
 import Tab from "./Tabs/Tab"
 import "./Nav.css"
 
+// !
+import styled from 'styled-components';
+
+
+
 export default class Nav extends Component {
   static contextType = Context
 
