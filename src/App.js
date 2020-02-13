@@ -3,11 +3,7 @@ import Nav from './components/Nav/Nav'
 import Chat from './components/Chat/Chat'
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import {
-  checkTokenAndReturn,
-  getMessages,
-  setAuthHeader
-} from './api/axios-helpers'
+import { checkTokenAndReturn, setAuthHeader } from './api/axios-helpers'
 import Context from './components/Context/Context'
 
 class App extends Component {

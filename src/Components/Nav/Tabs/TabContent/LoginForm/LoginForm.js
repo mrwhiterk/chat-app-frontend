@@ -34,7 +34,6 @@ class LoginForm extends Component {
 
     try {
       let res = await signin(this.state)
-      console.log(res.data)
 
       if (res.status === 200) {
         setAuthHeader(res.data.token)

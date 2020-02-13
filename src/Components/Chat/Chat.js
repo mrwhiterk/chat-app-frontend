@@ -36,36 +36,25 @@ class Chat extends Component {
   }
 
   createSocket = async () => {
-    console.log('38: create socket')
     try {
-      console.log('room ', this.state.room)
       let response = await getChannelUsers(this.state.room)
-      console.log(response)
 
-      this.setState(
-        {
-          users: response.data.liveMembers,
-          messages: response.data.messages,
-          roomId: response.data._id
-        },
-        () => {
-          console.log(this.state)
-        }
-      )
+      this.setState({
+        users: response.data.liveMembers,
+        messages: response.data.messages,
+        roomId: response.data._id
+      })
     } catch (error) {
       console.log(error)
     }
 
     this.socket = socketIOClient(endpoint)
 
-    console.log('new connection created')
-
     this.socket.on('chatroomUsers', users => {
       this.setState({ users: users })
     })
 
     this.socket.on('chat', message => {
-      console.log(message)
       this.setState({ messages: [...this.state.messages, message] })
     })
   }
@@ -97,6 +86,7 @@ class Chat extends Component {
       this.context.user,
       this.state.room
     )
+    this.props.history.push('/channel/General')
   }
 
   // initialConnect = () => {

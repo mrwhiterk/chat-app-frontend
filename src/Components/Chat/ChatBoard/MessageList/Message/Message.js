@@ -1,11 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Context from '../../../../Context/Context'
 
 const Message = props => {
   const context = useContext(Context)
 
+  const [disabled, setDisabled] = useState(null)
+
+  useEffect(() => {
+    if (context.logoutPayload) {
+      setDisabled(true)
+    }
+
+    if (context.loginPayload) {
+      setDisabled(false)
+    }
+  })
+
   let isMsgOwner =
-    context.user && context.user._id === props.message.author._id ? 'myMsg' : ''
+    !disabled && context.user && context.user._id === props.message.author._id
+      ? 'myMsg'
+      : ''
   return (
     <div className={`msg ${isMsgOwner}`}>
       <div className="usernameInMsg">{props.message.author.username}</div>
