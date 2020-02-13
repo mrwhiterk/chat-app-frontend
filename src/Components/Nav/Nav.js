@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import RegisterForm from './Tabs/TabContent/RegisterForm/RegisterForm'
 import LoginForm from './Tabs/TabContent/LoginForm/LoginForm'
+import UserProfile from './TabContent/UserProfile/UserProfile'
+import EditUser from './TabContent/EditUser/EditUser'
 import Context from '../Context/Context'
 import Tabs from './Tabs/Tabs'
 import Tab from './Tabs/Tab'
@@ -25,6 +27,7 @@ export default class Nav extends Component {
   }
 
   componentDidMount() {
+    // Error/success notification check
     if (this.context.toastMsg.success) {
       this.setState({
         notification: this.context.toastMsg.success
@@ -56,23 +59,43 @@ export default class Nav extends Component {
         </div>
 
         {/* Register / Login tabs */}
-        <Tabs>
-          <Tab className="login-tab" label="Login">
-            <br />
-            <div>
-              <div className="tabContent">
-                {!this.context.isAuth && <LoginForm />}
+        {this.context.isAuth ? (
+          <Tabs>
+            <Tab className="profile-tab" label="Profile">
+              <br />
+              <div>
+                <div className="tabContent">
+                  <UserProfile user={this.state.user} />
+                </div>
               </div>
-            </div>
-          </Tab>
-          <Tab className="register-log" label="Register">
-            <div>
-              <div className="tabContent">
-                {!this.context.isAuth && <RegisterForm />}
+            </Tab>
+            <Tab className="edit-profile-tab" label="Edit">
+              <div>
+                <div className="tabContent">
+                  <EditUser user={this.state.user} />
+                </div>
               </div>
-            </div>
-          </Tab>
-        </Tabs>
+            </Tab>
+          </Tabs>
+        ) : (
+          <Tabs>
+            <Tab className="login-tab" label="Login">
+              <br />
+              <div>
+                <div className="tabContent">
+                  <LoginForm />
+                </div>
+              </div>
+            </Tab>
+            <Tab className="register-tab" label="Register">
+              <div>
+                <div className="tabContent">
+                  <RegisterForm />
+                </div>
+              </div>
+            </Tab>
+          </Tabs>
+        )}
       </div>
     )
   }

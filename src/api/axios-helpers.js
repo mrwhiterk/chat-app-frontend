@@ -45,6 +45,24 @@ export const signin = async formBody => {
   }
 }
 
+export const getUser = async () => {
+  try {
+    let success = await Axios.get('/api/users/get-user')
+    return success.data
+  } catch (e) {
+    return e.response
+  }
+}
+export const editUser = async user => {
+  try {
+    let success = await Axios.put('/api/users/edit-user', user)
+
+    return success
+  } catch (e) {
+    return e.response
+  }
+}
+
 export const getChannelMessages = async roomName => {
   try {
     let response = await Axios.get(`/api/channels/getMessages/${roomName}`)

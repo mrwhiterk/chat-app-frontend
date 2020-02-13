@@ -3,7 +3,7 @@
   color: white;
   display: grid;
   grid-template-columns: 1;
-  grid-template-rows: 10% 50% 40%;
+  grid-template-rows: 10% 40% 50%;
 }
 
 .appTitle {
@@ -34,7 +34,6 @@
 
 .tab {
   cursor: pointer;
-  /* background-color: #161515; */
   width: 60px;
   height: 100%;
   display: flex;
@@ -44,6 +43,7 @@
 
 .activeTabContent {
   height: fit-content;
+  max-height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   border-top-right-radius: 5px;
@@ -54,28 +54,42 @@
   grid-row: 2 / span 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  line-height: 25px;
+}
+
+.successNotification {
+  color: rgba(241, 253, 255, 0.966);
+  position: fixed;
+  width: 15%;
+  top: 56%;
+  left: 2%;
+  padding: 5px;
+  background-color: rgba(110, 181, 190, 0.966);
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(206, 223, 231, 0.199),
+    -1px -1px 5px rgba(206, 223, 231, 0.199);
 }
 
 .errorNotification {
-  width: 90%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: rgba(10, 187, 54, 0.637);
+  color: rgb(230, 217, 218);
+  position: fixed;
+  width: 15%;
+  top: 56%;
+  left: 2%;
+  padding: 5px;
+  background-color: rgba(128, 10, 16, 0.973);
   border-radius: 5px;
-  box-shadow: 1px 1px 5px rgb(102, 252, 3),
-    -1px -1px 5px rgba(253, 10, 253, 0.945);
+  box-shadow: 1px 1px 5px rgba(197, 102, 102, 0.199),
+    -1px -1px 5px rgba(197, 102, 102, 0.199);
 }
 
-.errorNotification {
-  width: 90%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: rgba(228, 13, 13, 0.445);
-  border-radius: 5px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.199),
-    -1px -1px 5px rgba(17, 17, 17, 0.199);
+.fadeOut {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
 }
 
 .tabLink {
@@ -89,15 +103,28 @@ h5 {
 h6 {
   margin: 0;
 }
+input:focus {
+  outline: none;
+}
+
+input {
+  font-size: 12px;
+}
 
 .navButton {
+  text-transform: uppercase;
   cursor: pointer;
   color: rgb(209, 190, 202);
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
   background-color: rgb(24, 24, 24);
   border-radius: 5px;
   border: 1px solid rgb(209, 190, 202);
+  /* align-self: center; */
+}
+
+.navButton:focus {
+  outline: none;
 }
 
 .navButton:hover {
@@ -140,11 +167,21 @@ h6 {
 .logoutBtn {
   padding-left: 10px;
   padding-right: 10px;
-  max-width: fit-content;
 }
 
 .loggedInAs {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.profilePic img {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+
+.edit {
+  height: 28vh;
+  overflow: scroll;
 }

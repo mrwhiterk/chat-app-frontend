@@ -1,29 +1,30 @@
-import React, { Component } from "react";
-import Context from "../../Context/Context";
-import UsernameGenerator from "username-generator";
+import React, { Component } from "react"
+import Context from "../../Context/Context"
+import UsernameGenerator from "username-generator"
+import FadeInOut from "../../FadeInOut/FadeInOut"
 
 export default class Tabs extends Component {
-  static contextType = Context;
+  static contextType = Context
 
   state = {
     activeTab: ""
-  };
+  }
 
   componentDidMount() {
     if (!this.context.isAuth) {
-      this.handleTabClick(0);
+      this.handleTabClick(0)
     }
   }
 
   handleTabClick = tab => {
     if (tab === this.state.activeTab) {
-      return;
+      return
     } else {
       this.setState({
         activeTab: tab === this.state.activeTab ? "" : tab
-      });
+      })
     }
-  };
+  }
 
   renderTabsChildrenAsProps = () => {
     //? 'React.Children' = this.props.children: whatever you include between the opening and closing tags when invoking a component
@@ -33,89 +34,82 @@ export default class Tabs extends Component {
           onClick: this.handleTabClick,
           tab: index,
           bgColor: "#262626"
-        });
+        })
       } else {
         //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
         return React.cloneElement(child, {
           onClick: this.handleTabClick,
           tab: index,
           bgColor: "#161515"
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
   render() {
-    const { children } = this.props;
-    const { activeTab } = this.state;
-    const { isAuth } = this.context;
+    const { children } = this.props
+    const { activeTab } = this.state
 
     return (
       <div>
-        {isAuth ? (
-          <div className="loggedInAs">
-            <div className="loggedInUser">
-              Hello {this.context.isAuth ? this.context.user.username : ""}
-            </div>
-            <div className="navButton logoutBtn" onClick={this.context.logout}>
-              Logout
-            </div>
-          </div>
-        ) : (
-          <div className="tabs">
-            <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
-            {children[activeTab] ? (
-              <div className="activeTabContent">
-                {/* Notification error/success Tag */}
-                {this.context.toastMsg.success ? (
+        <div className="tabs">
+          <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
+          {children[activeTab] ? (
+            <div className="activeTabContent">
+                
+              {/* Notification error/success Tag */}
+              {this.context.toastMsg.success ? (
+                <FadeInOut>
                   <div className="notificationTag successNotification">
                     {this.context.toastMsg.success}
                   </div>
-                ) : (
-                  ""
-                )}
-                {this.context.toastMsg.error ? (
+                </FadeInOut>
+              ) : (
+                ""
+              )}
+              {this.context.toastMsg.error ? (
+                <FadeInOut>
                   <div className="notificationTag errorNotification">
                     {this.context.toastMsg.error}
                   </div>
-                ) : (
-                  ""
-                )}
+                </FadeInOut>
+              ) : (
+                ""
+              )}
 
-                {children[activeTab].props.children}
-                {children[activeTab].props.className === "login-tab" ? (
-                  <>
-                    <div className="guestBlock">
-                      <p className="guestText">
-                        You are currently chatting as <br />
-                        <span>{UsernameGenerator.generateUsername("-")}</span>
-                        <br />
-                        (Guest User)
-                      </p>
+              {children[activeTab].props.children}
+              {children[activeTab].props.className === "login-tab" ? (
+                <>
+                  <div className="guestBlock">
+                    <p className="guestText">
+                      You are currently chatting as <br />
+                      <span>{UsernameGenerator.generateUsername("-")}</span>
                       <br />
-                      <p className="guestText">
-                        Would you like to{" "}
-                        <a
-                          className={`tabLink register-tab registerGuestLink`}
-                          onClick={event => {
-                            event.preventDefault();
-                            this.handleTabClick(1);
-                          }}
-                        >{`register`}</a>{" "}
-                        ?
-                      </p>
-                    </div>
-                  </>
-                ) : (
-                  ""
-                )}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        )}
+                      (Guest User)
+                    </p>
+                    <br />
+                    <p className="guestText">
+                      Would you like to{" "}
+                      <a
+                        className={`tabLink register-tab registerGuestLink`}
+                        onClick={event => {
+                          event.preventDefault()
+                          this.handleTabClick(1)
+                        }}
+                      >{`register`}</a>{" "}
+                      ?
+                    </p>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-    );
+    )
   }
 }
