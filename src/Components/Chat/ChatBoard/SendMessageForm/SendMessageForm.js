@@ -11,29 +11,23 @@ class SendMessageForm extends Component {
   handleSubmit = async e => {
     e.preventDefault()
 
-    this.props.createMessage(this.state)
-
-    this.setState({ body: '' })
+    if (this.state.body.trim()) {
+      this.props.createMessage(this.state)
+      this.setState({ body: '' })
+    } else {
+      console.log('messages cannot be empty')
+    }
   }
 
-  handleKeyPress = async e => {
-    let whiteSpace = /^\s/g
-    if (e.target.value === whiteSpace) {
-      e.target.value = ''
-      console.log('No message to send')
-    } else if (e.key === 'Enter' && e.shiftKey) {
-    } else if (e.target.value === '') {
-      console.log('No message to send')
-    } else if (e.key === 'Enter') {
-      e.preventDefault()
-      this.props.createMessage(this.state)
-
-      this.setState({ body: '' })
+  handleKeyPress = e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      this.handleSubmit(e)
     }
   }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
+    this.props.onTyping()
   }
 
   render() {

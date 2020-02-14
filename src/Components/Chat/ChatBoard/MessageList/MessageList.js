@@ -11,7 +11,8 @@ export default function MessageList(props) {
   }
   return (
     <div className="messageList">
-      <div className='messageList2'>{messageList}</div>
+      <div id="userTyping">{props.onTypingMessage}</div>
+      <div className="messageList2">{messageList}</div>
     </div>
-  );
+  )
 }

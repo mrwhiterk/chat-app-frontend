@@ -21,10 +21,16 @@ export default class ChatBoard extends Component {
 
           {/* Messages in the channel */}
           <div className="channelMessages">
-            <MessageList messages={this.props.messages} />
+            <MessageList
+              messages={this.props.messages}
+              onTypingMessage={this.props.onTypingMessage}
+            />
           </div>
 
-          <SendMessageForm createMessage={this.props.createMessage} />
+          <SendMessageForm
+            createMessage={this.props.createMessage}
+            onTyping={this.props.onTyping}
+          />
         </div>
       </>
     )

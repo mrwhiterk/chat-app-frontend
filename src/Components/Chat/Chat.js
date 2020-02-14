@@ -20,7 +20,8 @@ class Chat extends Component {
     messages: [],
     users: [],
     room: this.props.match.params.name || 'General',
-    channel: null
+    channel: null,
+    onTypingMessage: ''
   }
 
   componentDidUpdate = prevProps => {
@@ -31,6 +32,10 @@ class Chat extends Component {
         this.createSocket()
       })
     }
+  }
+
+  onChange = () => {
+    this.socket.emit('onTyping', this.context.user)
   }
 
   componentDidMount() {
@@ -69,8 +74,17 @@ class Chat extends Component {
       this.setState({ users: users }, () => {
         if (isRemovingUser) {
           this.socket.disconnect()
+          this.socket.off()
           this.createSocket()
         }
+      })
+    })
+
+    this.socket.on('someoneTyping', username => {
+      this.setState({ onTypingMessage: `${username} is typing..` }, () => {
+        setTimeout(() => {
+          this.setState({ onTypingMessage: '' })
+        }, 1500)
       })
     })
 
@@ -172,6 +186,8 @@ class Chat extends Component {
       <div className="chatMain">
         <ChatBoard
           createMessage={this.createMessage}
+          onTyping={this.onChange}
+          onTypingMessage={this.state.onTypingMessage}
           messages={this.state.messages}
           roomTitle={this.props.match.params.name}
         />
