@@ -11,7 +11,7 @@ import {
 } from '../../api/axios-helpers'
 import './Chat.css'
 
-let endpoint = 'http://127.0.0.1:3001'
+let endpoint = 'https://chatty-appy-api.herokuapp.com/'
 
 class Chat extends Component {
   static contextType = Context
