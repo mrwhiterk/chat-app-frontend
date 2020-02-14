@@ -1,47 +1,43 @@
 import React, { Component } from "react"
 import FadeInAndOut from "../../FadeAnimation/FadeInAndOut"
+import Box from "../../FadeAnimation/Box"
+import Trigger from "../../FadeAnimation/Trigger"
 
 export default class Drawer extends Component {
-
-
-
-  handleClick = () => {
-      
-  }
-
   render() {
     return (
-      <div
-        className="drawer"
-        style={
-          {
-            //   backgroundColor: this.props.bgColor
-          }
-        }
-      >
-        <div
-          className={`drawerLink ${this.props.className}
+      <Trigger>
+        <Box>
+                <FadeInAndOut fadeout={false}>
+          <div className="drawer">
+            <div
+              className={`drawerLink ${this.props.className}
         ${this.props.isActive}
         `}
-          onClick={event => {
-            event.preventDefault()
-            this.props.onClick(this.props.drawer)
-            this.handleClick()
-          }}
-          div
-        >
-          {`${this.props.label}`}
-        </div>
-        {this.props.isActive
-          ? React.Children.map(this.props.children, (child, i) => {
+              onClick={event => {
+                event.preventDefault()
+                // this.props.onClick(this.props.drawer)
+              }}
+              div
+            >
+              {`${this.props.label}`}
+            </div>
+            {/* {this.props.isActive */}
+            {/* ? */}
+            {React.Children.map(this.props.children, (child, i) => {
               return (
-                <FadeInAndOut fadeout={false}>
-                  <div className="activeDrawerContent">{child}</div>
-                </FadeInAndOut>
+                <div className="activeDrawerContent">
+                  
+                  {child}
+                  
+                </div>
               )
-            })
-          : ""}
-      </div>
+            })}
+            {/* : ""} */}
+          </div>
+                </FadeInAndOut>
+        </Box>
+      </Trigger>
     )
   }
 }
