@@ -19,12 +19,14 @@ class Chat extends Component {
   state = {
     messages: [],
     users: [],
-    room: this.props.match.params.name || 'General'
+    room: this.props.match.params.name || 'General',
+    channel: null
   }
 
   componentDidUpdate = prevProps => {
     if (this.props.match.params.name !== prevProps.match.params.name) {
       this.socket.disconnect()
+
       this.setState({ room: this.props.match.params.name }, () => {
         this.createSocket()
       })
@@ -39,19 +41,37 @@ class Chat extends Component {
     try {
       let response = await getChannelUsers(this.state.room)
 
-      this.setState({
-        users: response.data.liveMembers,
-        messages: response.data.messages,
-        roomId: response.data._id
-      })
+      if (response.data) {
+        this.setState({
+          users: response.data.liveMembers,
+          messages: response.data.messages.slice(-10),
+          roomId: response.data._id,
+          channel: response.data
+        })
+      }
     } catch (error) {
       console.log(error)
     }
 
-    this.socket = socketIOClient(endpoint)
+    this.socket = socketIOClient(endpoint, {
+      query: `roomName=${this.state.room}`
+    })
 
-    this.socket.on('chatroomUsers', users => {
-      this.setState({ users: users })
+    if (!this.state.channel) {
+      this.socket.emit('createNewChannel')
+    }
+
+    if (localStorage.getItem('token')) {
+      this.addLiveMember()
+    }
+
+    this.socket.on('chatroomUsers', (users, userId, isRemovingUser) => {
+      this.setState({ users: users }, () => {
+        if (isRemovingUser) {
+          this.socket.disconnect()
+          this.createSocket()
+        }
+      })
     })
 
     this.socket.on('chat', message => {
@@ -74,7 +94,7 @@ class Chat extends Component {
   addLiveMember = () => {
     if (
       this.context.user &&
-      !this.state.users.find(user => user._id === this.context.user)
+      !this.state.users.find(user => user._id === this.context.user._id)
     ) {
       this.socket.emit('sendUserToServer', this.context.user, this.state.room)
     }
@@ -86,6 +106,7 @@ class Chat extends Component {
       this.context.user,
       this.state.room
     )
+
     this.props.history.push('/channel/General')
   }
 
@@ -138,12 +159,12 @@ class Chat extends Component {
 
   render() {
     if (this.context.loginPayload) {
-      this.addLiveMember(this.context.loginPayload)
+      this.addLiveMember()
       this.context.resetLoginPayload()
     }
 
     if (this.context.logoutPayload) {
-      this.removeLiveMember(this.context.logoutPayload)
+      this.removeLiveMember()
       this.context.resetLogoutPayload()
     }
 
