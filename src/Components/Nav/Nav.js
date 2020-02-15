@@ -6,6 +6,7 @@ import EditUser from './TabContent/EditUser/EditUser'
 import Context from '../Context/Context'
 import Tabs from './Tabs/Tabs'
 import Tab from './Tabs/Tab'
+import Spinner from '../UI/Spinner/Spinner'
 import { Link, NavLink } from 'react-router-dom'
 import './Nav.css'
 
@@ -22,8 +23,7 @@ export default class Nav extends Component {
   static contextType = Context
 
   state = {
-    notification: null,
-    channels: ['General', 'Dogs']
+    notification: null
   }
 
   componentDidMount() {
@@ -41,6 +41,18 @@ export default class Nav extends Component {
   }
 
   render() {
+    let { channels } = this.context
+    let channelList = <Spinner />
+
+    if (channels) {
+      channelList = this.context.channels.map((channel, i) => (
+        <div key={i}>
+          <Link className="chnl" to={`/channel/${channel.title}`}>
+            {channel.title}
+          </Link>
+        </div>
+      ))
+    }
     return (
       <div className="navMain">
         {/* App title */}
@@ -48,15 +60,11 @@ export default class Nav extends Component {
         <div className="appTitle">Chat App</div>
 
         {/* Channels */}
-        <div className="channels">
-          {this.state.channels.map((channel, i) => (
-            <div key={i}>
-              <Link className="chnl" to={`/channel/${channel}`}>
-                {channel}
-              </Link>
-            </div>
-          ))}
-        </div>
+        <div className="channels">{channelList}</div>
+
+        {/* <form onSubmit={this.handleSubmit}>
+          <input type="text" placeholder="room name" />
+        </form> */}
 
         {/* Register / Login tabs */}
         {this.context.isAuth ? (

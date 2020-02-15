@@ -63,6 +63,15 @@ export const editUser = async user => {
   }
 }
 
+export const getChannels = async roomName => {
+  try {
+    let response = await Axios.get(`/api/channels/`)
+    return response
+  } catch (err) {
+    return err.response
+  }
+}
+
 export const getChannelMessages = async roomName => {
   try {
     let response = await Axios.get(`/api/channels/getMessages/${roomName}`)

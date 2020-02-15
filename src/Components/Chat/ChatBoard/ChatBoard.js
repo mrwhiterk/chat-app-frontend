@@ -14,9 +14,7 @@ export default class ChatBoard extends Component {
         <div className="chatBoard">
           {/* Channel title */}
           <div className="channelTitle">
-            <p className="title">
-              @{props.roomTitle ? props.roomTitle : 'General'}
-            </p>
+            <p className="title">@{props.roomTitle || 'General'}</p>
           </div>
 
           {/* Messages in the channel */}

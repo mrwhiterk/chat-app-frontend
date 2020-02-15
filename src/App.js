@@ -3,7 +3,11 @@ import Nav from './components/Nav/Nav'
 import Chat from './components/Chat/Chat'
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import { checkTokenAndReturn, setAuthHeader } from './api/axios-helpers'
+import {
+  checkTokenAndReturn,
+  setAuthHeader,
+  getChannels
+} from './api/axios-helpers'
 import Context from './components/Context/Context'
 
 class App extends Component {
@@ -17,7 +21,22 @@ class App extends Component {
       error: null
     },
     loginPayload: null,
-    logoutPayload: null
+    logoutPayload: null,
+    channels: null
+  }
+
+  getChannels = async () => {
+    try {
+      let response = await getChannels()
+
+      if (response.status === 200) {
+        this.setState({ channels: response.data })
+      } else {
+        console.log('there was an error')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   resetLoginPayload = () => {
@@ -31,6 +50,7 @@ class App extends Component {
     if (this.state.user) {
       this.setState({ isAuth: true })
     }
+    this.getChannels()
   }
 
   setAuth = user => {
@@ -74,7 +94,8 @@ class App extends Component {
       loginPayload: this.state.loginPayload,
       logoutPayload: this.state.logoutPayload,
       resetLoginPayload: this.resetLoginPayload,
-      resetLogoutPayload: this.resetLogoutPayload
+      resetLogoutPayload: this.resetLogoutPayload,
+      channels: this.state.channels
     }
     return (
       <>

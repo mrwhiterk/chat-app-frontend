@@ -12,7 +12,7 @@ import {
 import './Chat.css'
 
 let endpoint =
-  process.env.NODE_ENV === 'production'
+  process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
     : 'https://chatty-appy-api.herokuapp.com/'
 
@@ -20,8 +20,8 @@ class Chat extends Component {
   static contextType = Context
 
   state = {
-    messages: [],
-    users: [],
+    messages: null,
+    users: null,
     room: this.props.match.params.name || 'General',
     channel: null,
     onTypingMessage: ''
