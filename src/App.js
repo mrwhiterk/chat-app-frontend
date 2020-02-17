@@ -22,6 +22,7 @@ class App extends Component {
     },
     loginPayload: null,
     logoutPayload: null,
+    channelAdded: null,
     channels: null
   }
 
@@ -37,6 +38,18 @@ class App extends Component {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  addChannelDisplay = channel => {
+    this.setState({ channels: [...this.state.channels, channel] })
+  }
+
+  setChannelAdded = channel => {
+    this.setState({ channelAdded: channel })
+  }
+
+  resetChannelAdded = () => {
+    this.setState({ channelAdded: null })
   }
 
   resetLoginPayload = () => {
@@ -95,7 +108,11 @@ class App extends Component {
       logoutPayload: this.state.logoutPayload,
       resetLoginPayload: this.resetLoginPayload,
       resetLogoutPayload: this.resetLogoutPayload,
-      channels: this.state.channels
+      channels: this.state.channels,
+      addChannelDisplay: this.addChannelDisplay,
+      channelAdded: this.state.channelAdded,
+      setChannelAdded: this.setChannelAdded,
+      resetChannelAdded: this.resetChannelAdded
     }
     return (
       <>

@@ -89,3 +89,12 @@ export const getChannelUsers = async roomName => {
     return err.response
   }
 }
+
+export const createChannel = async title => {
+  try {
+    let response = await Axios.post(`/api/channels/`, { title })
+    return response
+  } catch (err) {
+    return err.response
+  }
+}

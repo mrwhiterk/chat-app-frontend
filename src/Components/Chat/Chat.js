@@ -83,6 +83,10 @@ class Chat extends Component {
       })
     })
 
+    this.socket.on('addChannelToSockets', channel => {
+      this.context.addChannelDisplay(channel)
+    })
+
     this.socket.on('someoneTyping', username => {
       this.setState({ onTypingMessage: `${username} is typing..` }, () => {
         setTimeout(() => {
@@ -106,6 +110,10 @@ class Chat extends Component {
     } catch (err) {
       console.log(err.message)
     }
+  }
+
+  addChannelToSockets = data => {
+    this.socket.emit('addChannelToSockets', data)
   }
 
   addLiveMember = () => {
@@ -183,6 +191,11 @@ class Chat extends Component {
     if (this.context.logoutPayload) {
       this.removeLiveMember()
       this.context.resetLogoutPayload()
+    }
+
+    if (this.context.channelAdded) {
+      this.addChannelToSockets(this.context.channelAdded)
+      this.context.resetChannelAdded()
     }
 
     return (

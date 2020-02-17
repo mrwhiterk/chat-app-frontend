@@ -11,6 +11,4 @@ const instance = axios.create({
   }
 })
 
-console.log(process.env.NODE_ENV)
-
 export default instance

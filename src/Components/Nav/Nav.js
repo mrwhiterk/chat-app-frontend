@@ -7,7 +7,8 @@ import Context from '../Context/Context'
 import Tabs from './Tabs/Tabs'
 import Tab from './Tabs/Tab'
 import Spinner from '../UI/Spinner/Spinner'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { createChannel } from '../../api/axios-helpers'
 import './Nav.css'
 
 const errorToastColor = {
@@ -23,8 +24,25 @@ export default class Nav extends Component {
   static contextType = Context
 
   state = {
-    notification: null
+    notification: null,
+    roomName: ''
   }
+
+  handleSubmit = async e => {
+    e.preventDefault()
+
+    if (this.state.roomName) {
+      try {
+        let res = await createChannel(this.state.roomName)
+        this.context.setChannelAdded(res.data.channel)
+        this.setState({ roomName: '' })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  handleChange = ({ target }) => this.setState({ [target.name]: target.value })
 
   componentDidMount() {
     // Error/success notification check
@@ -60,11 +78,19 @@ export default class Nav extends Component {
         <div className="appTitle">Chat App</div>
 
         {/* Channels */}
-        <div className="channels">{channelList}</div>
-
-        {/* <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="room name" />
-        </form> */}
+        <div className="channels">
+          {channelList}
+          <br />
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="roomName"
+              value={this.state.roomName}
+              onChange={this.handleChange}
+              placeholder="new room"
+            />
+          </form>
+        </div>
 
         {/* Register / Login tabs */}
         {this.context.isAuth ? (
