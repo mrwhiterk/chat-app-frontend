@@ -6,7 +6,7 @@ export default class Drawers extends Component {
   static contextType = Context
 
   state = {
-    activeDrawer: ""
+    activeDrawer: 2
   }
 
   handleClick = async drawer => {
@@ -15,7 +15,7 @@ export default class Drawers extends Component {
         return
       } else {
         await this.setState({
-          activeDrawer: drawer === this.state.activeDrawer ? "" : drawer
+          activeDrawer: drawer
         })
       }
     } catch (e) {
@@ -25,39 +25,15 @@ export default class Drawers extends Component {
 
   renderChildrenWithProps = () => {
     return React.Children.map(this.props.children, (child, index) => {
-      if (this.state.activeDrawer === index) {
-        return React.cloneElement(child, {
-          isActive: true,
-          onClick: this.handleClick,
-          drawer: index,
-          bgColor: "rgba(146, 141, 143, 0.178)"
-        })
-      } else {
-        return React.cloneElement(child, {
-          isActive: index === this.state.activeDrawer ? true : false,
-          onClick: this.handleClick,
-          drawer: index,
-          bgColor: "rgba(20, 20, 20, 0.658)"
-        })
-      }
+      return React.cloneElement(child, {
+        isActive: index === this.state.activeDrawer ? true : false,
+        handleTrigger: this.handleClick,
+        drawer: index
+      })
     })
   }
 
   render() {
-    const { children } = this.props
-    const { activeDrawer } = this.state
-
-    return (
-      <div className="drawers">
-        {this.renderChildrenWithProps()}
-        {/* {children[activeDrawer] ? (
-          <div className="activeDrawerContent">
-            
-          </div>
-        ) : (
-          ""
-        )} */}
-      </div>
-    )
+    return <div className="drawers">{this.renderChildrenWithProps()}</div>
   }
 }

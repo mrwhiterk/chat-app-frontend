@@ -1,15 +1,14 @@
-import styled, { keyframes } from "styled-components"
+import { keyframes } from "styled-components"
 
 export const menuKeyFrame = keyframes`
   0% {
-    height: 50px;
+    height: 5vh;
     overflow: hidden
   }
 
   100% {
-    height: 450px;
-    // background: pink;
-    // overflow: hidden
+    height: 50vh;
+    // overflow: scroll
   }
 `
 
