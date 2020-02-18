@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import { menuKeyFrame } from "./MenuKeyFrame"
 
-export const Box = styled.div`
+const Box = styled.div`
   display: inline-block;
   background-color: #0C0C0C;
   width: 95%;
