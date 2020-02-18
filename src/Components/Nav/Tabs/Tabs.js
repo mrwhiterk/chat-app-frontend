@@ -20,8 +20,11 @@ export default class Tabs extends Component {
       if (this.context.toastMsg.success) {
         this.handleTabClick(0)
         setTimeout(() => {
-            this.context.toastMsg.success = null
-        }, 500);
+          this.context.toastMsg.success = null
+        }, 500)
+      }
+      if (this.context.toastMsg.error) {
+        console.log(this.state.activeTab)
       }
     } catch (e) {
       console.log(e)
@@ -90,7 +93,7 @@ export default class Tabs extends Component {
                     </p>
                     <br />
                     <p className="guestText">
-                      Would you like to{" "}
+                      Would you like to {/* // TODO fix a tag */}
                       <a
                         className={`tabLink register-tab registerGuestLink`}
                         onClick={event => {

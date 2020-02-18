@@ -23,7 +23,6 @@
   color: rgba(241, 253, 255, 0.966);
   position: fixed;
   width: 15%;
-  /* bottom: 10%; */
   left: 2%;
   padding: 5px;
   background-color: rgba(110, 181, 190, 0.966);
@@ -36,7 +35,6 @@
   color: rgb(230, 217, 218);
   position: fixed;
   width: 15%;
-  /* bottom: 5%; */
   left: 2%;
   padding: 5px;
   background-color: rgba(163, 12, 19, 0.863);
