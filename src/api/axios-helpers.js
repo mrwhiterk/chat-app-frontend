@@ -98,3 +98,12 @@ export const createChannel = async title => {
     return err.response
   }
 }
+
+export const deleteChannel = async id => {
+  try {
+    let response = await Axios.delete(`/api/channels/${id}`)
+    return response
+  } catch (err) {
+    return err.response
+  }
+}
