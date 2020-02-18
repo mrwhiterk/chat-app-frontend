@@ -1,7 +1,8 @@
 .tabs {
   margin-left: 10px;
   margin-right: 10px;
-  height: 100%;
+  /* TODO: check tab height */
+  height: 50vh;
   width: auto;
   display: grid;
   grid-template-columns: 1;
@@ -51,7 +52,7 @@
 }
 
 .tabContent {
-  width: 85%;
+  width: 100%;
 }
 
 .tabLink {

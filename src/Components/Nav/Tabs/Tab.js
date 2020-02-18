@@ -1,19 +1,18 @@
 import React, { Component } from "react"
-import './Tabs.css'
+import "./Tabs.css"
 
 export default class Tab extends Component {
-  state = {
-    isActive: false
-  }
-
   render() {
     return (
       <>
-        <div className="tab" style={{ backgroundColor: this.props.bgColor }}>
+        <div
+          className="tab"
+          style={{
+            backgroundColor: this.props.isActive ? "#262626" : "#161515"
+          }}
+        >
           <p
-            className={`tabLink ${this.props.className}
-        ${this.props.isActive}
-        `}
+            className={`tabLink`}
             onClick={event => {
               event.preventDefault()
               this.props.onClick(this.props.tab)

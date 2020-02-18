@@ -7,13 +7,13 @@ export default class Tabs extends Component {
   static contextType = Context
 
   state = {
-    activeTab: ""
+    activeTab: 0
   }
 
   componentDidMount() {
-    if (!this.context.isAuth) {
+    // if (!this.context.isAuth) {
       this.handleTabClick(0)
-    }
+    // }
   }
 
   handleTabClick = tab => {
@@ -21,7 +21,7 @@ export default class Tabs extends Component {
       return
     } else {
       this.setState({
-        activeTab: tab === this.state.activeTab ? "" : tab
+        activeTab: tab
       })
     }
   }
@@ -29,20 +29,12 @@ export default class Tabs extends Component {
   renderChildrenWithProps = () => {
     //? 'React.Children' = this.props.children: whatever you include between the opening and closing tags when invoking a component
     return React.Children.map(this.props.children, (child, index) => {
-      if (this.state.activeTab === index) {
-        return React.cloneElement(child, {
-          onClick: this.handleTabClick,
-          tab: index,
-          bgColor: "#262626"
-        })
-      } else {
-        //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
-        return React.cloneElement(child, {
-          onClick: this.handleTabClick,
-          tab: index,
-          bgColor: "#161515"
-        })
-      }
+      //? 'cloneElement': returns a copy of a specified element. Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
+      return React.cloneElement(child, {
+        isActive: index === this.state.activeTab ? true : false,
+        onClick: this.handleTabClick,
+        tab: index
+      })
     })
   }
 

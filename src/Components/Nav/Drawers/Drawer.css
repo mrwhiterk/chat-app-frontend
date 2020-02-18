@@ -4,5 +4,15 @@
   text-transform: uppercase;
   font-weight: 200;
   text-align: left;
-  padding: 10%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  margin-left: 10%;
+}
+
+.drawerLink:hover {
+  font-weight: 300;
+}
+
+.drawer {
+  height: fit-content;
 }
