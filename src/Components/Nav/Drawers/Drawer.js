@@ -16,6 +16,7 @@ export default class Drawer extends Component {
                     event.preventDefault()
                     this.props.handleTrigger(this.props.drawer)
                   }}
+                  style={{ fontWeight: "300" }}
                   div
                 >
                   {`${this.props.label}`}
