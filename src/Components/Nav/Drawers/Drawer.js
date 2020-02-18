@@ -9,25 +9,6 @@ export default class Drawer extends Component {
         {this.props.isActive ? (
           <Trigger>
             <Box>
-                <div className="drawer">
-                  <div
-                    className={`drawerLink`}
-                    onClick={event => {
-                      event.preventDefault()
-                      this.props.handleTrigger(this.props.drawer)
-                    }}
-                    div
-                  >
-                    {`${this.props.label}`}
-                  </div>
-                  {React.Children.map(this.props.children, (child, i) => {
-                    return <div className="activeDrawerContent">{child}</div>
-                  })}
-                </div>
-            </Box>
-          </Trigger>
-        ) : (
-          <Box>
               <div className="drawer">
                 <div
                   className={`drawerLink`}
@@ -35,7 +16,6 @@ export default class Drawer extends Component {
                     event.preventDefault()
                     this.props.handleTrigger(this.props.drawer)
                   }}
-                  div
                 >
                   {`${this.props.label}`}
                 </div>
@@ -43,6 +23,24 @@ export default class Drawer extends Component {
                   return <div className="activeDrawerContent">{child}</div>
                 })}
               </div>
+            </Box>
+          </Trigger>
+        ) : (
+          <Box>
+            <div className="drawer">
+              <div
+                className={`drawerLink`}
+                onClick={event => {
+                  event.preventDefault()
+                  this.props.handleTrigger(this.props.drawer)
+                }}
+              >
+                {`${this.props.label}`}
+              </div>
+              {React.Children.map(this.props.children, (child, i) => {
+                return <div className="activeDrawerContent">{child}</div>
+              })}
+            </div>
           </Box>
         )}
       </div>

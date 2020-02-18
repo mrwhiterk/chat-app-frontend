@@ -25,11 +25,18 @@ export default class ChannelList extends Component {
     }
   }
   handleClick = async id => {
-    try {
-      let res = await deleteChannel(id)
-      this.context.setChannelRemoved(id)
-    } catch (err) {
-      console.log(err)
+    let { currentSelectedChannel } = this.context
+
+    if (currentSelectedChannel._id === id) {
+      //todo-make popup
+      console.log('cannot delete a channel your currently logged into')
+    } else {
+      try {
+        let res = await deleteChannel(id)
+        this.context.setChannelRemoved(id)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 
@@ -46,8 +53,7 @@ export default class ChannelList extends Component {
             {channel.title}
           </Link>
 
-          {currentSelectedChannel.title !== channel.title &&
-          user &&
+          {user &&
           user._id == channel.creator &&
           channel.title !== 'General' ? (
             <>
