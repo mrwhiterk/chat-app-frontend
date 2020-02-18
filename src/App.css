@@ -1,8 +1,5 @@
 .App {
-  /* TODO remove font size */
-  font-size: 12px;
   text-align: center;
-  background-color: teal;
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: 1;
@@ -16,24 +13,4 @@
 .chatMain {
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
-}
-
-/* BUTTON */
-.button {
-  cursor: pointer;
-  font-size: 0.8em;
-  color: #35323b;
-  padding: 1px;
-  padding-right: 5px;
-  padding-left: 5px;
-  border: 1px solid #eceaa0;
-  background-color: #bed24c;
-  border-radius: 5px;
-  width: fit-content;
-  height: fit-content;
-}
-
-.button:hover {
-  border: 1px solid rgb(207, 205, 134);
-  background-color: #859031;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import { getUser, editUser } from "../../../../api/axios-helpers"
-import Context from "../../../Context/Context"
+import { getUser, editUser } from "../../../../../api/axios-helpers"
+import Context from "../../../../Context/Context"
 
 export default class EditUser extends Component {
   static contextType = Context

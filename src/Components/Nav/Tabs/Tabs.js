@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Context from "../../Context/Context"
 import UsernameGenerator from "username-generator"
-import FadeInOut from "../../FadeInOut/FadeInOut"
+import FadeInAndOut from "../../FadeAnimation/FadeInAndOut"
 
 export default class Tabs extends Component {
   static contextType = Context
@@ -26,7 +26,7 @@ export default class Tabs extends Component {
     }
   }
 
-  renderTabsChildrenAsProps = () => {
+  renderChildrenWithProps = () => {
     //? 'React.Children' = this.props.children: whatever you include between the opening and closing tags when invoking a component
     return React.Children.map(this.props.children, (child, index) => {
       if (this.state.activeTab === index) {
@@ -53,26 +53,25 @@ export default class Tabs extends Component {
     return (
       <div>
         <div className="tabs">
-          <div className="tabsNav">{this.renderTabsChildrenAsProps()}</div>
+          <div className="tabsNav">{this.renderChildrenWithProps()}</div>
           {children[activeTab] ? (
             <div className="activeTabContent">
-                
               {/* Notification error/success Tag */}
               {this.context.toastMsg.success ? (
-                <FadeInOut>
+                <FadeInAndOut fadeout={true}>
                   <div className="notificationTag successNotification">
                     {this.context.toastMsg.success}
                   </div>
-                </FadeInOut>
+                </FadeInAndOut>
               ) : (
                 ""
               )}
               {this.context.toastMsg.error ? (
-                <FadeInOut>
+                <FadeInAndOut fadeout={true}>
                   <div className="notificationTag errorNotification">
                     {this.context.toastMsg.error}
                   </div>
-                </FadeInOut>
+                </FadeInAndOut>
               ) : (
                 ""
               )}

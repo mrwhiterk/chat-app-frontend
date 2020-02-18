@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import Context from "../../../Context/Context"
-import { getUser } from "../../../../api/axios-helpers"
+import Context from "../../../../Context/Context"
+import { getUser } from "../../../../../api/axios-helpers"
 
 export default class UserProfile extends Component {
   static contextType = Context
@@ -28,8 +28,8 @@ export default class UserProfile extends Component {
     let { user } = this.state
 
     return (
-      <div>
-        <h5>Hello {user.username}</h5>
+      <div className='userProfileTabContent'>
+        <h5 className='userTitle'>Hello {user.username}</h5>
 
         <div className="profilePic">
           <img
@@ -37,7 +37,7 @@ export default class UserProfile extends Component {
             alt="profile avatar"
           />
         </div>
-        <div className="navButton logoutBtn" onClick={this.context.logout}>
+        <div className="navButton logoutButton" onClick={this.context.logout}>
           Logout
         </div>
       </div>
