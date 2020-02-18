@@ -29,7 +29,7 @@ class LoginForm extends Component {
         setAuthHeader(res.data.token)
         localStorage.setItem('token', res.data.token)
         this.context.setAuth(checkTokenAndReturn())
-          this.context.handleToast("Welcome!", null)
+          this.context.handleToast("Welcome back!", null)
       }
 
       if (res.status === 400) {
