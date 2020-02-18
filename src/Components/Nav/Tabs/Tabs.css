@@ -1,7 +1,6 @@
 .tabs {
   margin-left: 10px;
   margin-right: 10px;
-  /* grid-row: 3; */
   height: 100%;
   width: auto;
   display: grid;
@@ -52,7 +51,7 @@
 }
 
 .tabContent {
-  width: 100%;
+  width: 85%;
 }
 
 .tabLink {
@@ -126,14 +125,14 @@ input {
 
 .register {
   margin-top: 20px;
-  height: 34vh;
+  max-height: 50vh;
   overflow: scroll;
 }
 
-.registerGuestLiank {
+.registerGuestLink {
   cursor: pointer;
   color: rgb(218, 208, 214);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .registerGuestLink:hover {

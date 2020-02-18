@@ -89,7 +89,6 @@ export default class Nav extends Component {
             )}
           </Drawer>
         </Drawers>
-        {/* Channels */}
       </div>
     )
   }

@@ -1,16 +1,16 @@
-import Axios from "./axiosConfig"
-import jwt_decode from "jwt-decode"
+import Axios from './axiosConfig'
+import jwt_decode from 'jwt-decode'
 
 export const setAuthHeader = token => {
   if (token) {
-    Axios.defaults.headers.common["Authorization"] = "Bearer " + token
+    Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
   } else {
-    delete Axios.defaults.headers.common["Authorization"]
+    delete Axios.defaults.headers.common['Authorization']
   }
 }
 
 export const checkTokenAndReturn = () => {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem('token')
   if (!token) return null
 
   const userData = jwt_decode(token)
@@ -18,7 +18,7 @@ export const checkTokenAndReturn = () => {
   const currentTime = Date.now() / 1000
 
   if (userData.exp < currentTime) {
-    localStorage.removeItem("token")
+    localStorage.removeItem('token')
     setAuthHeader(null)
     return null
   } else {
@@ -29,7 +29,7 @@ export const checkTokenAndReturn = () => {
 
 export const signup = async formBody => {
   try {
-    let response = await Axios.post("/api/users/signup", formBody)
+    let response = await Axios.post('/api/users/signup', formBody)
     return response
   } catch (err) {
     return err.response
@@ -38,7 +38,7 @@ export const signup = async formBody => {
 
 export const signin = async formBody => {
   try {
-    let response = await Axios.post("/api/users/signin", formBody)
+    let response = await Axios.post('/api/users/signin', formBody)
     return response
   } catch (err) {
     return err.response
@@ -47,26 +47,54 @@ export const signin = async formBody => {
 
 export const getUser = async () => {
   try {
-    let success = await Axios.get("/api/users/get-user")
+    let success = await Axios.get('/api/users/get-user')
     return success.data
   } catch (e) {
     return e.response
   }
 }
-export const editUser = async (user) => {
+export const editUser = async user => {
   try {
-    let success = await Axios.put("/api/users/edit-user", user)    
-    
+    let success = await Axios.put('/api/users/edit-user', user)
+
     return success
   } catch (e) {
     return e.response
   }
 }
 
-export const getMessages = async () => {
+export const getChannels = async roomName => {
   try {
-    console.log("get messages hit")
+    let response = await Axios.get(`/api/channels/`)
+    return response
   } catch (err) {
-    return err
+    return err.response
+  }
+}
+
+export const getChannelMessages = async roomName => {
+  try {
+    let response = await Axios.get(`/api/channels/getMessages/${roomName}`)
+    return response
+  } catch (err) {
+    return err.response
+  }
+}
+
+export const getChannelUsers = async roomName => {
+  try {
+    let response = await Axios.get(`/api/channels/getUsers/${roomName}`)
+    return response
+  } catch (err) {
+    return err.response
+  }
+}
+
+export const createChannel = async title => {
+  try {
+    let response = await Axios.post(`/api/channels/`, { title })
+    return response
+  } catch (err) {
+    return err.response
   }
 }

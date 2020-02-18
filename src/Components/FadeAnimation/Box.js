@@ -5,9 +5,8 @@ import { menuKeyFrame } from "./MenuKeyFrame"
 export const Box = styled.div`
   display: inline-block;
   background-color: #0C0C0C;
-//   border: 1px solid white;
   width: 95%;
-  height: 50px;
+  height: 60px;
   overflow: hidden;
 
     // position: relative;
