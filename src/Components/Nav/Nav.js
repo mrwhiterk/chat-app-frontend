@@ -1,19 +1,48 @@
-import React, { Component } from "react"
-import RegisterForm from "./Tabs/TabContent/RegisterForm/RegisterForm"
-import LoginForm from "./Tabs/TabContent/LoginForm/LoginForm"
-import UserProfile from "./TabContent/UserProfile/UserProfile"
-import EditUser from "./TabContent/EditUser/EditUser"
-import Context from "../Context/Context"
-import Tabs from "./Tabs/Tabs"
-import Tab from "./Tabs/Tab"
-import "./Nav.css"
+import React, { Component } from 'react'
+import RegisterForm from './Tabs/TabContent/RegisterForm/RegisterForm'
+import LoginForm from './Tabs/TabContent/LoginForm/LoginForm'
+import UserProfile from './TabContent/UserProfile/UserProfile'
+import EditUser from './TabContent/EditUser/EditUser'
+import Context from '../Context/Context'
+import Tabs from './Tabs/Tabs'
+import Tab from './Tabs/Tab'
+import Spinner from '../UI/Spinner/Spinner'
+import { Link } from 'react-router-dom'
+import { createChannel } from '../../api/axios-helpers'
+import './Nav.css'
+
+const errorToastColor = {
+  background: '#f23535',
+  text: '#fff'
+}
+const toastColor = {
+  background: '#3f51b5',
+  text: '#fff'
+}
 
 export default class Nav extends Component {
   static contextType = Context
 
   state = {
-    notification: null
+    notification: null,
+    roomName: ''
   }
+
+  handleSubmit = async e => {
+    e.preventDefault()
+
+    if (this.state.roomName) {
+      try {
+        let res = await createChannel(this.state.roomName)
+        this.context.setChannelAdded(res.data.channel)
+        this.setState({ roomName: '' })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  handleChange = ({ target }) => this.setState({ [target.name]: target.value })
 
   componentDidMount() {
     // Error/success notification check
@@ -29,9 +58,19 @@ export default class Nav extends Component {
     }
   }
 
-
-
   render() {
+    let { channels } = this.context
+    let channelList = <Spinner />
+
+    if (channels) {
+      channelList = this.context.channels.map((channel, i) => (
+        <div key={i}>
+          <Link className="chnl" to={`/channel/${channel.title}`}>
+            {channel.title}
+          </Link>
+        </div>
+      ))
+    }
     return (
       <div className="navMain">
         {/* App title */}
@@ -40,11 +79,17 @@ export default class Nav extends Component {
 
         {/* Channels */}
         <div className="channels">
-          <div className="chnl">Channel 1</div>
-          <div className="chnl">Channel 2</div>
-          <div className="chnl">Channel 3</div>
-          <div className="chnl">Channel 4</div>
-          <div className="chnl">Channel 5</div>
+          {channelList}
+          <br />
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="roomName"
+              value={this.state.roomName}
+              onChange={this.handleChange}
+              placeholder="new room"
+            />
+          </form>
         </div>
 
         {/* Register / Login tabs */}

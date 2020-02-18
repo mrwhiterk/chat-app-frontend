@@ -7,22 +7,28 @@ export default class ChatBoard extends Component {
   static contextType = Context
 
   render() {
+    let { props } = this
     return (
       <>
         {/* Chat board */}
         <div className="chatBoard">
           {/* Channel title */}
           <div className="channelTitle">
-            {' '}
-            <p className="title">@General</p>
+            <p className="title">@{props.roomTitle || 'General'}</p>
           </div>
 
           {/* Messages in the channel */}
           <div className="channelMessages">
-            <MessageList messages={this.props.messages} />
+            <MessageList
+              messages={this.props.messages}
+              onTypingMessage={this.props.onTypingMessage}
+            />
           </div>
 
-          <SendMessageForm createMessage={this.props.createMessage} />
+          <SendMessageForm
+            createMessage={this.props.createMessage}
+            onTyping={this.props.onTyping}
+          />
         </div>
       </>
     )
