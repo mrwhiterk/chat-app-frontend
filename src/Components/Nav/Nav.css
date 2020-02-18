@@ -23,7 +23,7 @@
   color: rgba(241, 253, 255, 0.966);
   position: fixed;
   width: 15%;
-  top: 56%;
+  /* bottom: 10%; */
   left: 2%;
   padding: 5px;
   background-color: rgba(110, 181, 190, 0.966);
@@ -36,12 +36,11 @@
   color: rgb(230, 217, 218);
   position: fixed;
   width: 15%;
-  top: 56%;
+  /* bottom: 5%; */
   left: 2%;
   padding: 5px;
-  background-color: rgba(128, 10, 16, 0.973);
+  background-color: rgba(163, 12, 19, 0.863);
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(197, 102, 102, 0.199),
     -1px -1px 5px rgba(197, 102, 102, 0.199);
 }
-

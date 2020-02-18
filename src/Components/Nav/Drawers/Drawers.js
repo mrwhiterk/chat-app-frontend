@@ -9,17 +9,11 @@ export default class Drawers extends Component {
     activeDrawer: 2
   }
 
-  handleClick = async drawer => {
-    try {
-      if (drawer === this.state.activeDrawer) {
-        return
-      } else {
-        await this.setState({
-          activeDrawer: drawer
-        })
-      }
-    } catch (e) {
-      console.log(e)
+  handleClick = drawer => {
+    if (drawer !== this.state.activeDrawer) {
+      this.setState({
+        activeDrawer: drawer
+      })
     }
   }
 
