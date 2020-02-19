@@ -107,3 +107,12 @@ export const deleteChannel = async id => {
     return err.response
   }
 }
+
+export const deleteUser = async id => {
+  try {
+    let response = await Axios.delete(`/api/users`)
+    return response
+  } catch (err) {
+    return err.response
+  }
+}
