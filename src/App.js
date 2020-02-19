@@ -95,6 +95,7 @@ class App extends Component {
   removeAuth = () => {
     this.setState({ isAuth: false })
     localStorage.removeItem('token')
+    this.setState({ user: null })
   }
 
   logout = () => {
