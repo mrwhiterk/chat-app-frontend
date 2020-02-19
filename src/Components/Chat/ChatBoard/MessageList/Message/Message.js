@@ -15,14 +15,22 @@ const Message = props => {
       setDisabled(false)
     }
   })
+  console.log(context.user)
 
   let isMsgOwner =
-    !disabled && context.user && context.user._id === props.message.author._id
+    !disabled &&
+    context.user &&
+    props.message.author &&
+    context.user._id === props.message.author._id
       ? 'myMsg'
       : ''
   return (
     <div className={`msg ${isMsgOwner}`}>
-      <div className="usernameInMsg">{props.message.author.username}</div>
+      <div className="usernameInMsg">
+        {props.message.author
+          ? props.message.author.username
+          : '-user removed-'}
+      </div>
       <div className="msgTxt">{props.message.body}</div>
       <div className="msgSent">{props.message.created}</div>
     </div>
