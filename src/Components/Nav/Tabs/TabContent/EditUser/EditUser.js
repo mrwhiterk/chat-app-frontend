@@ -117,84 +117,88 @@ export default class EditUser extends Component {
   render() {
     return (
       <div className="navTabContent">
-        <form className="navTabForm edit" onSubmit={this.handleSubmit}>
-          <h5>Edit Profile</h5>
-          <label>
-            <h6>Username</h6>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={this.handleChange}
-              value={this.state.username}
-            />
-          </label>
-          <label>
-            <h6>Email</h6>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
-          </label>
-          <label>
-            <br />
+        <div className="edit">
+          <form className="navTabForm editForm" onSubmit={this.handleSubmit}>
+            <h5>Edit Profile</h5>
             <label>
-              <h6>Change avatar</h6>
+              <h6>Username</h6>
               <input
                 type="text"
-                name="photo"
+                name="username"
+                placeholder="Username"
                 onChange={this.handleChange}
-                placeholder="Avatar URL"
-                value={this.state.photo}
+                value={this.state.username}
+              />
+            </label>
+            <label>
+              <h6>Email</h6>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
+            </label>
+            <label>
+              <br />
+              <label>
+                <h6>Change avatar</h6>
+                <input
+                  type="text"
+                  name="photo"
+                  onChange={this.handleChange}
+                  placeholder="Avatar URL"
+                  value={this.state.photo}
+                />
+              </label>
+              <br />
+              <br />
+              <h5>Change password</h5>
+              <h6>Old Password</h6>
+              <input
+                type="password"
+                name="oldPassword"
+                autoComplete="password"
+                placeholder="Old password"
+                onChange={this.handleChange}
+                value={this.state.oldPassword}
+              />
+            </label>
+            <label>
+              <h6>New Password</h6>
+              <input
+                type="password"
+                name="password"
+                autoComplete="password"
+                placeholder="New password"
+                onChange={this.handleChange}
+                value={this.state.newPassword}
+              />
+            </label>
+            <label>
+              <h6>Confirm new password</h6>
+              <input
+                type="password"
+                name="confirmNewPassword"
+                autoComplete="confirm-password"
+                onChange={this.handleChange}
+                placeholder="Confirm new password"
+                value={this.state.confirmPassword}
               />
             </label>
             <br />
-            <br />
-            <h5>Change password</h5>
-            <h6>Old Password</h6>
+            <input className="navButton" type="submit" value="Submit" />
+          </form>
+          <div className='deleteAccount'>
             <input
-              type="password"
-              name="oldPassword"
-              autoComplete="password"
-              placeholder="Old password"
-              onChange={this.handleChange}
-              value={this.state.oldPassword}
+              className="navButton deleteAccountButton"
+              type="submit"
+              onClick={this.deleteAccount}
+              value="Delete Account"
             />
-          </label>
-          <label>
-            <h6>New Password</h6>
-            <input
-              type="password"
-              name="password"
-              autoComplete="password"
-              placeholder="New password"
-              onChange={this.handleChange}
-              value={this.state.newPassword}
-            />
-          </label>
-          <label>
-            <h6>Confirm new password</h6>
-            <input
-              type="password"
-              name="confirmNewPassword"
-              autoComplete="confirm-password"
-              onChange={this.handleChange}
-              placeholder="Confirm new password"
-              value={this.state.confirmPassword}
-            />
-          </label>
-          <br />
-          <input className="navButton" type="submit" value="Submit" />
-        </form>
-        <input
-          className="navButton"
-          type="submit"
-          onClick={this.deleteAccount}
-          value="Delete Account"
-        />
+          </div>
+        </div>
       </div>
     )
   }

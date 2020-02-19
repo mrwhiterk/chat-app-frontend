@@ -1,3 +1,16 @@
+.tab {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 200;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
 .tabs {
   margin-left: 10px;
   margin-right: 10px;
@@ -14,19 +27,6 @@
   grid-row: 1;
   display: flex;
   flex-direction: row;
-}
-
-.tab {
-  cursor: pointer;
-  width: 80px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 200;
-  text-transform: uppercase;
-  text-decoration: none;
 }
 
 .tab:hover {
@@ -185,6 +185,7 @@ input {
 }
 
 .edit {
+  padding-top: 1vh;
   padding-bottom: 2vh;
   display: flex;
   flex-direction: column;
@@ -195,6 +196,13 @@ input {
   scroll-behavior: smooth;
 }
 
-.edit label {
+.editForm {
+  width: 70%;
+}
+
+.deleteAccount {
+  position: relative;
+  margin-top: 2vh;
   width: 80%;
+  border-top: 1px solid white;
 }
