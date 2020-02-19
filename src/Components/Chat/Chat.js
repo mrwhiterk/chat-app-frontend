@@ -97,9 +97,8 @@ class Chat extends Component {
       this.context.addChannelDisplay(channel)
     })
 
-    this.socket.on('removeChannelFromSockets', id => {
-      this.context.removeChannelDisplay(id)
-      // this.newSocket()
+    this.socket.on('removeChannelFromSockets', channel => {
+      this.context.removeChannelDisplay(channel)
     })
 
     this.socket.on('someoneTyping', username => {
@@ -131,8 +130,8 @@ class Chat extends Component {
     this.socket.emit('addChannelToSockets', data)
   }
 
-  removeChannelFromSockets = id => {
-    this.socket.emit('removeChannelFromSockets', id)
+  removeChannelFromSockets = data => {
+    this.socket.emit('removeChannelFromSockets', data)
   }
 
   addLiveMember = () => {
@@ -217,8 +216,8 @@ class Chat extends Component {
       this.context.setChannelAdded(null)
     }
 
-    if (this.context.channelRemovedId) {
-      this.removeChannelFromSockets(this.context.channelRemovedId)
+    if (this.context.channelRemoved) {
+      this.removeChannelFromSockets(this.context.channelRemoved)
       this.context.setChannelRemoved(null)
     }
 

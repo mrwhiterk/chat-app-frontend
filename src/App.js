@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import Nav from "./components/Nav/Nav"
-import Chat from "./components/Chat/Chat"
-import { Route, Switch } from "react-router-dom"
-import "./App.css"
+import React, { Component } from 'react'
+import Nav from './components/Nav/Nav'
+import Chat from './components/Chat/Chat'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import './App.css'
 import {
   checkTokenAndReturn,
   setAuthHeader,
   getChannels
-} from "./api/axios-helpers"
-import Context from "./components/Context/Context"
+} from './api/axios-helpers'
+import Context from './components/Context/Context'
 
 class App extends Component {
   static contextType = Context
@@ -24,7 +24,7 @@ class App extends Component {
     logoutPayload: null,
     channelAdded: null,
     channels: null,
-    channelRemovedId: null,
+    channelRemoved: null,
     channelAddComplete: null,
     currentSelectedChannel: 'General'
   }
@@ -40,7 +40,7 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({ channels: response.data })
       } else {
-        console.log("there was an error")
+        console.log('there was an error')
       }
     } catch (error) {
       console.log(error)
@@ -52,12 +52,18 @@ class App extends Component {
     this.setState({ channels: [...this.state.channels, channel] })
   }
 
-  removeChannelDisplay = id => {
-    this.setState({ channels: this.state.channels.filter(x => x._id !== id) })
+  removeChannelDisplay = channel => {
+    this.setState({
+      channels: this.state.channels.filter(x => x._id !== channel._id)
+    })
+
+    if (this.state.user._id !== channel.creator) {
+      this.props.history.push('/channel/General')
+    }
   }
 
-  setChannelRemoved = id => {
-    this.setState({ channelRemovedId: id })
+  setChannelRemoved = channel => {
+    this.setState({ channelRemoved: channel })
   }
 
   setChannelAdded = channel => {
@@ -89,7 +95,7 @@ class App extends Component {
 
   removeAuth = () => {
     this.setState({ isAuth: false })
-    localStorage.removeItem("token")
+    localStorage.removeItem('token')
   }
 
   logout = () => {
@@ -126,12 +132,11 @@ class App extends Component {
       removeChannelDisplay: this.removeChannelDisplay,
       channelAdded: this.state.channelAdded,
       setChannelAdded: this.setChannelAdded,
-      channelRemovedId: this.state.channelRemovedId,
+      channelRemoved: this.state.channelRemoved,
       setChannelRemoved: this.setChannelRemoved,
       currentSelectedChannel: this.state.currentSelectedChannel,
       setCurrentSelectedChannel: this.setCurrentSelectedChannel
     }
-    let data = null
 
     // if (this.state.channelAddComplete) {
     //   data = (
@@ -148,8 +153,8 @@ class App extends Component {
 
     // let deleteData = null
 
-    // if (this.state.channelRemovedId) {
-    //   console.log(this.state.channelRemovedId)
+    // if (this.state.channelRemoved) {
+    //   console.log(this.state.channelRemoved)
     //   deleteData = <Redirect to={'/channel/Dogs'} />
     // }
 
@@ -159,8 +164,6 @@ class App extends Component {
           <div className="App">
             <Nav />
             <Switch>
-              {data}
-              {/* {deleteData} */}
               <Route path="/channel/:name" component={Chat} />
               <Route component={Chat} />
             </Switch>
@@ -171,4 +174,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withRouter(App)
