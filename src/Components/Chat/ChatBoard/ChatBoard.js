@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import SendMessageForm from './SendMessageForm/SendMessageForm'
-import Context from '../../Context/Context'
-import MessageList from './MessageList/MessageList'
+import React, { Component } from "react"
+import SendMessageForm from "./SendMessageForm/SendMessageForm"
+import Context from "../../Context/Context"
+import MessageList from "./MessageList/MessageList"
 
 export default class ChatBoard extends Component {
   static contextType = Context
@@ -10,25 +10,25 @@ export default class ChatBoard extends Component {
     let { props } = this
     return (
       <>
-        {/* Chat board */}
-        <div className="chatBoard">
-          {/* Channel title */}
+        <div className="boardBack">
+          {/* Chat board */}
           <div className="channelTitle">
-            <p className="title">@{props.roomTitle || 'General'}</p>
+            <p className="title">@{props.roomTitle || "General"}</p>
           </div>
+          <div className="chatBoard">
+            {/* Messages in the channel */}
+            <div className="channelMessages">
+              <MessageList
+                messages={this.props.messages}
+                onTypingMessage={this.props.onTypingMessage}
+              />
+            </div>
 
-          {/* Messages in the channel */}
-          <div className="channelMessages">
-            <MessageList
-              messages={this.props.messages}
-              onTypingMessage={this.props.onTypingMessage}
+            <SendMessageForm
+              createMessage={this.props.createMessage}
+              onTyping={this.props.onTyping}
             />
           </div>
-
-          <SendMessageForm
-            createMessage={this.props.createMessage}
-            onTyping={this.props.onTyping}
-          />
         </div>
       </>
     )
