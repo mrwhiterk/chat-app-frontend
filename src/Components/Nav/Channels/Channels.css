@@ -22,34 +22,68 @@
 
 .channel:hover {
   transition: 200ms;
+  font-size: 17px;
   color: rgb(255, 242, 252);
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
-.channelRow:hover > .deleteChannelButton {
-  display: block;
+.addChannel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+
+.userChannels {
+  width: 90%;
+  margin-top: 2vh;
+  padding-top: 3vh;
+  border-top: 1px solid white;
+  line-height: 3vh;
+}
+
+.userChannels h5 {
+  text-transform: uppercase;
+  padding-left: 1vw;
+  text-align: left;
+  font-size: 13px;
+}
+
+.userChannelRow {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 3vw;
+}
+
+.userChannel {
+  font-size: 15px;
+  color: rgb(231, 214, 226);
+  font-weight: 200;
+  text-decoration: none;
+}
+
+.userChannel:hover {
+  transition: 200ms;
+  font-size: 17px;
+  color: rgb(255, 242, 252);
 }
 
 .deleteChannelButton {
-  display: none;
-  border-left: 1px solid white;
+  border-left: 1px solid rgba(255, 255, 255, 0.459);
   margin-left: 20px;
   padding-left: 10px;
 }
 
 .deleteChannelButton img {
+    cursor: pointer;
   vertical-align: text-bottom;
   height: 1em;
+  filter: brightness(0.6);
 }
 
 .deleteChannelButton img:hover {
-  height: 1.1em;
-}
-
-
-.addChannel {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 80%;
+  transition: 200ms;
+  filter: brightness(1);
 }

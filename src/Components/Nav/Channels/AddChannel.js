@@ -34,7 +34,7 @@ export default class AddChannel extends Component {
             name="roomName"
             value={this.state.roomName}
             onChange={this.handleChange}
-            placeholder="new room"
+            placeholder="Add new room"
           />
           <input
             className="navButton addChannelButton"

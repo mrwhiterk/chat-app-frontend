@@ -8,21 +8,21 @@ import "./Channels.css"
 export default class ChannelList extends Component {
   static contextType = Context
 
-  handleClick = async id => {
-    let { currentSelectedChannel } = this.context
+//   handleClick = async id => {
+//     let { currentSelectedChannel } = this.context
 
-    if (currentSelectedChannel._id === id) {
-      //todo-make popup
-      console.log("cannot delete a channel your currently logged into")
-    } else {
-      try {
-        let res = await deleteChannel(id)
-        this.context.setChannelRemoved(id)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
+//     if (currentSelectedChannel._id === id) {
+//       //todo-make popup
+//       console.log("cannot delete a channel your currently logged into")
+//     } else {
+//       try {
+//         let res = await deleteChannel(id)
+//         this.context.setChannelRemoved(id)
+//       } catch (err) {
+//         console.log(err)
+//       }
+//     }
+//   }
 
   render() {
     let { channels, currentSelectedChannel, user } = this.context
@@ -34,7 +34,7 @@ export default class ChannelList extends Component {
           <Link className="channel" to={`/channel/${channel.title}`}>
             {channel.title}
           </Link>
-
+{/* 
           {user &&
           user._id === channel.creator &&
           channel.title !== "General" ? (
@@ -47,7 +47,7 @@ export default class ChannelList extends Component {
                 <img src="/delete.png" alt="delete icon" />
               </a>
             </>
-          ) : null}
+          ) : null} */}
         </div>
       ))
     }
