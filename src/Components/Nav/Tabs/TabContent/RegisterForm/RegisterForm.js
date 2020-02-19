@@ -24,7 +24,7 @@ class RegisterForm extends Component {
     e.preventDefault()
 
     if (this.state.password !== this.state.confirmPassword) {
-      console.log("password and confirm password don't match")
+        this.context.handleToast(null, `Passwords don't match`)
       return
     }
 

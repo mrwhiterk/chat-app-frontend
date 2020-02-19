@@ -11,12 +11,10 @@ export default class ChatBoard extends Component {
     return (
       <>
         <div className="boardBack">
-          {/* Chat board */}
           <div className="channelTitle">
             <p className="title">@{props.roomTitle || "General"}</p>
           </div>
           <div className="chatBoard">
-            {/* Messages in the channel */}
             <div className="channelMessages">
               <MessageList
                 messages={this.props.messages}

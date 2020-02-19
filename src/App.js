@@ -26,7 +26,7 @@ class App extends Component {
     channels: null,
     channelRemoved: null,
     channelAddComplete: null,
-    currentSelectedChannel: 'General'
+    currentSelectedChannel: 'General',
   }
 
   setCurrentSelectedChannel = name => {
@@ -160,7 +160,7 @@ class App extends Component {
     return (
       <>
         <Context.Provider value={contextPayload}>
-          <div className="App">
+          <div className='App'>
             <Nav />
             <Switch>
               <Route path="/channel/:name" component={Chat} />

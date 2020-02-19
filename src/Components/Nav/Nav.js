@@ -1,17 +1,16 @@
-import React, { Component } from "react"
-import RegisterForm from "./Tabs/TabContent/RegisterForm/RegisterForm"
-import LoginForm from "./Tabs/TabContent/LoginForm/LoginForm"
-import UserProfile from "./Tabs/TabContent/UserProfile/UserProfile"
-import EditUser from "./Tabs/TabContent/EditUser/EditUser"
-import Context from "../Context/Context"
-import Drawers from "./Drawers/Drawers"
-import Drawer from "./Drawers/Drawer"
-import ChannelList from "./Channels/ChannelList"
-import AddChannel from "./Channels/AddChannel"
-import EditUserChannels from "./Channels/EditUserChannels"
-import Tabs from "./Tabs/Tabs"
-import Tab from "./Tabs/Tab"
-import "./Nav.css"
+import React, { Component } from 'react'
+import RegisterForm from './Tabs/TabContent/RegisterForm/RegisterForm'
+import LoginForm from './Tabs/TabContent/LoginForm/LoginForm'
+import UserProfile from './Tabs/TabContent/UserProfile/UserProfile'
+import EditUser from './Tabs/TabContent/EditUser/EditUser'
+import Context from '../Context/Context'
+import Drawers from './Drawers/Drawers'
+import Drawer from './Drawers/Drawer'
+import ChannelList from './Channels/ChannelList'
+import AddChannel from './Channels/AddChannel'
+import Tabs from './Tabs/Tabs'
+import Tab from './Tabs/Tab'
+import './Nav.css'
 
 export default class Nav extends Component {
   static contextType = Context
@@ -36,45 +35,44 @@ export default class Nav extends Component {
 
   render() {
     return (
-      <div className="navMain">
-        <div className="appTitle">ChatAway</div>
+      <div className='navMain'>
+        <div className='appTitle'>ChatAway</div>
         <Drawers>
-          <Drawer label="Channels">
+          <Drawer label='Channels'>
             <ChannelList />
           </Drawer>
 
-          <Drawer label="Edit your channels">
+          <Drawer label='Edit your channels'>
             <AddChannel />
-            <EditUserChannels />
           </Drawer>
-          <Drawer label="Profile info">
+          <Drawer label={'Profile info'}>
             {this.context.isAuth ? (
               <Tabs>
-                <Tab className="profile-tab" label="Profile">
+                <Tab className='profile-tab' label='Profile'>
                   <br />
-                  <div className="tabContent">
+                  <div className='tabContent'>
                     <UserProfile user={this.state.user} />
                   </div>
                 </Tab>
-                <Tab className="edit-profile-tab" label="Edit">
-                  <div className="tabContent">
+                <Tab className='edit-profile-tab' label='Edit'>
+                  <div className='tabContent'>
                     <EditUser user={this.state.user} />
                   </div>
                 </Tab>
               </Tabs>
             ) : (
               <Tabs>
-                <Tab className="login-tab" label="Login">
+                <Tab className='login-tab' label='Login'>
                   <br />
                   <div>
-                    <div className="tabContent">
+                    <div className='tabContent'>
                       <LoginForm />
                     </div>
                   </div>
                 </Tab>
-                <Tab className="register-tab" label="Register">
+                <Tab className='register-tab' label='Register'>
                   <div>
-                    <div className="tabContent">
+                    <div className='tabContent'>
                       <RegisterForm />
                     </div>
                   </div>

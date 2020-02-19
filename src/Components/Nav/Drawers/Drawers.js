@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import Context from "../../Context/Context"
-import "./Drawer.css"
+import React, { Component } from 'react'
+import Context from '../../Context/Context'
+import './Drawer.css'
 
 export default class Drawers extends Component {
   static contextType = Context
@@ -19,6 +19,9 @@ export default class Drawers extends Component {
 
   renderChildrenWithProps = () => {
     return React.Children.map(this.props.children, (child, index) => {
+      if (!this.context.isAuth && index === 0) {
+        return
+      }
       return React.cloneElement(child, {
         isActive: index === this.state.activeDrawer ? true : false,
         handleTrigger: this.handleClick,
@@ -28,6 +31,6 @@ export default class Drawers extends Component {
   }
 
   render() {
-    return <div className="drawers">{this.renderChildrenWithProps()}</div>
+    return <div className='drawers'>{this.renderChildrenWithProps()}</div>
   }
 }

@@ -23,9 +23,6 @@ export default class Tabs extends Component {
           this.context.toastMsg.success = null
         }, 500)
       }
-      if (this.context.toastMsg.error) {
-        console.log(this.state.activeTab)
-      }
     } catch (e) {
       console.log(e)
     }
