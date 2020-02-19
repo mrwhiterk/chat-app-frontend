@@ -185,6 +185,7 @@ input {
 }
 
 .edit {
+  padding-top: 1vh;
   padding-bottom: 2vh;
   display: flex;
   flex-direction: column;
@@ -195,6 +196,13 @@ input {
   scroll-behavior: smooth;
 }
 
-.edit label {
+.editForm {
+  width: 70%;
+}
+
+.deleteAccount {
+  position: relative;
+  margin-top: 2vh;
   width: 80%;
+  border-top: 1px solid white;
 }
