@@ -7,19 +7,32 @@ export default class Tabs extends Component {
   static contextType = Context
 
   state = {
-    activeTab: 0
+    activeTab: 0,
+    editSuccessful: false
   }
 
   componentDidMount() {
-    // if (!this.context.isAuth) {
-      this.handleTabClick(0)
-    // }
+    this.handleTabClick(0)
+  }
+
+  componentDidUpdate = async () => {
+    try {
+      if (this.context.toastMsg.success) {
+        this.handleTabClick(0)
+        setTimeout(() => {
+          this.context.toastMsg.success = null
+        }, 500)
+      }
+      if (this.context.toastMsg.error) {
+        console.log(this.state.activeTab)
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   handleTabClick = tab => {
-    if (tab === this.state.activeTab) {
-      return
-    } else {
+    if (tab !== this.state.activeTab) {
       this.setState({
         activeTab: tab
       })
@@ -80,8 +93,9 @@ export default class Tabs extends Component {
                     </p>
                     <br />
                     <p className="guestText">
-                      Would you like to{" "}
+                      Would you like to {/* // TODO fix a tag */}
                       <a
+                        href="!#"
                         className={`tabLink register-tab registerGuestLink`}
                         onClick={event => {
                           event.preventDefault()

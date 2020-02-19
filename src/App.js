@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import Nav from './components/Nav/Nav'
-import Chat from './components/Chat/Chat'
-import { Route, Switch } from 'react-router-dom'
-import './App.css'
+import React, { Component } from "react"
+import Nav from "./components/Nav/Nav"
+import Chat from "./components/Chat/Chat"
+import { Route, Switch } from "react-router-dom"
+import "./App.css"
 import {
   checkTokenAndReturn,
   setAuthHeader,
   getChannels
-} from './api/axios-helpers'
-import Context from './components/Context/Context'
+} from "./api/axios-helpers"
+import Context from "./components/Context/Context"
 
 class App extends Component {
   static contextType = Context
@@ -40,7 +40,7 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({ channels: response.data })
       } else {
-        console.log('there was an error')
+        console.log("there was an error")
       }
     } catch (error) {
       console.log(error)
@@ -89,7 +89,7 @@ class App extends Component {
 
   removeAuth = () => {
     this.setState({ isAuth: false })
-    localStorage.removeItem('token')
+    localStorage.removeItem("token")
   }
 
   logout = () => {

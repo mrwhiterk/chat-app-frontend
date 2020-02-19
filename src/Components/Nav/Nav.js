@@ -35,7 +35,7 @@ export default class Nav extends Component {
   render() {
     return (
       <div className="navMain">
-        <div className="appTitle">Chat App</div>
+        <div className="appTitle">ChatAway</div>
         <Drawers>
           <Drawer label="Channels">
             <ChannelList />

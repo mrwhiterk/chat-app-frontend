@@ -5,41 +5,62 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+}
+
+.boardBack {
+  color: rgb(255, 232, 248);
+  height: 90%;
+  width: 65%;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 20% 60% 20%;
 }
 
 .chatBoard {
-  color: #0d0d0d;
+  grid-row: 1 / span 3;
+  grid-column: 1;
   display: grid;
   grid-template-columns: 1;
-  grid-template-rows: 10% 70% 20%;
+  grid-template-rows: 20% 60% 20%;
   border-radius: 10px;
-  border: 3px solid #0d0d0d;
-  background-color: rgb(241, 235, 240);
-  height: 80%;
-  width: 65%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 2px solid rgba(179, 168, 174, 0.589);
+  background-color: rgb(15, 14, 15);
+  height: 100%;
+  width: 100%;
 }
 
 .channelTitle {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  background: -webkit-linear-gradient(
-    rgb(187, 179, 186),
-    rgba(233, 223, 231, 0)
-  );
-  grid-template-columns: 1;
-  grid-row: 1;
+  height: 99%;
+  width: 100%;
+  margin-top: 2px;
+  margin-left: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  z-index: 5;
+  background: -webkit-linear-gradient(#0f0e0f 20%, rgba(136, 63, 136, 0));
+  grid-column: 1;
+  grid-row: 1 / span 1;
 }
 
 .title {
-  padding-left: 20px;
+  margin: 0;
+  margin-top: 2%;
+  font-weight: 300;
+  padding-left: 5%;
   text-align: start;
-  font-size: 1.5em;
+  font-size: 25px;
+  font-family: "font2";
 }
 
 .channelMessages {
   width: 100%;
   grid-template-columns: 1;
-  grid-row: 2;
+  grid-row: 1 / span 2;
   display: grid;
   grid-template-columns: repeat(2, 50%);
 }
@@ -51,6 +72,7 @@
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .messageList2 {
@@ -64,11 +86,12 @@
 }
 
 .msg {
-  color: white;
-  font-size: 12px;
+  color: black;
+  line-height: 22px;
+  font-size: 14px;
   margin-left: 20px;
   margin-right: 150px;
-  margin-top: 5px;
+  margin-top: 8px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 8px;
@@ -76,33 +99,39 @@
   height: fit-content;
   width: fit-content;
   text-align: start;
-  background-color: rgb(80, 71, 76);
-  box-shadow: 1px 1px 8px #0d0d0d;
+  background-color: rgb(238, 230, 235);
+  box-shadow: 2px 1px 5px rgba(146, 49, 103, 0.76);
 }
 
 .myMsg {
+  color: rgb(245, 209, 229);
   margin-right: 20px;
   margin-left: 150px;
   padding-left: 10px;
   padding-right: 10px;
   align-self: flex-end;
-  background-color: #73032c;
-  box-shadow: -1px 1px 8px #0d0d0d;
+  background-color: rgb(87, 5, 50);
+  box-shadow: -2px 1px 5px rgba(226, 142, 188, 0.336);
+}
+
+.myMsg .usernameInMsg,
+.myMsg .msgSent {
+  font-weight: 300;
+  color: rgb(197, 145, 174);
+  font-size: 12px;
 }
 
 .usernameInMsg,
 .msgSent {
-  color: rgb(209, 190, 202);
-  font-size: 10px;
+  font-weight: 300;
+  color: rgb(56, 10, 35);
+  font-size: 12px;
 }
 
 .sendMsg {
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  background: -webkit-linear-gradient(
-    rgba(233, 223, 231, 0),
-    rgb(158, 151, 157)
-  );
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: -webkit-linear-gradient(rgba(14, 13, 14, 0.651), rgb(49, 47, 49));
   grid-column: 1;
   grid-row: 3;
   height: 100%;
@@ -118,16 +147,21 @@
 }
 
 textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgb(230, 211, 222);
   resize: none;
 }
 
 .writeMsgInput {
   padding: 10px;
-  background-color: rgb(247, 244, 246);
-  border: 1px solid #a37385;
+  background-color: rgb(14, 11, 12);
+  border: 1px solid #61575c;
   border-radius: 5px;
   height: 50%;
-  width: 78%;
+  width: 75%;
 }
 
 .writeMsgInput:focus {
@@ -136,37 +170,49 @@ textarea {
 
 .sendMsgButton {
   border: none;
-  background: url("/sendIcon.png") no-repeat;
+  background: url("/send.png") no-repeat;
   background-position: center;
-  background-size: 30px;
+  background-size: 40px;
   cursor: pointer;
   padding: 1px;
   padding-right: 5%;
   padding-left: 5px;
-  border-radius: 5px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
 }
 
 .sendMsgButton:hover {
-  background-size: 32px;
+  background-size: 42px;
 }
 
 /* CHAT SIDEBAR */
 
 .inChat {
-  border: 3px solid #0d0d0d;
+  color: rgb(247, 225, 240);
+  border: 2px solid rgba(179, 168, 174, 0.589);
   border-radius: 10px;
-  background-color: rgb(214, 205, 212);
+  background: #0f0e0f;
   height: 80%;
   width: 20%;
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+.onlineTitle {
+  font-size: 21px;
+  font-family: "font2";
+  margin-top: 4vh;
 }
 
 .onlineUsersList {
   max-height: 100%;
   padding-top: 20px;
   line-height: 30px;
+}
+
+@font-face {
+  font-family: "font2";
+  src: url("/fonts/zai_RoyalVogueTypewriter1929.ttf") format("truetype");
 }

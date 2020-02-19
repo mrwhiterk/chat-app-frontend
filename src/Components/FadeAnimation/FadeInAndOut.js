@@ -1,6 +1,9 @@
 import React, { Component } from "react"
+import Context from "../Context/Context"
 
 export default class FadeInAndOut extends Component {
+  static contextType = Context
+
   state = {
     maxIsVisible: 0
   }
@@ -26,7 +29,11 @@ export default class FadeInAndOut extends Component {
 
   timeOut = () => {
     setTimeout(() => {
-      this.setState({ maxIsVisible: 0 })
+      this.setState({ maxIsVisible: 0 }, () => {
+        setTimeout(() => {
+          this.context.handleToast(null, null)
+        }, 500)
+      })
     }, 3000)
   }
 
@@ -38,7 +45,7 @@ export default class FadeInAndOut extends Component {
             <div
               className={this.props.childClassName}
               style={{
-                transition: `opacity 400ms, top 400ms`,
+                transition: `opacity 400ms, top 500ms`,
                 top: this.state.maxIsVisible > i ? 0 : 20,
                 opacity: this.state.maxIsVisible > i ? 1 : 0
               }}

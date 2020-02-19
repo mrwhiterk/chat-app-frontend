@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Spinner from '../../UI/Spinner/Spinner'
 import Context from '../../Context/Context'
 import { createChannel, deleteChannel } from '../../../api/axios-helpers'
+import './Channels.css'
 
 export default class ChannelList extends Component {
   static contextType = Context
@@ -49,7 +50,7 @@ export default class ChannelList extends Component {
     if (channels) {
       channelList = this.context.channels.map((channel, i) => (
         <div key={i}>
-          <Link className="chnl" to={`/channel/${channel.title}`}>
+          <Link className="channel" to={`/channel/${channel.title}`}>
             {channel.title}
           </Link>
 

@@ -1,21 +1,27 @@
-import React, { Component } from "react"
-import Box from "../../FadeAnimation/Box"
-import Trigger from "../../FadeAnimation/Trigger"
+import React, { Component } from 'react'
+import Box from '../../FadeAnimation/Box'
+import Trigger from '../../FadeAnimation/Trigger'
 
 export default class Drawer extends Component {
   render() {
     return (
-      <div>
+      <>
         {this.props.isActive ? (
           <Trigger>
             <Box>
-              <div className="drawer">
+              <div
+                className="drawer"
+                style={{
+                  background: '-webkit-linear-gradient(#47313d3b, #0d0d0d)'
+                }}
+              >
                 <div
                   className={`drawerLink`}
                   onClick={event => {
                     event.preventDefault()
                     this.props.handleTrigger(this.props.drawer)
                   }}
+                  style={{ background: 'none', fontWeight: '300' }}
                 >
                   {`${this.props.label}`}
                 </div>
@@ -43,7 +49,7 @@ export default class Drawer extends Component {
             </div>
           </Box>
         )}
-      </div>
+      </>
     )
   }
 }
