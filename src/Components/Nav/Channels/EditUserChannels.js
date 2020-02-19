@@ -16,10 +16,8 @@ export default class EditUserChannels extends Component {
       console.log('cannot delete a channel your currently logged into')
     } else {
       try {
-
-        await deleteChannel(id)
-        this.context.setChannelRemoved(id)
-
+        let res = await deleteChannel(id)
+        this.context.setChannelRemoved(res.data)
       } catch (err) {
         console.log(err)
       }
