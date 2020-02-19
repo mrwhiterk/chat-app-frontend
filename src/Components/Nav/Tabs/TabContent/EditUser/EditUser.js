@@ -23,7 +23,7 @@ export default class EditUser extends Component {
 
   deleteAccount = () => {
     confirmAlert({
-      title: `Where are you going, ${this.context.user.username}`,
+      title: `Where are you going, ${this.context.user.username}?`,
       message: 'Are you sure you want to delete your account?',
       buttons: [
         {
@@ -116,16 +116,16 @@ export default class EditUser extends Component {
 
   render() {
     return (
-      <div className="navTabContent">
-        <div className="edit">
-          <form className="navTabForm editForm" onSubmit={this.handleSubmit}>
+      <div className='navTabContent'>
+        <div className='edit'>
+          <form className='navTabForm editForm' onSubmit={this.handleSubmit}>
             <h5>Edit Profile</h5>
             <label>
               <h6>Username</h6>
               <input
-                type="text"
-                name="username"
-                placeholder="Username"
+                type='text'
+                name='username'
+                placeholder='Username'
                 onChange={this.handleChange}
                 value={this.state.username}
               />
@@ -133,9 +133,9 @@ export default class EditUser extends Component {
             <label>
               <h6>Email</h6>
               <input
-                type="email"
-                name="email"
-                placeholder="Email"
+                type='email'
+                name='email'
+                placeholder='Email'
                 onChange={this.handleChange}
                 value={this.state.email}
               />
@@ -145,10 +145,10 @@ export default class EditUser extends Component {
               <label>
                 <h6>Change avatar</h6>
                 <input
-                  type="text"
-                  name="photo"
+                  type='text'
+                  name='photo'
                   onChange={this.handleChange}
-                  placeholder="Avatar URL"
+                  placeholder='Avatar URL'
                   value={this.state.photo}
                 />
               </label>
@@ -157,10 +157,10 @@ export default class EditUser extends Component {
               <h5>Change password</h5>
               <h6>Old Password</h6>
               <input
-                type="password"
-                name="oldPassword"
-                autoComplete="password"
-                placeholder="Old password"
+                type='password'
+                name='oldPassword'
+                autoComplete='password'
+                placeholder='Old password'
                 onChange={this.handleChange}
                 value={this.state.oldPassword}
               />
@@ -168,10 +168,10 @@ export default class EditUser extends Component {
             <label>
               <h6>New Password</h6>
               <input
-                type="password"
-                name="password"
-                autoComplete="password"
-                placeholder="New password"
+                type='password'
+                name='password'
+                autoComplete='password'
+                placeholder='New password'
                 onChange={this.handleChange}
                 value={this.state.newPassword}
               />
@@ -179,23 +179,23 @@ export default class EditUser extends Component {
             <label>
               <h6>Confirm new password</h6>
               <input
-                type="password"
-                name="confirmNewPassword"
-                autoComplete="confirm-password"
+                type='password'
+                name='confirmNewPassword'
+                autoComplete='confirm-password'
                 onChange={this.handleChange}
-                placeholder="Confirm new password"
+                placeholder='Confirm new password'
                 value={this.state.confirmPassword}
               />
             </label>
             <br />
-            <input className="navButton" type="submit" value="Submit" />
+            <input className='navButton' type='submit' value='Submit' />
           </form>
           <div className='deleteAccount'>
             <input
-              className="navButton deleteAccountButton"
-              type="submit"
+              className='navButton deleteAccountButton'
+              type='submit'
               onClick={this.deleteAccount}
-              value="Delete Account"
+              value='Delete Account'
             />
           </div>
         </div>
