@@ -149,6 +149,7 @@ class Chat extends Component {
       this.context.user,
       this.state.room
     )
+    this.socket.disconnect()
 
     this.props.history.push('/channel/General')
   }
@@ -222,7 +223,7 @@ class Chat extends Component {
     }
 
     return (
-      <div className="chatMain">
+      <div className='chatMain'>
         <ChatBoard
           createMessage={this.createMessage}
           onTyping={this.onChange}

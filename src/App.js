@@ -48,7 +48,6 @@ class App extends Component {
   }
 
   addChannelDisplay = channel => {
-    console.log('new channel added')
     this.setState({ channels: [...this.state.channels, channel] })
   }
 
@@ -94,7 +93,7 @@ class App extends Component {
   }
 
   removeAuth = () => {
-    this.setState({ isAuth: false })
+    this.setState({ isAuth: false, user: null })
     localStorage.removeItem('token')
   }
 
