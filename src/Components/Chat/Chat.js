@@ -84,7 +84,6 @@ class Chat extends Component {
     }
 
     this.socket.on('chatroomUsers', (users, userId, isRemovingUser) => {
-      console.log(users)
       this.setState({ users: users }, () => {
         if (isRemovingUser) {
           this.socket.disconnect()
