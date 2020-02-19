@@ -35,16 +35,17 @@ class RegisterForm extends Component {
         setAuthHeader(res.data.token)
         localStorage.setItem("token", res.data.token)
         this.context.setAuth(checkTokenAndReturn())
+        this.context.handleToast("Welcome!", null)
       }
 
       if (res.status === 400) {
         let { errors } = res.data
         if (errors) {
           if (errors.username && errors.username.kind === "unique") {
-            console.log("username taken")
+            this.context.handleToast(null, "Username taken")
           }
           if (errors.email && errors.email.kind === "unique") {
-            console.log("email taken")
+            this.context.handleToast(null, "Email taken")
           }
         }
       }

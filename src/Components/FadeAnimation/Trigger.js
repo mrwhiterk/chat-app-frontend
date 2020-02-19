@@ -7,7 +7,7 @@ const Trigger = styled.div`
   & ${Box} {
     overflow: visible;
     position: relative;
-    animation: ${menuKeyFrame} 400ms ease-in-out 0s forwards;
+    animation: ${menuKeyFrame} 400ms ease-in-out 0s both;
   }
 `
 
