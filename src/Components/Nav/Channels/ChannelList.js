@@ -14,13 +14,13 @@ export default class ChannelList extends Component {
 
     if (channels) {
       channelList = this.context.channels.map((channel, i) => (
-        <div className="channelRow" key={i}>
-          <Link className="channel" to={`/channel/${channel.title}`}>
+        <div className='channelRow' key={i}>
+          <Link className='channel' to={`/channel/${channel.title}`}>
             {channel.title}
           </Link>
         </div>
       ))
     }
-    return <div className="channels">{channelList}</div>
+    return <div className='channels'>{channelList}</div>
   }
 }

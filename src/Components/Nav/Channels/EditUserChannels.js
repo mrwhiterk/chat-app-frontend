@@ -24,29 +24,29 @@ export default class EditUserChannels extends Component {
     }
   }
   render() {
-    let { channels, currentSelectedChannel, user } = this.context
+    let { channels, user } = this.context
     let channelList = <Spinner />
 
     if (channels) {
       channelList = this.context.channels.map((channel, i) =>
         user && user._id === channel.creator && channel.title !== 'General' ? (
-          <div className="userChannelRow" key={i}>
-            <Link className="userChannel" to={`/channel/${channel.title}`}>
+          <div className='userChannelRow' key={i}>
+            <Link className='userChannel' to={`/channel/${channel.title}`}>
               {channel.title}
             </Link>
 
             <div
-              className="deleteChannelButton"
+              className='deleteChannelButton'
               onClick={this.handleClick.bind(null, channel._id)}
             >
-              <img src="/delete.png" alt="delete icon" />
+              <img src='/delete.png' alt='delete icon' />
             </div>
           </div>
         ) : null
       )
     }
     return (
-      <div className="userChannels">
+      <div className='userChannels'>
         <h5>Your channels:</h5>
         {channelList}
       </div>
