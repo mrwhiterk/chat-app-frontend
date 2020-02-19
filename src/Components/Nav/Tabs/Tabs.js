@@ -95,6 +95,7 @@ export default class Tabs extends Component {
                     <p className="guestText">
                       Would you like to {/* // TODO fix a tag */}
                       <a
+                        href="!#"
                         className={`tabLink register-tab registerGuestLink`}
                         onClick={event => {
                           event.preventDefault()
