@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import Box from "../../FadeAnimation/Box"
-import Trigger from "../../FadeAnimation/Trigger"
+import React, { Component } from 'react'
+import Box from '../../FadeAnimation/Box'
+import Trigger from '../../FadeAnimation/Trigger'
 
 export default class Drawer extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class Drawer extends Component {
               <div
                 className="drawer"
                 style={{
-                  background: "-webkit-linear-gradient(#47313d3b, #0d0d0d)"
+                  background: '-webkit-linear-gradient(#47313d3b, #0d0d0d)'
                 }}
               >
                 <div
@@ -21,7 +21,7 @@ export default class Drawer extends Component {
                     event.preventDefault()
                     this.props.handleTrigger(this.props.drawer)
                   }}
-                  style={{ background: "none", fontWeight: "300" }}
+                  style={{ background: 'none', fontWeight: '300' }}
                 >
                   {`${this.props.label}`}
                 </div>

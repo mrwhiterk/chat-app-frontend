@@ -23,7 +23,14 @@ class App extends Component {
     loginPayload: null,
     logoutPayload: null,
     channelAdded: null,
-    channels: null
+    channels: null,
+    channelRemovedId: null,
+    channelAddComplete: null,
+    currentSelectedChannel: 'General'
+  }
+
+  setCurrentSelectedChannel = name => {
+    this.setState({ currentSelectedChannel: name })
   }
 
   getChannels = async () => {
@@ -41,20 +48,26 @@ class App extends Component {
   }
 
   addChannelDisplay = channel => {
+    console.log('new channel added')
     this.setState({ channels: [...this.state.channels, channel] })
+  }
+
+  removeChannelDisplay = id => {
+    this.setState({ channels: this.state.channels.filter(x => x._id !== id) })
+  }
+
+  setChannelRemoved = id => {
+    this.setState({ channelRemovedId: id })
   }
 
   setChannelAdded = channel => {
     this.setState({ channelAdded: channel })
   }
 
-  resetChannelAdded = () => {
-    this.setState({ channelAdded: null })
-  }
-
   resetLoginPayload = () => {
     this.setState({ loginPayload: null })
   }
+
   resetLogoutPayload = () => {
     this.setState({ logoutPayload: null })
   }
@@ -110,16 +123,44 @@ class App extends Component {
       resetLogoutPayload: this.resetLogoutPayload,
       channels: this.state.channels,
       addChannelDisplay: this.addChannelDisplay,
+      removeChannelDisplay: this.removeChannelDisplay,
       channelAdded: this.state.channelAdded,
       setChannelAdded: this.setChannelAdded,
-      resetChannelAdded: this.resetChannelAdded
+      channelRemovedId: this.state.channelRemovedId,
+      setChannelRemoved: this.setChannelRemoved,
+      currentSelectedChannel: this.state.currentSelectedChannel,
+      setCurrentSelectedChannel: this.setCurrentSelectedChannel
     }
+    let data = null
+
+    // if (this.state.channelAddComplete) {
+    //   data = (
+    //     <Route
+    //       render={routerProps => (
+    //         <Chat
+    //           {...routerProps}
+    //           title={this.state.channelAddComplete.title}
+    //         />
+    //       )}
+    //     />
+    //   )
+    // }
+
+    // let deleteData = null
+
+    // if (this.state.channelRemovedId) {
+    //   console.log(this.state.channelRemovedId)
+    //   deleteData = <Redirect to={'/channel/Dogs'} />
+    // }
+
     return (
       <>
         <Context.Provider value={contextPayload}>
           <div className="App">
             <Nav />
             <Switch>
+              {data}
+              {/* {deleteData} */}
               <Route path="/channel/:name" component={Chat} />
               <Route component={Chat} />
             </Switch>

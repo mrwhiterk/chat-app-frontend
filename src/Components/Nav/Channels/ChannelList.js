@@ -1,15 +1,15 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Spinner from '../../UI/Spinner/Spinner'
-import Context from "../../Context/Context"
-import { createChannel } from "../../../api/axios-helpers"
+import Context from '../../Context/Context'
+import { createChannel, deleteChannel } from '../../../api/axios-helpers'
 import './Channels.css'
 
 export default class ChannelList extends Component {
   static contextType = Context
 
   state = {
-    roomName: ""
+    roomName: ''
   }
 
   handleSubmit = async e => {
@@ -19,9 +19,24 @@ export default class ChannelList extends Component {
       try {
         let res = await createChannel(this.state.roomName)
         this.context.setChannelAdded(res.data.channel)
-        this.setState({ roomName: "" })
+        this.setState({ roomName: '' })
       } catch (error) {
         console.log(error)
+      }
+    }
+  }
+  handleClick = async id => {
+    let { currentSelectedChannel } = this.context
+
+    if (currentSelectedChannel._id === id) {
+      //todo-make popup
+      console.log('cannot delete a channel your currently logged into')
+    } else {
+      try {
+        let res = await deleteChannel(id)
+        this.context.setChannelRemoved(id)
+      } catch (err) {
+        console.log(err)
       }
     }
   }
@@ -29,7 +44,7 @@ export default class ChannelList extends Component {
   handleChange = ({ target }) => this.setState({ [target.name]: target.value })
 
   render() {
-    let { channels } = this.context
+    let { channels, currentSelectedChannel, user } = this.context
     let channelList = <Spinner />
 
     if (channels) {
@@ -38,6 +53,17 @@ export default class ChannelList extends Component {
           <Link className="channel" to={`/channel/${channel.title}`}>
             {channel.title}
           </Link>
+
+          {user &&
+          user._id == channel.creator &&
+          channel.title !== 'General' ? (
+            <>
+              {' | '}
+              <a href="#" onClick={this.handleClick.bind(null, channel._id)}>
+                x
+              </a>
+            </>
+          ) : null}
         </div>
       ))
     }

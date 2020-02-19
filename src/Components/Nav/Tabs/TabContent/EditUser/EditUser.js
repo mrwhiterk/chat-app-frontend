@@ -1,22 +1,49 @@
-import React, { Component } from "react"
-import { getUser, editUser } from "../../../../../api/axios-helpers"
-import Context from "../../../../Context/Context"
+import React, { Component } from 'react'
+import { getUser, editUser, deleteUser } from '../../../../../api/axios-helpers'
+import Context from '../../../../Context/Context'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
 export default class EditUser extends Component {
   static contextType = Context
 
   state = {
     user: null,
-    username: "",
-    email: "",
-    oldPassword: "",
-    password: "",
-    confirmNewPassword: "",
-    photo: ""
+    username: '',
+    email: '',
+    oldPassword: '',
+    password: '',
+    confirmNewPassword: '',
+    photo: ''
   }
 
   componentDidMount() {
     this.getUserInfo()
+  }
+
+  deleteAccount = () => {
+    confirmAlert({
+      title: `Where are you going, ${this.context.user.username}`,
+      message: 'Are you sure you want to delete your account?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              let response = await deleteUser()
+              this.context.logout()
+              console.log(response.data)
+            } catch (error) {
+              console.log(error)
+            }
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => null
+        }
+      ]
+    })
   }
 
   getUserInfo = async () => {
@@ -52,7 +79,7 @@ export default class EditUser extends Component {
     ) {
       this.context.handleToast(
         null,
-        "Old password and new password cannot be the same"
+        'Old password and new password cannot be the same'
       )
       return
     }
@@ -63,8 +90,8 @@ export default class EditUser extends Component {
       let element = this.state[key]
       if (
         element &&
-        key !== "user" &&
-        key !== "confirmNewPassword" &&
+        key !== 'user' &&
+        key !== 'confirmNewPassword' &&
         element !== this.state.user[key]
       ) {
         updatedUser[key] = element
@@ -76,13 +103,13 @@ export default class EditUser extends Component {
 
       if (user.status === 200) {
         //   TODO: open profile tab
-        this.context.handleToast("Profile edit successful", null)
+        this.context.handleToast('Profile edit successful', null)
       }
       if (user.status === 400) {
-        this.context.handleToast(null, "Poops, you did something wrong 💩💩💩")
+        this.context.handleToast(null, 'Poops, you did something wrong 💩💩💩')
       }
     } catch (e) {
-      this.context.handleToast(null, "Poops, you did something wrong 💩💩💩")
+      this.context.handleToast(null, 'Poops, you did something wrong 💩💩💩')
       console.log(e)
     }
   }
@@ -162,6 +189,12 @@ export default class EditUser extends Component {
           <br />
           <input className="navButton" type="submit" value="Submit" />
         </form>
+        <input
+          className="navButton"
+          type="submit"
+          onClick={this.deleteAccount}
+          value="Delete Account"
+        />
       </div>
     )
   }

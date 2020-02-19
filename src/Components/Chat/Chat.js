@@ -27,13 +27,22 @@ class Chat extends Component {
     onTypingMessage: ''
   }
 
-  componentDidUpdate = prevProps => {
-    if (this.props.match.params.name !== prevProps.match.params.name) {
-      this.socket.disconnect()
+  newSocket = () => {
+    this.socket.disconnect()
 
-      this.setState({ room: this.props.match.params.name }, () => {
-        this.createSocket()
-      })
+    let { name } = this.props.match.params
+
+    this.setState({ room: name }, () => {
+      this.createSocket()
+    })
+  }
+
+  componentDidUpdate = prevProps => {
+    if (this.props.title && this.props.title !== prevProps.title) {
+      this.newSocket()
+    }
+    if (this.props.match.params.name !== prevProps.match.params.name) {
+      this.newSocket()
     }
   }
 
@@ -56,6 +65,7 @@ class Chat extends Component {
           roomId: response.data._id,
           channel: response.data
         })
+        this.context.setCurrentSelectedChannel(response.data)
       }
     } catch (error) {
       console.log(error)
@@ -87,6 +97,11 @@ class Chat extends Component {
       this.context.addChannelDisplay(channel)
     })
 
+    this.socket.on('removeChannelFromSockets', id => {
+      this.context.removeChannelDisplay(id)
+      // this.newSocket()
+    })
+
     this.socket.on('someoneTyping', username => {
       this.setState({ onTypingMessage: `${username} is typing..` }, () => {
         setTimeout(() => {
@@ -114,6 +129,10 @@ class Chat extends Component {
 
   addChannelToSockets = data => {
     this.socket.emit('addChannelToSockets', data)
+  }
+
+  removeChannelFromSockets = id => {
+    this.socket.emit('removeChannelFromSockets', id)
   }
 
   addLiveMember = () => {
@@ -195,7 +214,12 @@ class Chat extends Component {
 
     if (this.context.channelAdded) {
       this.addChannelToSockets(this.context.channelAdded)
-      this.context.resetChannelAdded()
+      this.context.setChannelAdded(null)
+    }
+
+    if (this.context.channelRemovedId) {
+      this.removeChannelFromSockets(this.context.channelRemovedId)
+      this.context.setChannelRemoved(null)
     }
 
     return (
