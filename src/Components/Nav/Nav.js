@@ -8,7 +8,6 @@ import Drawers from "./Drawers/Drawers"
 import Drawer from "./Drawers/Drawer"
 import ChannelList from "./Channels/ChannelList"
 import AddChannel from "./Channels/AddChannel"
-import EditUserChannels from "./Channels/EditUserChannels"
 import Tabs from "./Tabs/Tabs"
 import Tab from "./Tabs/Tab"
 import "./Nav.css"
@@ -45,7 +44,6 @@ export default class Nav extends Component {
 
           <Drawer label="Edit your channels">
             <AddChannel />
-            <EditUserChannels />
           </Drawer>
           <Drawer label="Profile info">
             {this.context.isAuth ? (
