@@ -56,7 +56,7 @@ class App extends Component {
       channels: this.state.channels.filter(x => x._id !== channel._id)
     })
 
-    if (this.state.user._id !== channel.creator) {
+    if (this.state.user && this.state.user._id !== channel.creator) {
       this.props.history.push('/channel/General')
     }
   }
@@ -93,7 +93,7 @@ class App extends Component {
   }
 
   removeAuth = () => {
-    this.setState({ isAuth: false, user: null })
+    this.setState({ isAuth: false })
     localStorage.removeItem('token')
   }
 
@@ -160,10 +160,10 @@ class App extends Component {
     return (
       <>
         <Context.Provider value={contextPayload}>
-          <div className="App">
+          <div className='App'>
             <Nav />
             <Switch>
-              <Route path="/channel/:name" component={Chat} />
+              <Route path='/channel/:name' component={Chat} />
               <Route component={Chat} />
             </Switch>
           </div>
