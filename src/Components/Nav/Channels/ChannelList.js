@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Spinner from '../../UI/Spinner/Spinner'
-import Context from '../../Context/Context'
-import { createChannel, deleteChannel } from '../../../api/axios-helpers'
-import './Channels.css'
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import Spinner from "../../UI/Spinner/Spinner"
+import Context from "../../Context/Context"
+import { createChannel, deleteChannel } from "../../../api/axios-helpers"
+import "./Channels.css"
 
 export default class ChannelList extends Component {
   static contextType = Context
 
   state = {
-    roomName: ''
+    roomName: ""
   }
 
   handleSubmit = async e => {
@@ -19,7 +19,7 @@ export default class ChannelList extends Component {
       try {
         let res = await createChannel(this.state.roomName)
         this.context.setChannelAdded(res.data.channel)
-        this.setState({ roomName: '' })
+        this.setState({ roomName: "" })
       } catch (error) {
         console.log(error)
       }
@@ -30,7 +30,7 @@ export default class ChannelList extends Component {
 
     if (currentSelectedChannel._id === id) {
       //todo-make popup
-      console.log('cannot delete a channel your currently logged into')
+      console.log("cannot delete a channel your currently logged into")
     } else {
       try {
         let res = await deleteChannel(id)
@@ -49,18 +49,21 @@ export default class ChannelList extends Component {
 
     if (channels) {
       channelList = this.context.channels.map((channel, i) => (
-        <div key={i}>
+        <div className="channelRow" key={i}>
           <Link className="channel" to={`/channel/${channel.title}`}>
             {channel.title}
           </Link>
 
           {user &&
-          user._id == channel.creator &&
-          channel.title !== 'General' ? (
+          user._id === channel.creator &&
+          channel.title !== "General" ? (
             <>
-              {' | '}
-              <a href="#" onClick={this.handleClick.bind(null, channel._id)}>
-                x
+              <a
+                className="deleteChannelButton"
+                href="!#"
+                onClick={this.handleClick.bind(null, channel._id)}
+              >
+                <img src="/delete.png" alt="delete icon" />
               </a>
             </>
           ) : null}

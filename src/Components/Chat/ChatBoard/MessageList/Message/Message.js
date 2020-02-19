@@ -15,7 +15,6 @@ const Message = props => {
       setDisabled(false)
     }
   })
-  console.log(context.user)
 
   let isMsgOwner =
     !disabled &&
