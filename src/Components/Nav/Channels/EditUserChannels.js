@@ -16,15 +16,17 @@ export default class EditUserChannels extends Component {
       console.log('cannot delete a channel your currently logged into')
     } else {
       try {
-        let res = await deleteChannel(id)
-        this.context.setChannelRemoved(res.data)
+
+        await deleteChannel(id)
+        this.context.setChannelRemoved(id)
+
       } catch (err) {
         console.log(err)
       }
     }
   }
   render() {
-    let { channels, currentSelectedChannel, user } = this.context
+    let { channels, user } = this.context
     let channelList = <Spinner />
 
     if (channels) {

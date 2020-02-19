@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Spinner from '../../UI/Spinner/Spinner'
-import Context from '../../Context/Context'
-import { deleteChannel } from '../../../api/axios-helpers'
-import './Channels.css'
+
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import Spinner from "../../UI/Spinner/Spinner"
+import Context from "../../Context/Context"
+import "./Channels.css"
+
 
 export default class ChannelList extends Component {
   static contextType = Context
