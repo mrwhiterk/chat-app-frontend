@@ -93,7 +93,7 @@
 
 .msg img {
   border-radius: 50%;
-  border: 1px solid rgb(235, 203, 220);
+  border: 1px solid rgb(219, 183, 203);
   margin-top: 2vh;
   height: 4vh;
 }
@@ -129,7 +129,7 @@
   margin-right: 0.6vw;
   margin-left: 10vw;
   align-self: flex-end;
-  background-color: rgb(87, 5, 50);
+  background-color: rgb(83, 3, 36);
   box-shadow: -2px 1px 5px rgba(226, 142, 188, 0.336);
 }
 

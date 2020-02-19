@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import Box from '../../FadeAnimation/Box'
 import Trigger from '../../FadeAnimation/Trigger'
+import Context from '../../Context/Context'
 
 export default class Drawer extends Component {
+  static contextType = Context
+
   render() {
     return (
       <>
@@ -17,11 +20,18 @@ export default class Drawer extends Component {
               >
                 <div
                   className={`drawerLink`}
-                  onClick={event => {
-                    event.preventDefault()
-                    this.props.handleTrigger(this.props.drawer)
+                  onClick={
+                    this.context.isAuth
+                      ? event => {
+                          event.preventDefault()
+                          this.props.handleTrigger(this.props.drawer)
+                        }
+                      : null
+                  }
+                  style={{
+                    background: 'none',
+                    fontWeight: '300'
                   }}
-                  style={{ background: 'none', fontWeight: '300' }}
                 >
                   {`${this.props.label}`}
                 </div>
@@ -47,12 +57,19 @@ export default class Drawer extends Component {
             <div className='drawer'>
               <div
                 className={`drawerLink`}
-                onClick={event => {
-                  event.preventDefault()
-                  this.props.handleTrigger(this.props.drawer)
+                onClick={
+                  this.context.isAuth
+                    ? event => {
+                        event.preventDefault()
+                        this.props.handleTrigger(this.props.drawer)
+                      }
+                    : null
+                }
+                style={{
+                  color: this.context.isAuth ? '' : 'rgba(138, 128, 134, 0.993)'
                 }}
               >
-                {`${this.props.label}`}
+                {this.context.isAuth ? this.props.label : 'Register to unlock'}
               </div>
               {React.Children.map(this.props.children, (child, i) => {
                 if (this.props.label === 'Profile info') {

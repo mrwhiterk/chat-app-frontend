@@ -16,7 +16,7 @@
   margin-left: 10px;
   margin-right: 10px;
   /* TODO: check tab height */
-  height: 43vh;
+  height: 50vh;
   width: auto;
   display: grid;
   grid-template-columns: 1;
@@ -178,6 +178,7 @@ input {
   display: flex;
   flex-direction: column;
   height: 100%;
+  line-height: 3vh;
 }
 
 .profilePic img {
