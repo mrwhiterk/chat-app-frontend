@@ -45,7 +45,7 @@ export default class Nav extends Component {
           <Drawer label='Edit your channels'>
             <AddChannel />
           </Drawer>
-          <Drawer label={`Profile info (${this.context.user.username})`}>
+          <Drawer label={'Profile info'}>
             {this.context.isAuth ? (
               <Tabs>
                 <Tab className='profile-tab' label='Profile'>

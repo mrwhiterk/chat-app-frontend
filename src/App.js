@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import Nav from "./components/Nav/Nav"
-import Chat from "./components/Chat/Chat"
-import { Route, Switch } from "react-router-dom"
-import "./App.css"
+import React, { Component } from 'react'
+import Nav from './components/Nav/Nav'
+import Chat from './components/Chat/Chat'
+import { Route, Switch } from 'react-router-dom'
+import './App.css'
 import {
   checkTokenAndReturn,
   setAuthHeader,
   getChannels
-} from "./api/axios-helpers"
-import Context from "./components/Context/Context"
+} from './api/axios-helpers'
+import Context from './components/Context/Context'
 
 class App extends Component {
   static contextType = Context
@@ -26,7 +26,7 @@ class App extends Component {
     channels: null,
     channelRemovedId: null,
     channelAddComplete: null,
-    currentSelectedChannel: 'General'
+    currentSelectedChannel: 'General',
   }
 
   setCurrentSelectedChannel = name => {
@@ -40,7 +40,7 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({ channels: response.data })
       } else {
-        console.log("there was an error")
+        console.log('there was an error')
       }
     } catch (error) {
       console.log(error)
@@ -48,7 +48,6 @@ class App extends Component {
   }
 
   addChannelDisplay = channel => {
-    console.log('new channel added')
     this.setState({ channels: [...this.state.channels, channel] })
   }
 
@@ -89,7 +88,7 @@ class App extends Component {
 
   removeAuth = () => {
     this.setState({ isAuth: false })
-    localStorage.removeItem("token")
+    localStorage.removeItem('token')
   }
 
   logout = () => {
@@ -156,12 +155,12 @@ class App extends Component {
     return (
       <>
         <Context.Provider value={contextPayload}>
-          <div className="App">
+          <div className='App'>
             <Nav />
             <Switch>
               {data}
               {/* {deleteData} */}
-              <Route path="/channel/:name" component={Chat} />
+              <Route path='/channel/:name' component={Chat} />
               <Route component={Chat} />
             </Switch>
           </div>

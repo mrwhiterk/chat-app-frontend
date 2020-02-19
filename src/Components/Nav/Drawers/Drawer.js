@@ -10,7 +10,7 @@ export default class Drawer extends Component {
           <Trigger>
             <Box>
               <div
-                className="drawer"
+                className='drawer'
                 style={{
                   background: '-webkit-linear-gradient(#47313d3b, #0d0d0d)'
                 }}
@@ -26,14 +26,25 @@ export default class Drawer extends Component {
                   {`${this.props.label}`}
                 </div>
                 {React.Children.map(this.props.children, (child, i) => {
-                  return <div className="activeDrawerContent">{child}</div>
+                  if (this.props.label === 'Profile info') {
+                    return (
+                      <div
+                        className='activeDrawerContent'
+                        style={{ height: '52vh' }}
+                      >
+                        {child}
+                      </div>
+                    )
+                  } else {
+                    return <div className='activeDrawerContent'>{child}</div>
+                  }
                 })}
               </div>
             </Box>
           </Trigger>
         ) : (
           <Box>
-            <div className="drawer">
+            <div className='drawer'>
               <div
                 className={`drawerLink`}
                 onClick={event => {
@@ -44,7 +55,18 @@ export default class Drawer extends Component {
                 {`${this.props.label}`}
               </div>
               {React.Children.map(this.props.children, (child, i) => {
-                return <div className="activeDrawerContent">{child}</div>
+                if (this.props.label === 'Profile info') {
+                  return (
+                    <div
+                      className='activeDrawerContent'
+                      style={{ height: '52vh' }}
+                    >
+                      {child}
+                    </div>
+                  )
+                } else {
+                  return <div className='activeDrawerContent'>{child}</div>
+                }
               })}
             </div>
           </Box>
