@@ -25,13 +25,24 @@ const Message = props => {
       : ''
   return (
     <div className={`msg ${isMsgOwner}`}>
-      <div className="usernameInMsg">
-        {props.message.author
-          ? props.message.author.username
-          : '-user removed-'}
+      <img
+        className='messageAvatar'
+        src={
+          props.message.author.photo === ''
+            ? '/animal-15-512.png'
+            : props.message.author.photo
+        }
+        alt='profile avatar'
+      ></img>
+      <div className='messageTextBoard'>
+        <div className='usernameInMsg'>
+          {props.message.author
+            ? props.message.author.username
+            : '-user removed-'}
+        </div>
+        <div className='msgTxt'>{props.message.body}</div>
+        <div className='msgSent'>{props.message.created}</div>
       </div>
-      <div className="msgTxt">{props.message.body}</div>
-      <div className="msgSent">{props.message.created}</div>
     </div>
   )
 }

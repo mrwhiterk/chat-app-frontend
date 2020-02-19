@@ -26,7 +26,7 @@ class App extends Component {
     channels: null,
     channelRemoved: null,
     channelAddComplete: null,
-    currentSelectedChannel: 'General'
+    currentSelectedChannel: 'General',
   }
 
   setCurrentSelectedChannel = name => {

@@ -17,14 +17,17 @@
 }
 
 .activeDrawerContent {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 43vh;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
-.activeDrawerContent  > *{
-    width: 100%;
+.activeDrawerContent > * {
+  width: 100%;
 }
 
 .drawer {

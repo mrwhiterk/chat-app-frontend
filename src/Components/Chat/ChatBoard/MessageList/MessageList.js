@@ -9,14 +9,15 @@ export default function MessageList(props) {
     messageList = props.messages.map((messageProps, i) => (
       <Message key={i} message={messageProps}></Message>
     ))
+    
   } else {
     messageList = <Spinner />
   }
 
   return (
-    <div className="messageList">
-      <div id="userTyping">{props.onTypingMessage}</div>
-      <div className="messageList2">{messageList}</div>
+    <div className='messageList'>
+      <div id='userTyping'>{props.onTypingMessage}</div>
+      <div className='messageList2'>{messageList}</div>
     </div>
   )
 }

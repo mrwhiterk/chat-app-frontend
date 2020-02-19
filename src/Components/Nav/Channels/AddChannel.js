@@ -1,13 +1,14 @@
-import React, { Component } from "react"
-import Context from "../../Context/Context"
-import { createChannel } from "../../../api/axios-helpers"
-import "./Channels.css"
+import React, { Component } from 'react'
+import Context from '../../Context/Context'
+import { createChannel } from '../../../api/axios-helpers'
+import EditUserChannels from '../Channels/EditUserChannels'
+import './Channels.css'
 
 export default class AddChannel extends Component {
   static contextType = Context
 
   state = {
-    roomName: ""
+    roomName: ''
   }
 
   handleSubmit = async e => {
@@ -17,7 +18,7 @@ export default class AddChannel extends Component {
       try {
         let res = await createChannel(this.state.roomName)
         this.context.setChannelAdded(res.data.channel)
-        this.setState({ roomName: "" })
+        this.setState({ roomName: '' })
       } catch (error) {
         console.log(error)
       }
@@ -27,22 +28,25 @@ export default class AddChannel extends Component {
   handleChange = ({ target }) => this.setState({ [target.name]: target.value })
   render() {
     return (
-      <div className="addChannel">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="roomName"
-            value={this.state.roomName}
-            onChange={this.handleChange}
-            placeholder="Add new room"
-          />
-          <input
-            className="navButton addChannelButton"
-            type="submit"
-            value="Add channel"
-          />
-        </form>
-      </div>
+      <>
+        <div className='addChannel'>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type='text'
+              name='roomName'
+              value={this.state.roomName}
+              onChange={this.handleChange}
+              placeholder='Add new room'
+            />
+            <input
+              className='navButton addChannelButton'
+              type='submit'
+              value='Add channel'
+            />
+          </form>
+        </div>
+        <EditUserChannels />
+      </>
     )
   }
 }
