@@ -1,3 +1,16 @@
+.tab {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 200;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
 .tabs {
   margin-left: 10px;
   margin-right: 10px;
@@ -14,19 +27,6 @@
   grid-row: 1;
   display: flex;
   flex-direction: row;
-}
-
-.tab {
-  cursor: pointer;
-  width: 80px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 200;
-  text-transform: uppercase;
-  text-decoration: none;
 }
 
 .tab:hover {

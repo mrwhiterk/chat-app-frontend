@@ -45,3 +45,11 @@
 .deleteChannelButton img:hover {
   height: 1.1em;
 }
+
+
+.addChannel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}

@@ -16,6 +16,17 @@
   font-weight: 300;
 }
 
+.activeDrawerContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.activeDrawerContent  > *{
+    width: 100%;
+}
+
 .drawer {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;

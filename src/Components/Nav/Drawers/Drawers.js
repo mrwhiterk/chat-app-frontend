@@ -6,7 +6,8 @@ export default class Drawers extends Component {
   static contextType = Context
 
   state = {
-    activeDrawer: 2
+    // TODO: change back to 2
+    activeDrawer: 1
   }
 
   handleClick = drawer => {

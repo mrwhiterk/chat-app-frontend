@@ -7,6 +7,7 @@ import Context from "../Context/Context"
 import Drawers from "./Drawers/Drawers"
 import Drawer from "./Drawers/Drawer"
 import ChannelList from "./Channels/ChannelList"
+import AddChannel from "./Channels/AddChannel"
 import Tabs from "./Tabs/Tabs"
 import Tab from "./Tabs/Tab"
 import "./Nav.css"
@@ -42,15 +43,7 @@ export default class Nav extends Component {
           </Drawer>
 
           <Drawer label="Test">
-            <div>
-              <div>POOP</div>
-              <div>POOP</div>
-              <div>POOP</div>
-              <div>POOP</div>
-              <div>POOP</div>
-              <div>POOP</div>
-              <div>POOP</div>
-            </div>
+            <AddChannel/>
           </Drawer>
           <Drawer label="Profile info">
             {/* Register / Login tabs */}
