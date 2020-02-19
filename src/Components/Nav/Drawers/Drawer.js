@@ -9,14 +9,19 @@ export default class Drawer extends Component {
         {this.props.isActive ? (
           <Trigger>
             <Box>
-              <div className="drawer">
+              <div
+                className="drawer"
+                style={{
+                  background: "-webkit-linear-gradient(#47313d3b, #0d0d0d)"
+                }}
+              >
                 <div
                   className={`drawerLink`}
                   onClick={event => {
                     event.preventDefault()
                     this.props.handleTrigger(this.props.drawer)
                   }}
-                  style={{ fontWeight: "300" }}
+                  style={{ background: "none", fontWeight: "300" }}
                 >
                   {`${this.props.label}`}
                 </div>

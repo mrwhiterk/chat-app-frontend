@@ -4,9 +4,12 @@
   text-transform: uppercase;
   font-weight: 200;
   text-align: left;
-  margin-top: 3vh;
+  padding-top: 2.2vh;
   margin-bottom: 3vh;
-  margin-left: 10%;
+  padding-left: 10%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: -webkit-linear-gradient(top, #3a35382a, #0d0d0d);
 }
 
 .drawerLink:hover {
@@ -14,5 +17,8 @@
 }
 
 .drawer {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 1%;
   height: fit-content;
 }
