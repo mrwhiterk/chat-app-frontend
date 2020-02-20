@@ -1,10 +1,9 @@
-
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import Spinner from "../../UI/Spinner/Spinner"
-import Context from "../../Context/Context"
-import "./Channels.css"
-
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Spinner from '../../UI/Spinner/Spinner'
+import Context from '../../Context/Context'
+import { deleteChannel } from '../../../api/axios-helpers'
+import './Channels.css'
 
 export default class ChannelList extends Component {
   static contextType = Context
@@ -15,13 +14,13 @@ export default class ChannelList extends Component {
 
     if (channels) {
       channelList = this.context.channels.map((channel, i) => (
-        <div className="channelRow" key={i}>
-          <Link className="channel" to={`/channel/${channel.title}`}>
+        <div className='channelRow' key={i}>
+          <Link className='channel' to={`/channel/${channel.title}`}>
             {channel.title}
           </Link>
         </div>
       ))
     }
-    return <div className="channels">{channelList}</div>
+    return <div className='channels'>{channelList}</div>
   }
 }

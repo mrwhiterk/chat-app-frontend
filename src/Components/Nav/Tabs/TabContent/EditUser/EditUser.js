@@ -102,7 +102,6 @@ export default class EditUser extends Component {
       let user = await editUser(updatedUser)
 
       if (user.status === 200) {
-        //   TODO: open profile tab
         this.context.handleToast('Profile edit successful', null)
       }
       if (user.status === 400) {

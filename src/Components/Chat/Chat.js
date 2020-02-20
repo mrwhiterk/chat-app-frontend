@@ -143,13 +143,9 @@ class Chat extends Component {
     }
   }
 
-  removeLiveMember = () => {
-    this.socket.emit(
-      'removeUserFromActiveChat',
-      this.context.user,
-      this.state.room
-    )
-    this.socket.disconnect()
+  removeLiveMember = payload => {
+    this.socket.emit('removeUserFromActiveChat', payload, this.state.room)
+    // this.socket.disconnect()
 
     this.props.history.push('/channel/General')
   }
@@ -208,7 +204,7 @@ class Chat extends Component {
     }
 
     if (this.context.logoutPayload) {
-      this.removeLiveMember()
+      this.removeLiveMember(this.context.logoutPayload)
       this.context.resetLogoutPayload()
     }
 

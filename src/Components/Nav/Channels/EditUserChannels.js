@@ -12,14 +12,14 @@ export default class EditUserChannels extends Component {
     let { currentSelectedChannel } = this.context
 
     if (currentSelectedChannel._id === id) {
-      //todo-make popup
-      console.log('cannot delete a channel your currently logged into')
+      this.context.handleToast(
+        null,
+        'Cannot delete a channel your currently logged into'
+      )
     } else {
       try {
-
-        await deleteChannel(id)
-        this.context.setChannelRemoved(id)
-
+        let res = await deleteChannel(id)
+        this.context.setChannelRemoved(res.data)
       } catch (err) {
         console.log(err)
       }
