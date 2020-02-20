@@ -27,6 +27,7 @@ class App extends Component {
     channelRemoved: null,
     channelAddComplete: null,
     currentSelectedChannel: 'General',
+    forcePush: false
   }
 
   setCurrentSelectedChannel = name => {
@@ -59,6 +60,18 @@ class App extends Component {
     if (this.state.user && this.state.user._id !== channel.creator) {
       this.props.history.push('/channel/General')
     }
+  }
+
+  redirectGeneral = () => {
+    this.setState({ forcePush: true }, () => {
+      this.props.history.push({
+        pathname: '/channel/General'
+      })
+    })
+  }
+
+  disableForcePush = () => {
+    this.setState({ forcePush: false })
   }
 
   setChannelRemoved = channel => {
@@ -135,7 +148,10 @@ class App extends Component {
       channelRemoved: this.state.channelRemoved,
       setChannelRemoved: this.setChannelRemoved,
       currentSelectedChannel: this.state.currentSelectedChannel,
-      setCurrentSelectedChannel: this.setCurrentSelectedChannel
+      setCurrentSelectedChannel: this.setCurrentSelectedChannel,
+      redirectGeneral: this.redirectGeneral,
+      forcePush: this.state.forcePush,
+      disableForcePush: this.disableForcePush
     }
 
     // if (this.state.channelAddComplete) {
