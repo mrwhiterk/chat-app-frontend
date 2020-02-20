@@ -71,8 +71,8 @@ export default class EditUser extends Component {
       return
     }
 
-    let validAvatarUrlRegex = /^(http).*(jpg|jpeg|png)$/g
-    if (!this.state.photo.match(validAvatarUrlRegex)) {
+    let validAvatarUrlRegex = /^(http).*(jpg|jpeg|png|gif)$/g
+    if (this.state.photo && !this.state.photo.match(validAvatarUrlRegex)) {
       this.context.handleToast(null, 'Invalid URL')
       return
     }
