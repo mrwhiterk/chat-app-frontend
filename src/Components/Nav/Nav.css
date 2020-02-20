@@ -13,13 +13,13 @@ input{
 }
 
 .appTitle {
-    font-family: 'font2';
+    font-family: 'font3';
   margin-top: 10%;
   margin-bottom: 10vh;
   grid-row: 1;
-  font-size: 40px;
+  font-size: 3em;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 100;
 }
 
 .drawers {
@@ -51,8 +51,7 @@ input{
 }
 
 
-
 @font-face {
-  font-family: "font2";
-  src: url("/fonts/zai_RoyalVogueTypewriter1929.ttf") format("truetype");
+  font-family: "font3";
+  src: url("/fonts/OpenDyslexicMono-Regular.otf") format("truetype");
 }

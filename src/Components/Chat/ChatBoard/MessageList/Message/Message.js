@@ -28,9 +28,9 @@ const Message = props => {
       <img
         className='messageAvatar'
         src={
-          props.message.author.photo === ''
-            ? '/animal-15-512.png'
-            : props.message.author.photo
+          props.message.author 
+                ? props.message.author.photo || '/animal-15-512.png'
+            : '/animal-15-512.png'
         }
         alt='profile avatar'
       ></img>
