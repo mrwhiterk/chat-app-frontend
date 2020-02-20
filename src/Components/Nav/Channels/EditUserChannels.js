@@ -4,11 +4,13 @@ import Spinner from '../../UI/Spinner/Spinner'
 import Context from '../../Context/Context'
 import { deleteChannel } from '../../../api/axios-helpers'
 import './Channels.css'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
 export default class EditUserChannels extends Component {
   static contextType = Context
 
-  handleClick = async id => {
+  handleClick = async (id, title) => {
     let { currentSelectedChannel } = this.context
 
     if (currentSelectedChannel._id === id) {
@@ -17,12 +19,27 @@ export default class EditUserChannels extends Component {
         'Cannot delete a channel your currently logged into'
       )
     } else {
-      try {
-        let res = await deleteChannel(id)
-        this.context.setChannelRemoved(res.data)
-      } catch (err) {
-        console.log(err)
-      }
+      confirmAlert({
+        title: `Careful ${this.context.user.username}!`,
+        message: `Are you sure you want to delete channel: ${title}?`,
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {
+              try {
+                let res = await deleteChannel(id)
+                this.context.setChannelRemoved(res.data)
+              } catch (err) {
+                console.log(err)
+              }
+            }
+          },
+          {
+            label: 'No',
+            onClick: () => null
+          }
+        ]
+      })
     }
   }
   render() {
@@ -39,7 +56,7 @@ export default class EditUserChannels extends Component {
 
             <div
               className='deleteChannelButton'
-              onClick={this.handleClick.bind(null, channel._id)}
+              onClick={this.handleClick.bind(null, channel._id, channel.title)}
             >
               <img src='/delete.png' alt='delete icon' />
             </div>
