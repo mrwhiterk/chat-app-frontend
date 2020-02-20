@@ -46,9 +46,7 @@ export default class Nav extends Component {
             <AddChannel />
           </Drawer>
           <Drawer
-            label={`Profile info - Logged in as ${
-              this.context.user ? this.context.user.username : 'guest'
-            }`}
+            label='Profile info'
           >
             {this.context.isAuth ? (
               <Tabs>

@@ -1,4 +1,7 @@
 .drawerLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   cursor: pointer;
   font-size: 15px;
   text-transform: uppercase;
@@ -15,6 +18,15 @@
 .drawerLink:hover {
   font-weight: 300;
 }
+
+/* .drawerLink span {
+    color: #b97994;
+  margin-right: 2vw;
+  align-self: flex-end;
+  width: fit-content;
+  font-size: 15px;
+  text-transform: none;
+} */
 
 .activeDrawerContent {
   display: flex;

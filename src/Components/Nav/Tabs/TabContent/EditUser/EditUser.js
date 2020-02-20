@@ -66,6 +66,17 @@ export default class EditUser extends Component {
   handleSubmit = async e => {
     e.preventDefault()
 
+    if (this.state.username.length > 10) {
+      this.context.handleToast(null, 'Username max 10 characters')
+      return
+    }
+
+    let validAvatarUrlRegex = /^(http).*(jpg|jpeg|png)$/g
+    if (!this.state.photo.match(validAvatarUrlRegex)) {
+      this.context.handleToast(null, 'Invalid URL')
+      return
+    }
+
     if (this.state.password !== this.state.confirmNewPassword) {
       this.context.handleToast(
         null,
