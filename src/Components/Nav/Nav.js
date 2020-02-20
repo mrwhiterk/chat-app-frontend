@@ -20,7 +20,6 @@ export default class Nav extends Component {
   }
 
   componentDidMount() {
-    // Error/success notification check
     if (this.context.toastMsg.success) {
       this.setState({
         notification: this.context.toastMsg.success

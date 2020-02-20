@@ -29,7 +29,7 @@ input {
 .successNotification {
   color: rgba(241, 253, 255, 0.966);
   position: absolute;
-  width: 85%;
+  width: 87%;
   left: 5%;
   padding: 5px;
   background-color: rgba(110, 181, 190, 0.966);
@@ -40,9 +40,10 @@ input {
 
 .errorNotification {
   color: rgb(230, 217, 218);
-  position: absolute;
-  width: 85%;
-  left: 5%;
+  position: fixed;
+  width: 20vw;
+  left: 2%;
+  bottom: 4vh;
   padding: 5px;
   background-color: rgba(163, 12, 19, 0.863);
   border-radius: 5px;

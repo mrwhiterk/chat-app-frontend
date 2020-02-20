@@ -17,7 +17,15 @@ export default class AddChannel extends Component {
     if (this.state.roomName) {
       try {
         let res = await createChannel(this.state.roomName)
-        this.context.setChannelAdded(res.data.channel)
+
+          if (res.status === 200) {
+              this.context.setChannelAdded(res.data.channel)
+          }
+
+          if (res.status === 400) {
+              this.context.handleToast(null, "Channel already exists")
+          }
+       
         this.setState({ roomName: '' })
       } catch (error) {
         console.log(error)
