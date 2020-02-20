@@ -55,7 +55,6 @@
   text-align: start;
   font-size: 25px;
   font-family: 'font3';
-
 }
 
 .channelMessages {
@@ -97,6 +96,7 @@
   border: 1px solid rgb(219, 183, 203);
   margin-top: 2vh;
   height: 4vh;
+  width: 4vh;
 }
 
 .messageTextBoard {
