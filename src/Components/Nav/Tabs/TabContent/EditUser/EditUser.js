@@ -66,7 +66,7 @@ export default class EditUser extends Component {
   handleSubmit = async e => {
     e.preventDefault()
 
-    if (this.state.username.length > 10) {
+    if (this.state.username.length > 15) {
       this.context.handleToast(null, 'Username max 10 characters')
       return
     }

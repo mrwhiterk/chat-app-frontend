@@ -1,19 +1,19 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   signup,
   setAuthHeader,
   checkTokenAndReturn
-} from "../../../../../api/axios-helpers"
-import Context from "../../../../Context/Context"
+} from '../../../../../api/axios-helpers'
+import Context from '../../../../Context/Context'
 
 class RegisterForm extends Component {
   static contextType = Context
 
   state = {
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   }
 
   handleChange = e => {
@@ -23,8 +23,13 @@ class RegisterForm extends Component {
   handleSubmit = async e => {
     e.preventDefault()
 
+    if (this.state.username.length > 15) {
+      this.context.handleToast(null, 'Username max 10 characters')
+      return
+    }
+
     if (this.state.password !== this.state.confirmPassword) {
-        this.context.handleToast(null, `Passwords don't match`)
+      this.context.handleToast(null, `Passwords don't match`)
       return
     }
 
@@ -33,19 +38,19 @@ class RegisterForm extends Component {
 
       if (res.status === 200) {
         setAuthHeader(res.data.token)
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem('token', res.data.token)
         this.context.setAuth(checkTokenAndReturn())
-        this.context.handleToast("Welcome!", null)
+        this.context.handleToast('Welcome!', null)
       }
 
       if (res.status === 400) {
         let { errors } = res.data
         if (errors) {
-          if (errors.username && errors.username.kind === "unique") {
-            this.context.handleToast(null, "Username taken")
+          if (errors.username && errors.username.kind === 'unique') {
+            this.context.handleToast(null, 'Username taken')
           }
-          if (errors.email && errors.email.kind === "unique") {
-            this.context.handleToast(null, "Email taken")
+          if (errors.email && errors.email.kind === 'unique') {
+            this.context.handleToast(null, 'Email taken')
           }
         }
       }
@@ -56,15 +61,15 @@ class RegisterForm extends Component {
 
   render() {
     let form = (
-      <div className="navTabContent">
-        <form className="navTabForm register" onSubmit={this.handleSubmit}>
+      <div className='navTabContent'>
+        <form className='navTabForm register' onSubmit={this.handleSubmit}>
           <h5>Register</h5>
           <label>
             <h6>Username</h6>
             <input
-              type="text"
-              name="username"
-              placeholder="Username"
+              type='text'
+              name='username'
+              placeholder='Username'
               onChange={this.handleChange}
               value={this.state.username}
             />
@@ -72,9 +77,9 @@ class RegisterForm extends Component {
           <label>
             <h6>Email</h6>
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
+              type='email'
+              name='email'
+              placeholder='Email'
               onChange={this.handleChange}
               value={this.state.email}
             />
@@ -82,10 +87,10 @@ class RegisterForm extends Component {
           <label>
             <h6>Password</h6>
             <input
-              type="password"
-              name="password"
-              autoComplete="password"
-              placeholder="Password"
+              type='password'
+              name='password'
+              autoComplete='password'
+              placeholder='Password'
               onChange={this.handleChange}
               value={this.state.password}
             />
@@ -93,16 +98,16 @@ class RegisterForm extends Component {
           <label>
             <h6>Confirm password</h6>
             <input
-              type="password"
-              name="confirmPassword"
-              autoComplete="confirm-password"
+              type='password'
+              name='confirmPassword'
+              autoComplete='confirm-password'
               onChange={this.handleChange}
-              placeholder="Confirm password"
+              placeholder='Confirm password'
               value={this.state.confirmPassword}
             />
           </label>
           <br />
-          <input className="navButton" type="submit" value="Register" />
+          <input className='navButton' type='submit' value='Register' />
         </form>
       </div>
     )
