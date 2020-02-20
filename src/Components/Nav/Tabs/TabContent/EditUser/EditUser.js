@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { getUser, editUser, deleteUser } from '../../../../../api/axios-helpers'
 import Context from '../../../../Context/Context'
-import { confirmAlert } from 'react-confirm-alert' // Import
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 export default class EditUser extends Component {
   static contextType = Context
