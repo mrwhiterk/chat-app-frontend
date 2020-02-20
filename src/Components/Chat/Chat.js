@@ -38,6 +38,10 @@ class Chat extends Component {
   }
 
   componentDidUpdate = prevProps => {
+    if (this.context.forcePush) {
+      this.context.disableForcePush()
+      this.newSocket()
+    }
     if (this.props.title && this.props.title !== prevProps.title) {
       this.newSocket()
     }
